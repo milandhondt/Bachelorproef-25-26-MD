@@ -71,7 +71,16 @@ Het resultaat van deze fase is een duidelijker inzicht binnen het probleemdomein
 %      FASE 2
 %===================
 \paragraph{Fase 2: Literatuurstudie (2 werkdagen)}
-De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welke LLMs (Large Languague Models) er het meest geschikt zijn voor het analyseren van code kwaliteit, en het geven van consistente en duidelijke feedback. Deze literatuurstudie zal zowel lokale als cloud modellen onderzoeken. Hieruit zal een longlist worden opgesteld met de modellen die vergeleken zullen worden in een volgende onderzoeksfase. Hier zullen zowel voor- als nadelen worden opgelijst, alsook technische details zoals token en context limitaties, wat zeer belangrijk zal zijn voor de uiteindelijke gebruiksvriendelijkheid van het model. Als laatste zal er ook gekeken worden naar hoe de te grote projecten zullen worden opgesplitst, hier bestaan er namelijk ook verschillende manieren voor.
+De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welke LLMs (Large Languague Models) er het meest geschikt zijn voor het analyseren van code kwaliteit, en het geven van consistente en duidelijke feedback. Deze literatuurstudie zal zowel lokale als cloud modellen onderzoeken, via Ollama. Hieruit zal een longlist worden opgesteld met de potentiële modellen die in aanmerking komen voor verder onderzoek. Bij het kiezen van de modellen wordt er aandacht besteed aan:
+\begin{enumerate}
+    \item Voordelen
+    \item Nadelen
+    \item Token- en contextlimitaties
+    \item Geschiktheid voor code-analyse
+\end{enumerate}
+Als laatste zal er ook gekeken worden naar hoe de te grote projecten zullen worden opgesplitst, hier bestaan er namelijk ook verschillende manieren voor. Denk hierbij aan per bestand, per laag, via chunking, via een samenvatting,\dots
+
+\noindent Het resultaat van deze fase is een duidelijke, goed onderbouwde lijst van bruikbare modellen, inclusief hun technische eigenschappen en eventuele beperkingen.
 
 %===================
 %      FASE 3
