@@ -3,27 +3,41 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-De afgelopen jaren hebben Large Language Models (LLMs) zoals ChatGPT, Gemini, Claude, Deepseek en GitHub Copilot een enorme impact gecreëerd op bijna alles en iedereen. AI valt bij velen niet meer weg te denken uit het dagelijks leven, en wordt elke dag opnieuw door ontelbare aantallen mensen ingezet om hun taken te vergemakkelijken. Zo ook door studenten Full Stack Development binnen de opleiding Toegepaste Informatica aan HOGENT. Deze studenten zetten LLMs steeds vaker in om code te begrijpen, debuggen, zelfs schrijven. 
+De afgelopen jaren hebben Large Language Models (LLMs) zoals ChatGPT, Gemini, Claude, \newline Deepseek en GitHub Copilot een enorme impact gecreëerd op bijna alles en iedereen. AI valt bij velen niet meer weg te denken uit het dagelijks leven, en wordt elke dag opnieuw door ontelbare aantallen mensen ingezet om hun taken te vergemakkelijken. Zo ook door studenten Full Stack Development binnen de opleiding Toegepaste Informatica aan HOGENT. Deze studenten zetten LLMs steeds vaker in om code te begrijpen, debuggen, zelfs schrijven.
 
-\newline Maar hoe goed zijn die LLMs in het begrijpen van code? Hoe goed is de feedback die ze genereren? Is deze wel correct? Is deze bruikbaar? Dat zijn allemaal vragen waar de studenten zelf weinig bij stil staan, maar dit is wel relevant. Binnen de opleidingsonderdelen Front-End Web Development en Web Services worden er namelijks per semester tientallen projecten ingediend, en deze worden momenteel nog volledig handmatig beoordeeld door de lectoren. Die manuele beoordeling is enorm tijdsintensief, en repetitief. Lectoren moeten dezelfde criteria, denk bijvoorbeeld aan structuur, consistentie, documentatie, foutafhandeling, testing,\ldots telkens opnieuw toepassen op elk project. Hierdoor gaat eigenlijk een groot deel van hun tijd naar het puur controleren van de aanwezigheid van bepaalde onderdelen in het project, en niet naar het geven van inhoudelijke feedback. Verder is het ook lastig voor de lectoren om consistent feedback te geven. Zo hangt de feedback die een bepaald project zou krijgen ook nog eens af van welke persoon het beoordeeld.
+\vspace{1em}
 
-\newline Deze concrete probleemsituatie geeft aanleiding tot de vraag of lectoren LLMs niet zouden kunnen gebruiken ter ondersteuning, door feedback te genereren over de code-kwaliteit van een studentenproject. Hoe bruikbaar, betrouwbaar, consistent of accuraat deze feedback is, en hoe consistent ze is in vergelijking met de feedback van een lector is echter nog onduidelijk.
+Maar hoe goed zijn die LLMs in het begrijpen van code? Hoe goed is de feedback die ze genereren? Is deze wel correct? Is deze bruikbaar? Dat zijn allemaal vragen waar de studenten zelf weinig bij stil staan, maar dit is wel relevant. Binnen de opleidingsonderdelen Front-End Web Development en Web Services worden er namelijks per semester tientallen projecten ingediend, en deze worden momenteel nog volledig handmatig beoordeeld door de lectoren. Die manuele beoordeling is enorm tijdsintensief, en repetitief. Lectoren moeten dezelfde criteria, denk bijvoorbeeld aan structuur, consistentie, documentatie, foutafhandeling, testing,\ldots telkens opnieuw toepassen op elk project. Hierdoor gaat eigenlijk een groot deel van hun tijd naar het puur controleren van de aanwezigheid van bepaalde onderdelen in het project, en niet naar het geven van inhoudelijke feedback. Verder is het ook lastig voor de lectoren om consistent feedback te geven. Zo hangt de feedback die een bepaald project zou krijgen ook nog eens af van welke persoon het beoordeeld.
 
-\newline Daaruit vloeit dus ook volgende onderzoeksvraag voort:
+\vspace{1em}
 
-``In welke mate kunnen Large Language Models bruikbare en betrouwbare formatieve feedback genereren op code-kwaliteit van studentenprojecten binnen webontwikkeling, en hoe verhouden deze beoordelingen zich tot de evaluaties van ervaren lectoren?''
+Deze concrete probleemsituatie geeft aanleiding tot de vraag of lectoren LLMs niet zouden kunnen gebruiken ter ondersteuning, door feedback te genereren over de code-kwaliteit van een studentenproject. Hoe bruikbaar, betrouwbaar, consistent of accuraat deze feedback is, en hoe consistent ze is in vergelijking met de feedback van een lector is echter nog onduidelijk.
+
+\vspace{1em}
+
+Daaruit vloeit dus ook volgende onderzoeksvraag voort:
+
+\begin{quote}
+    \textit{``In welke mate kunnen Large Language Models bruikbare en betrouwbare formatieve feedback genereren op code-kwaliteit van studentenprojecten binnen webontwikkeling, en hoe verhouden deze beoordelingen zich tot de evaluaties van ervaren lectoren?''}
+\end{quote}
+
+\vspace{1em}
 
 Om deze onderzoeksvraag te beantwoorden worden onderstaande deelvragen onderzocht. Deze hebben enerzijds betrekking tot het probleemdomein, anderzijds tot het oplossingsdomein.
 
-Deelvragen probleemdomein:
+\vspace{1em}
+
+\textbf{Deelvragen probleemdomein:}
 \begin{enumerate}
     \item Welke specifieke code-criteria worden momenteel gebruikt bij de evaluatie van projecten binnen Front-end Web Development en Web Services?
     \item Hoeveel tijd wordt gemiddeld gespendeerd aan het beoordelen van 1 project?
     \item Van de tijd die gespendeerd wordt aan het beoordelen van 1 project, welk deel is gericht op het controleren van de criteria, en welk deel is gericht op het geven van inhoudelijke feedback?
     \item In welke mate ervaren de lectoren inconsistenties in hun eigen beoordelingen ten opzichte van hun collega's?
 \end{enumerate}
-    
-Deelvragen oplossingsdomein:
+
+\vspace{1em}
+
+\textbf{Deelvragen oplossingsdomein:}
 \begin{enumerate}
     \item Hoe goed zijn verschillende LLM's in het detecteren van vooraf gedefinieerde criteria in de codebase van zo'n studentenproject?
     \item In welke mate komen de feedback van lectoren en LLM's overeen?
@@ -32,6 +46,8 @@ Deelvragen oplossingsdomein:
     \item Wat zijn de zwaktes van de door een LLM gegenereerde feedback over zo'n studentenproject?
     \item Wat is de potentiële tijdswinst bij het gebruik van een LLM, ten opzichte van alle projecten handmatig evalueren?
 \end{enumerate}
+
+\vspace{1em}
 
 Het doel van dit onderzoek is dus om te gaan kijken in hoeverre LLMs gebruikt kunnen worden ter ondersteuning bij het evalueren van studentenprojecten. Naast de scriptie omvat het eindresultaat ook een Proof-Of-Concept (POC) testomgeving waarmee LLMs systematisch beoordeeld zullen worden op o.a. hun vermogen om criteria te herkennen en consistente feedback te genereren. De doelgroep van dit onderzoek bestaat uit de lectoren Front-End Web Development en Web Services aan HOGENT.
 
