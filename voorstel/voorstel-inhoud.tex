@@ -117,10 +117,26 @@ Als laatste zal er ook gekeken worden naar hoe de te grote projecten zullen word
 %===================
 %      FASE 3
 %===================
-\paragraph{Fase 3: Opzetten testomgeving (4 werkdagen)}
-Tijdens de derde fase zal de testomgeving worden opgezet. Dit omvat het opzetten van een script dat de studentenprojecten opsplitst om te voldoen aan de token limieten van het model, alsook het opzetten van een script dat de gesplitste delen automatisch verstuurt naar verschillende modellen met een identieke prompt. Binnen deze fase zal er ook gekeken worden om eventueel samen te werken met het VIC (Virtual IT Company) van HOGENT. Hier is het namelijk misschien mogelijk om sterkere servers te gebruiken om de rekenkracht van een model te verhogen, iets wat voor dit onderzoek wel van pas zou kunnen komen. In deze fase is het zeer belangrijk dat alles goed gedocumenteerd wordt, zodat het onderzoek reproduceerbaar en herbruikbaar blijft.
+\paragraph{Fase 3: Ontwerp en opzetten testomgeving en PoC(4 werkdagen)}
+De derde fase wordt opgesplitst in meerdere subfasen om zowel het ontwerp, als de uitwerking van de testomgeving, iteratief en gestructureerd te laten verlopen. De testomgeving moet namelijk herbruikbaar, reproduceerbaar en geschikt zijn voor meerdere evaluatierondes.
 
-Het resultaat van deze fase is een volledig werkende proof-of-concept die klaar is om de vergelijkende analyse te gaan uitvoeren. Dit, inclusief de documentatie, zou beschikbaar moeten zijn op een GitHub repository.
+\subparagraph{3.1 Ontwerp PoC}
+In deze eerste subfase wordt de volledige PoC eerst conceptueel uitgewerkt. Hieronder valt als eerste het uitwerken van de promptstructuur en de gewenste vorm van output. Ook wordt er gekeken welke evaluatiecriteria in welke volgorde getest zal worden. Zo kan er in een eerste iteratie gewerkt worden met een beperktere set criteria, bijvoorbeeld enkel database- of repositorycriteria. Als laatste zal er ook gekeken worden naar welke LLM's gebruikt zullen worden in de testomgeving, en zal ook een plan opgesteld worden voor de iteratieve evaluaties.
+
+\subparagraph{3.2 Opzetten eerste versie testomgeving}
+In deze fase zal de eerste versie van de testomgeving worden opgezet. Hiervoor wordt gekeken naar de zaken die opgesteld werden in vorige subfase. Wat ook belangrijk is om te vermelden, is dat in deze fase maar 1 kleine set criteria zal bekeken worden. Zo kan er namelijk nog makkelijk bijgestuurd worden als er ergens iets in de testomgeving nog niet helemaal juist zit. Tenslotte worden in deze fase de scripts opgesteld die de studentenprojecten automatisch opsplitsen om binnen de tokenlimieten te blijven, en die de opgesplitste delen met een identieke prompt automatisch naar de geselecteerde modellen versturen.
+
+\subparagraph{3.3 Iteratieve uitbreiding per criteriaset}
+De testomgeving zal in deze fase iteratief worden uitgebreid. Elke iteratie zal nieuwe criteria bevatten, alsook eventuele aanpassingen of uitbreidingen aan prompts om de LLM's te helpen bij het evalueren van deze criteria. Na het toevoegen zullen alle modellen opnieuw geëvalueerd worden, en hierna kunnen er eventueel terug nodige aanpassingen gedaan worden aan de testomgeving.
+
+\vspace{1em}
+
+Het resultaat van de derde fase is:
+\begin{itemize}
+    \item een volledig gedocumenteerde, reproduceerbare en herbruikbare PoC-testomgeving;
+    \item meerdere iteraties van verbeterde prompts en evaluaties;
+    \item een GitHub-repository met het ontwerp, de scripts, documentatie, logging, configuratiebestanden en testresultaten.
+\end{itemize}
 
 %===================
 %      FASE 4
