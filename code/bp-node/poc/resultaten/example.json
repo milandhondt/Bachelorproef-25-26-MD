@@ -1,0 +1,5 @@
+{
+  "criteria": "testing",
+  "aanwezig": true,
+  "bewijs": "Het project bevat een '__tests__' map met Jest test bestanden."
+}
