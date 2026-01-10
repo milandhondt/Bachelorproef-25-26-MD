@@ -8,11 +8,11 @@ De afgelopen jaren hebben Large Language Models (LLM's) zoals ChatGPT, Gemini, C
 
 \vspace{1em}
 
-Maar hoe goed zijn die LLM's in het begrijpen van code? Hoe goed is de feedback die ze genereren? Is deze wel correct? Is deze bruikbaar? Dat zijn allemaal vragen waar de studenten zelf weinig bij stil staan, maar dit is wel relevant. Binnen de opleidingsonderdelen Front-End Web Development en Web Services worden er namelijks per jaar gemiddeld 200 projecten ingediend. Deze worden momenteel nog volledig handmatig beoordeeld door de lectoren. Die manuele beoordeling is enorm tijdsintensief en repetitief. Lectoren moeten dezelfde criteria, denk bijvoorbeeld aan structuur, consistentie, documentatie, foutafhandeling, testing,\ldots telkens opnieuw toepassen op elk project. Hierdoor gaat eigenlijk een groot deel van hun tijd naar het puur controleren van de aanwezigheid van bepaalde onderdelen in het project, en niet naar het geven van inhoudelijke feedback. Verder is het ook lastig voor de lectoren om consistent feedback te geven. Zo hangt de feedback die een bepaald project zou krijgen ook nog eens af van welke persoon het beoordeeld. Zo kan vermoeidheid er bijvoorbeeld voor zorgen dat een lector die al vele projecten heeft nagekeken minder fouten opmerkt dan een collega die met hetzelfde project hun dag zou starten.
+Maar hoe goed is de feedback die ze genereren? Is deze wel correct? Is deze bruikbaar? Dat zijn allemaal vragen waar de studenten zelf weinig bij stil staan, maar dit is wel relevant. Binnen de opleidingsonderdelen Front-End Web Development en Web Services worden er namelijks per jaar gemiddeld 200 projecten ingediend. Deze worden momenteel nog volledig handmatig beoordeeld door de lectoren. Die manuele beoordeling is enorm tijdsintensief en repetitief. Lectoren moeten dezelfde criteria, denk bijvoorbeeld aan structuur, consistentie, documentatie, foutafhandeling, testing,\ldots telkens opnieuw toepassen op elk project. Hierdoor gaat eigenlijk een groot deel van hun tijd naar het puur controleren van de aanwezigheid van bepaalde onderdelen in het project, en niet naar het geven van inhoudelijke feedback. Verder is het ook lastig voor de lectoren om consistent feedback te geven. Zo hangt de feedback die een bepaald project zou krijgen ook nog eens af van welke persoon het beoordeelt. Zo kan vermoeidheid er bijvoorbeeld voor zorgen dat een lector die al vele projecten heeft nagekeken minder fouten opmerkt dan een collega die met hetzelfde project hun dag zou starten.
 
 \vspace{1em}
 
-Deze concrete probleemsituatie geeft aanleiding tot de vraag of lectoren LLM's niet zouden kunnen gebruiken ter ondersteuning, door feedback te genereren over de code-kwaliteit van een studentenproject. Hoe bruikbaar, betrouwbaar, consistent of accuraat deze feedback is, en hoe consistent ze is in vergelijking met de feedback van een lector is echter nog onduidelijk.
+Deze concrete probleemsituatie geeft aanleiding tot de vraag of lectoren LLM's zouden kunnen gebruiken ter ondersteuning, door feedback te genereren over de code-kwaliteit van een studentenproject. Hoe bruikbaar, betrouwbaar, consistent of accuraat deze feedback is, en hoe consistent ze is in vergelijking met de feedback van een lector is echter nog onduidelijk.
 
 \vspace{1em}
 
@@ -55,15 +55,17 @@ Het doel van dit onderzoek is dus om te gaan kijken in hoeverre LLM's gebruikt k
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeer onderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van automatische beoordelingssystemen, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar bestaande systemen, zoals autograding, maar ook naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
+De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeeronderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van automatische beoordelingssystemen, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar bestaande systemen, zoals autograding, maar ook naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
 
-\paragraph{De evolutie van automatische beoordelingen binnen het programmeer onderwijs}
-Automatische beoordelingen, ook wel gekend als autograding, wordt steeds belangrijker binnen programmeer onderwijs. Deze systemen richten zich voornamelijk op correcte syntax en de resultaten bij het uitvoeren van de code, waardoor de focus meer op kwantitatieve beoordeling ligt, in de plaats van kwalitatieve feedback geven \autocite{Messer2024}. Hoewel deze systemen de docenten dus wel ontlasten, blijven ze echter beperkt in het bieden van gedetailleerde uitleg, en zijn ze ook minder goed in het detecteren van creatievere of alternatieve oplossingen. 
+\paragraph{De evolutie van automatische beoordelingen binnen het programmeeronderwijs}
+\leavevmode\par\noindent
+Automatische beoordelingen, ook wel gekend als autograding, wordt steeds belangrijker binnen programmeeronderwijs. Deze systemen richten zich voornamelijk op correcte syntax en de resultaten bij het uitvoeren van de code, waardoor de focus meer op kwantitatieve beoordeling ligt, in de plaats van kwalitatieve feedback geven \autocite{Messer2024}. Hoewel deze systemen de docenten dus wel ontlasten, blijven ze echter beperkt in het bieden van gedetailleerde uitleg, en zijn ze ook minder goed in het detecteren van creatievere of alternatieve oplossingen. 
 
 \paragraph{De opkomst van LLM's binnen het onderwijs}
 De introductie van LLM's zoals ChatGPT en Gemini biedt dan weer veel meer mogelijkheden voor het automatiseren van feedback en beoordelingen. Niet alleen kan een LLM syntax fouten detecteren. Het kan ook de context snappen van een bepaalde implementatie, en hier suggesties of verbeteringen voor geven, iets wat traditionele autograding tools niet kunnen \autocite{Kasneci2023}. \textcite{Ye2023} waarschuwt echter voor hallucinaties, waarbij een model foutieve of inconsistente feedback genereert. Daarom benadrukt \textcite{Kasneci2023} dat LLM-gebruik binnen onderwijsomgevingen altijd gepaard moet gaan met duidelijke pedagogische richtlijnen. Zo moeten de studenten zeer goed begrijpen dat LLM's beperkingen hebben, en dat de feedback niet altijd correct of volledig is. Met een kritische blik kijken naar de LLM output blijft cruciaal, alsook de controle van lectoren op die output. Als laatste zou LLM ondersteuning geleidelijk moeten worden afgebouwd, om te voorkomen dat studenten er te afhankelijk aan worden.
 
 \paragraph{LLM's voor het automatisch genereren van feedback en beoordelen van code-kwaliteit}
+\leavevmode\par\noindent
 Recent onderzoek toont aan dat het verschil tussen LLM's en menselijke feedback steeds kleiner wordt. Zo vergelijkt \textcite{Mendonca2025} een open-source model (LLaMA 3.2) met een betalend model (GPT-4o) en mensen. Uit het onderzoek bleek dat het betalend model praktisch dezelfde scores levert voor vragen over code. Ook \textcite{Koutcheme2025} onderzocht open-source LLM's, en toonde aan dat deze efficiënt en bijna even accuraat feedback kunnen genereren en beoordelen als eigen modellen. Verder benadrukte \textcite{Adurean2025} dat fine-tuning samen met student-gegenereerde feedback de stijl en precisie van AI gegenereerde feedback verder verbetert. Hierdoor komt deze nog dichter bij menselijke evaluaties.
 
 \paragraph{De impact op studenten en hun leerproces}
@@ -73,7 +75,8 @@ Het gebruiken van door LLM gegenereerde feedback heeft invloed op zowel de prest
 Ondanks de vele voordelen brengen LLM's ook nadelen en uitdagingen met zich mee. Zo benadrukt \textcite{Ye2023} de aanwezigheid van hallucinaties en een bias in LLM-output. \textcite{Gotoman2025} onderzocht dan weer detectietools voor teksten gegenereerd door AI en concludeerde dat de betrouwbaarheid van deze tools nog variabel is. Menselijk toezicht blijft essentieel. Als laatste benadrukte \textcite{Kasneci2023} dat de combinatie van pedagogische strategieën en kennis van AI noodzakelijk is om zowel studenten als docenten bewust te maken van de beperkingen.
 
 \paragraph{Onderzoeksrelevantie}
-Hoewel LLM's steeds vaker onderzocht worden, ook binnen programmeer onderwijs, is het duidelijk dat er verder onderzoek moet worden gedaan naar hoe lectoren LLM's efficiënt kunnen inzetten ter ondersteuning bij het beoordelen van studentenprojecten. Bestaande studies richten zich namelijk vooral op autograding voor individuele programmeer oefeningen. Daardoor blijft het onduidelijk in hoeverre door LLM gegenereerde feedback bij kan dragen aan consistente evaluaties, de werkdruk en efficiëntie van lectoren kan verbeteren, zeker binnen zeer uiteenlopende studentenprojecten. Het verder verkennen van deze toepassing is essentieel om te bepalen of LLM's daadwerkelijk ingezet kunnen worden voor deze doeleinden.
+\leavevmode\par\noindent
+Hoewel LLM's steeds vaker onderzocht worden, ook binnen programmeeronderwijs, is het duidelijk dat er verder onderzoek moet worden gedaan naar hoe lectoren LLM's efficiënt kunnen inzetten ter ondersteuning bij het beoordelen van studentenprojecten. Bestaande studies richten zich namelijk vooral op autograding voor individuele programmeer oefeningen. Daardoor blijft het onduidelijk in hoeverre door LLM gegenereerde feedback bij kan dragen aan consistente evaluaties, de werkdruk en efficiëntie van lectoren kan verbeteren, zeker binnen zeer uiteenlopende studentenprojecten. Het verder verkennen van deze toepassing is essentieel om te bepalen of LLM's daadwerkelijk ingezet kunnen worden voor deze doeleinden.
 
 \section{Methodologie}%
 \label{sec:methodologie}
@@ -90,6 +93,7 @@ Een overzicht van de fasen wordt weergegeven in Figuur~\ref{fig:gantt}.
 %      FASE 1
 %===================
 \paragraph{Fase 1: Probleemdomein onderzoeken (1 werkdag)}
+\leavevmode\par\noindent
 In de eerste fase van dit onderzoek zal het probleemdomein verder worden ontdekt. Hiervoor zal er een interview worden afgenomen met een lector Front-end Web Development \& Web Services. Dit is namelijk de primaire doelgroep van deze bachelorproef. Dit interview wordt gedaan voor 3 redenen: 
 \begin{itemize}
     \item Het verder verdiepen in het probleem en de evaluatiecriteria en methoden die de lectoren vandaag hanteren.
@@ -105,6 +109,7 @@ Het resultaat van deze fase is een duidelijker inzicht binnen het probleemdomein
 %      FASE 2
 %===================
 \paragraph{Fase 2: Literatuurstudie (2 werkdagen)}
+\leavevmode\par\noindent
 De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welke LLMs (Large Languague Models) er het meest geschikt zijn voor het analyseren van code-kwaliteit, en het geven van consistente en duidelijke feedback. Deze literatuurstudie zal zowel lokale als cloud modellen onderzoeken, via Ollama. Hieruit zal een longlist worden opgesteld met de potentiële modellen die in aanmerking komen voor verder onderzoek. Bij het kiezen van de modellen wordt er aandacht besteed aan:
 \begin{itemize}
     \item Voordelen
@@ -113,7 +118,7 @@ De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welk
     \item Geschiktheid voor code-analyse
 \end{itemize}
 
-Verder zal er ook gekeken worden naar het potentie van MastraAI. Dit is een AI-platform dat tools voor code-intelligentie en geautomatiseerde code-analyse biedt, inclusief suggesties voor verbetering en kwaliteitsbewaking. Als laatste zal er ook naar een oplossing worden gezocht voor hoe de te grote projecten zullen worden opgesplitst. Hier bestaan er namelijk ook verschillende manieren voor. Denk hierbij aan per bestand, per laag, via chunking, via een samenvatting,\ldots
+Verder zal er ook gekeken worden naar het potentieel van MastraAI. Dit is een AI-platform dat tools voor code-intelligentie en geautomatiseerde code-analyse biedt, inclusief suggesties voor verbetering en kwaliteitsbewaking. Als laatste zal er ook naar een oplossing worden gezocht voor hoe de te grote projecten zullen worden opgesplitst. Hier bestaan er namelijk ook verschillende manieren voor. Denk hierbij aan per bestand, per laag, via chunking, via een samenvatting,\ldots
 
 \vspace{1em}
 
@@ -122,13 +127,20 @@ Het resultaat van deze fase is een duidelijke, goed onderbouwde lijst van bruikb
 %===================
 %      FASE 3
 %===================
-\paragraph{Fase 3: Ontwerp en opzetten testomgeving en PoC (4 werkdagen)} De derde fase wordt opgesplitst in meerdere subfasen om zowel het ontwerp, als de uitwerking van de testomgeving, iteratief en gestructureerd te laten verlopen. De testomgeving moet namelijk herbruikbaar, reproduceerbaar en geschikt zijn voor meerdere evaluatierondes. De testomgeving omvat alles van tools, scripts en configuraties waar het onderzoek mee zal worden uitgevoerd. De PoC omvat het gehele evaluatieproces en draait binnen deze testomgeving. Hierbij is het nog belangrijk om te vermelden dat het de PoC is die iteratief zal worden bijgewerkt, en niet de volledige testomgeving.
+\paragraph{Fase 3: Ontwerp en opzetten testomgeving en PoC (4 werkdagen)} 
+\leavevmode\par\noindent
+De derde fase wordt opgesplitst in meerdere subfasen om zowel het ontwerp, als de uitwerking van de testomgeving, iteratief en gestructureerd te laten verlopen. De testomgeving moet namelijk herbruikbaar, reproduceerbaar en geschikt zijn voor meerdere evaluatierondes. De testomgeving omvat alles van tools, scripts en configuraties waar het onderzoek mee zal worden uitgevoerd. De PoC omvat het gehele evaluatieproces en draait binnen deze testomgeving. Hierbij is het nog belangrijk om te vermelden dat het de PoC is die iteratief zal worden bijgewerkt, en niet de volledige testomgeving.
 
-\subparagraph{3.1 Ontwerp PoC} In deze eerste subfase wordt de volledige PoC eerst conceptueel uitgewerkt. Hieronder valt als eerste het uitwerken van de promptstructuur en de gewenste vorm van output. Ook wordt er gekeken welke evaluatiecriteria in welke volgorde getest zal worden. Zo kan er in een eerste iteratie gewerkt worden met een beperktere set criteria, bijvoorbeeld enkel database- of repositorycriteria. Dan zal er ook nog een plan worden opgesteld dat zal beschrijven hoe de PoC bij elke uitbreiding wordt bijgestuurd. Als laatste zal er gekeken worden naar welke LLM's gebruikt zullen worden in de testomgeving, en zal ook een plan opgesteld worden voor de iteratieve evaluaties
+\subparagraph{3.1 Ontwerp PoC} 
+\leavevmode\par\noindent
+In deze eerste subfase wordt de volledige PoC eerst conceptueel uitgewerkt. Hieronder valt als eerste het uitwerken van de promptstructuur en de gewenste vorm van output. Ook wordt er gekeken welke evaluatiecriteria in welke volgorde getest zullen worden. Zo kan er in een eerste iteratie gewerkt worden met een beperktere set criteria, bijvoorbeeld enkel database- of repositorycriteria. Dan zal er ook nog een plan worden opgesteld dat zal beschrijven hoe de PoC bij elke uitbreiding wordt bijgestuurd. Als laatste zal er gekeken worden naar welke LLM's gebruikt zullen worden in de testomgeving, en zal ook een plan opgesteld worden voor de iteratieve evaluaties
 
-\subparagraph{3.2 Opzetten eerste versie testomgeving} In deze fase zal de eerste versie van de testomgeving worden opgezet. Hiervoor wordt gekeken naar de zaken die opgesteld werden in vorige subfase. Wat ook belangrijk is om te vermelden, is dat in deze fase maar 1 kleine set criteria zal bekeken worden. Zo kan er namelijk nog makkelijk bijgestuurd worden als er ergens iets in de testomgeving nog niet helemaal juist zit. Tenslotte worden in deze fase de scripts opgesteld die de studentenprojecten automatisch opsplitsen om binnen de tokenlimieten te blijven, en die de opgesplitste delen met een identieke prompt automatisch naar de geselecteerde modellen versturen.
+\subparagraph{3.2 Opzetten eerste versie testomgeving} 
+\leavevmode\par\noindent
+In deze fase zal de eerste versie van de testomgeving worden opgezet. Hiervoor wordt gekeken naar de zaken die opgesteld werden in vorige subfase. Wat ook belangrijk is om te vermelden, is dat in deze fase maar 1 kleine set criteria zal bekeken worden. Zo kan er namelijk nog makkelijk bijgestuurd worden als er ergens iets in de testomgeving nog niet helemaal juist zit. Tenslotte worden in deze fase de scripts opgesteld die de studentenprojecten automatisch opsplitsen om binnen de tokenlimieten te blijven, en die de opgesplitste delen met een identieke prompt automatisch naar de geselecteerde modellen versturen.
 
 \subparagraph{3.3 Iteratieve uitbreiding per criteriaset}
+\leavevmode\par\noindent
 In deze fase wordt de PoC binnen de stabiel opgezette testomgeving iteratief uitgebreid. Elke iteratie zal nieuwe criteria bevatten, alsook eventuele aanpassingen of uitbreidingen aan prompts om de LLM's te helpen bij het evalueren van deze criteria. Na het toevoegen zullen alle modellen opnieuw worden geëvalueerd. Deze evaluatie gebeurt door te analyseren in welke mate de gegenereerde feedback consistent is, in welke mate de antwoorden overeenkomen met vooraf gedefinieerde verwachtingen en welke inconsistenties erop duiden dat verdere tweaks nodig zijn. Hierna kunnen er eventueel terug nodige aanpassingen gedaan worden aan de PoC, waarna een nieuwe iteratie van start kan gaan. Dit proces zal vervolgens herhaald blijven worden, totdat alles tot op een bepaald punt geoptimaliseerd is.
 
 \vspace{1em}
@@ -143,7 +155,8 @@ Het resultaat van de derde fase is:
 %===================
 %      FASE 4
 %===================
-\paragraph{Fase 4: Kwantitatieve evaluatie van LLMs (5 werkdagen)} 
+\paragraph{Fase 4: Kwantitatieve evaluatie van LLMs (5 werkdagen)}
+\leavevmode\par\noindent 
 De vierde fase zal het individueel evalueren van verschillende LLMs omvatten. Op basis van de literatuurstudie zullen de meest relevante en bruikbare modellen worden gekozen, en deze zullen individueel worden beoordeeld. Naast de inhoudelijke kwaliteit van de gegenereerde feedback, zal er ook gekeken worden naar performance-gerelateerde aspecten. Hierbij worden volgende criteria onderzocht:
 \begin{itemize}
     \item Klopt de output?
@@ -151,7 +164,7 @@ De vierde fase zal het individueel evalueren van verschillende LLMs omvatten. Op
     \item Is de output consistent wanneer hetzelfde project meerdere keren geëvalueerd wordt?
     \item Hoeveel potentiële tijdswinst zit er verbonden aan LLM ondersteunde code-evaluatie?
     \item Hoeveel tijd, CPU/GPU-gebruik en geheugen verbruiken de verschillende modellen tijdens het evalueren?
-    \item Hoe verhoud de performantie van een model zich ten opzichte van de kwaliteit van de output?
+    \item Hoe verhoudt de performantie van een model zich ten opzichte van de kwaliteit van de output?
 \end{itemize}
 
 Wanneer alle modellen individueel zijn beoordeeld, dan volgt de vergelijkende studie. Hierin worden de verschillende modellen met elkaar vergeleken op alle bovenstaande criteria.
@@ -164,6 +177,7 @@ Het resultaat van deze fase is een uitgebreide analyse en een grondige vergelijk
 %      FASE 5
 %===================
 \paragraph{Fase 5: Conclusie (2 werkdagen)}
+\leavevmode\par\noindent
 In de laatste fase zal de conclusie worden opgebouwd. De resultaten van al het onderzoek uit voorgaande fases worden gebundeld om objectief aan te tonen of LLMs mogelijks gebruikt kunnen worden voor het evalueren van studentenprojecten binnen het afgebakende probleemdomein. Daarnaast worden de verschillende voor- en nadelen van de geëvalueerde modellen toegelicht, om de keuze voor lectoren te vergemakkelijken.
 
 \vspace{1em}
