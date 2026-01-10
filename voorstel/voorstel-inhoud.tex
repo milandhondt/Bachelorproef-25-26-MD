@@ -40,8 +40,8 @@ Om deze onderzoeksvraag te beantwoorden worden onderstaande deelvragen onderzoch
 
 \textbf{Deelvragen oplossingsdomein:}
 \begin{enumerate}
-    \item Hoe goed zijn verschillende LLM's in het detecteren van vooraf gedefinieerde criteria in de codebase van zo'n studentenproject?
-    \item In welke mate komen de feedback van lectoren en LLM's overeen?
+    \item In welke mate zijn verschillende LLM’s in staat om vooraf gedefinieerde evaluatiecriteria correct te detecteren in de codebase van een studentenproject?
+    \item In welke mate komt de door LLM’s gegenereerde feedback overeen met de feedback van lectoren?
     \item Hoe consistent is de feedback van verschillende LLM's bij hetzelfde project?
     \item Op welke criteria scoren LLM’s sterk en op welke scoren ze zwakker bij het evalueren van studentenprojecten?
     \item Wat is de potentiële tijdswinst bij het gebruik van een LLM, ten opzichte van alle projecten handmatig evalueren?
@@ -55,14 +55,19 @@ Het doel van dit onderzoek is dus om te gaan kijken in hoeverre LLM's gebruikt k
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeeronderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van automatische beoordelingssystemen, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar bestaande systemen, zoals autograding, maar ook naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
+De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeeronderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van autograding, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar autograding, maar ook naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
 
 \paragraph{De evolutie van automatische beoordelingen binnen het programmeeronderwijs}
 \leavevmode\par\noindent
 Automatische beoordelingen, ook wel gekend als autograding, wordt steeds belangrijker binnen programmeeronderwijs. Deze systemen richten zich voornamelijk op correcte syntax en de resultaten bij het uitvoeren van de code, waardoor de focus meer op kwantitatieve beoordeling ligt, in de plaats van kwalitatieve feedback geven \autocite{Messer2024}. Hoewel deze systemen de docenten dus wel ontlasten, blijven ze echter beperkt in het bieden van gedetailleerde uitleg, en zijn ze ook minder goed in het detecteren van creatievere of alternatieve oplossingen. 
 
 \paragraph{De opkomst van LLM's binnen het onderwijs}
-De introductie van LLM's zoals ChatGPT en Gemini biedt dan weer veel meer mogelijkheden voor het automatiseren van feedback en beoordelingen. Niet alleen kan een LLM syntax fouten detecteren. Het kan ook de context snappen van een bepaalde implementatie, en hier suggesties of verbeteringen voor geven, iets wat traditionele autograding tools niet kunnen \autocite{Kasneci2023}. \textcite{Ye2023} waarschuwt echter voor hallucinaties, waarbij een model foutieve of inconsistente feedback genereert. Daarom benadrukt \textcite{Kasneci2023} dat LLM-gebruik binnen onderwijsomgevingen altijd gepaard moet gaan met duidelijke pedagogische richtlijnen. Zo moeten de studenten zeer goed begrijpen dat LLM's beperkingen hebben, en dat de feedback niet altijd correct of volledig is. Met een kritische blik kijken naar de LLM output blijft cruciaal, alsook de controle van lectoren op die output. Als laatste zou LLM ondersteuning geleidelijk moeten worden afgebouwd, om te voorkomen dat studenten er te afhankelijk aan worden.
+De introductie van LLM's zoals ChatGPT en Gemini biedt dan weer veel meer mogelijkheden voor het automatiseren van feedback en beoordelingen. \textcite{Ye2023} waarschuwt echter voor hallucinaties, waarbij een model foutieve of inconsistente feedback genereert. Daarom benadrukt \textcite{Kasneci2023} dat LLM-gebruik binnen onderwijsomgevingen altijd gepaard moet gaan met duidelijke pedagogische richtlijnen. Zo moeten de studenten zeer goed begrijpen dat LLM's beperkingen hebben, en dat de feedback niet altijd correct of volledig is. Met een kritische blik kijken naar de LLM output blijft cruciaal, alsook de controle van lectoren op die output. Als laatste zou LLM-ondersteuning geleidelijk moeten worden afgebouwd naarmate studenten meer kennis opbouwen, om te voorkomen dat zij er te afhankelijk van worden.
+
+
+\paragraph{De opkomst van LLM's binnen het onderwijs}
+De introductie van LLM's zoals ChatGPT en Gemini biedt dan weer veel meer mogelijkheden voor het automatiseren van feedback en beoordelingen. Niet alleen kan een LLM syntaxfouten detecteren, het kan ook de context van een bepaalde implementatie begrijpen en hier suggesties of verbeteringen voor geven, iets wat traditionele autograding tools niet kunnen \autocite{Kasneci2023}. \textcite{Ye2023} waarschuwt echter voor hallucinaties, waarbij een model foutieve of inconsistente feedback genereert. Daarom benadrukt \textcite{Kasneci2023} dat LLM-gebruik binnen onderwijsomgevingen altijd gepaard moet gaan met duidelijke pedagogische richtlijnen. Zo moeten studenten goed begrijpen dat LLM's beperkingen hebben en dat de feedback niet altijd correct of volledig is. Met een kritische blik kijken naar de output van LLM’s blijft cruciaal, evenals de controle door lectoren.
+
 
 \paragraph{LLM's voor het automatisch genereren van feedback en beoordelen van code-kwaliteit}
 \leavevmode\par\noindent
@@ -118,7 +123,7 @@ De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welk
     \item Geschiktheid voor code-analyse
 \end{itemize}
 
-Verder zal er ook gekeken worden naar het potentieel van MastraAI. Dit is een AI-platform dat tools voor code-intelligentie en geautomatiseerde code-analyse biedt, inclusief suggesties voor verbetering en kwaliteitsbewaking. Als laatste zal er ook naar een oplossing worden gezocht voor hoe de te grote projecten zullen worden opgesplitst. Hier bestaan er namelijk ook verschillende manieren voor. Denk hierbij aan per bestand, per laag, via chunking, via een samenvatting,\ldots
+Verder zal er ook gekeken worden naar het potentieel van MastraAI. Dit is een AI-platform dat tools voor code-intelligentie en geautomatiseerde code-analyse biedt, inclusief suggesties voor verbetering en kwaliteitsbewaking. Daarnaast wordt er aandacht besteed aan het zoeken naar een oplossing voor het opsplitsen van te grote projecten. Door token- en contextlimitaties kan het namelijk voorkomen dat volledige projecten niet in één prompt kunnen worden beoordeeld. Voor deze opsplitsing bestaan er verschillende manieren, zoals per bestand, per laag, via chunking, via een samenvatting,\ldots
 
 \vspace{1em}
 
