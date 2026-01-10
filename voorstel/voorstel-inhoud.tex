@@ -55,7 +55,7 @@ Het doel van dit onderzoek is dus om te gaan kijken in hoeverre LLM's gebruikt k
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeeronderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van autograding, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar autograding, maar ook naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
+De snelle opkomst van LLM's heeft het potentieel om verschillende aspecten van het programmeeronderwijs drastisch te veranderen. Waar vroeger vooral gebruik gemaakt werd van autograding, kunnen nu LLM's worden ingezet om meer kwalitatieve en contextbewuste feedback te genereren. Binnen deze literatuurstudie wordt gekeken naar autograding en hoe dit tot nu werd ingezet binnen het programmeeronderwijs. Verder wordt er gekeken naar recente onderzoeken waarbij AI gebruikt werd voor het evalueren van code en het ondersteunen van studenten. Daarnaast wordt er bekeken welke impact en risico's AI met zich meebrengt, en welke beperkingen LLM's hebben.
 
 \paragraph{De evolutie van automatische beoordelingen binnen het programmeeronderwijs}
 \leavevmode\par\noindent
@@ -99,16 +99,15 @@ Een overzicht van de fasen wordt weergegeven in Figuur~\ref{fig:gantt}.
 %===================
 \paragraph{Fase 1: Probleemdomein onderzoeken (1 werkdag)}
 \leavevmode\par\noindent
-In de eerste fase van dit onderzoek zal het probleemdomein verder worden ontdekt. Hiervoor zal er een interview worden afgenomen met een lector Front-end Web Development \& Web Services. Dit is namelijk de primaire doelgroep van deze bachelorproef. Dit interview wordt gedaan voor 3 redenen: 
+In de eerste fase van dit onderzoek zal het probleemdomein verder worden ontdekt. Hiervoor zal er een interview worden afgenomen met de lectoren Front-end Web Development \& Web Services. Dit is namelijk de primaire doelgroep van deze bachelorproef. Deze interviews worden gedaan voor 3 redenen: 
 \begin{itemize}
     \item Het verder verdiepen in het probleem en de evaluatiecriteria en methoden die de lectoren vandaag hanteren.
     \item De nood aan onderzoek, en de relevantie van het onderzoek verder te verduidelijken.
-    \item Nagaan of er studentenprojecten van verschillende kwaliteitsniveaus kunnen worden opgeleverd. Dit zou bij voorkeur ook door verschillende lectoren gedaan worden, om de consistentie van de evaluaties in acht te kunnen nemen.
 \end{itemize}
 
 \vspace{1em}
 
-Het resultaat van deze fase is een duidelijker inzicht binnen het probleemdomein, een lijst met de verschillende evaluatiecriteria, alsook verschillende studentenprojecten die gebruikt kunnen worden als testprojecten in een volgende fase.
+Het resultaat van deze fase is een duidelijker inzicht binnen het probleemdomein, een lijst met de verschillende evaluatiecriteria en een verzameling van studentenprojecten met uiteenlopende beoordelingen die gebruikt kunnen worden als testprojecten in een volgende fase.
 
 %===================
 %      FASE 2
@@ -117,8 +116,8 @@ Het resultaat van deze fase is een duidelijker inzicht binnen het probleemdomein
 \leavevmode\par\noindent
 De tweede fase bevat de literatuurstudie. Hierin zal er gekeken worden naar welke LLMs (Large Languague Models) er het meest geschikt zijn voor het analyseren van code-kwaliteit, en het geven van consistente en duidelijke feedback. Deze literatuurstudie zal zowel lokale als cloud modellen onderzoeken, via Ollama. Hieruit zal een longlist worden opgesteld met de potentiële modellen die in aanmerking komen voor verder onderzoek. Bij het kiezen van de modellen wordt er aandacht besteed aan:
 \begin{itemize}
-    \item Voordelen
-    \item Nadelen
+    \item Technische voordelen en beperkingen voor code-evaluatie (zoals bv. nauwkeurigheid en consistentie)
+    \item Mogelijke nadelen, zoals hallucinaties, beperkte context, inconsistentie,\ldots
     \item Token- en contextlimitaties
     \item Geschiktheid voor code-analyse
 \end{itemize}
@@ -162,7 +161,7 @@ Het resultaat van de derde fase is:
 %===================
 \paragraph{Fase 4: Kwantitatieve evaluatie van LLMs (5 werkdagen)}
 \leavevmode\par\noindent 
-De vierde fase zal het individueel evalueren van verschillende LLMs omvatten. Op basis van de literatuurstudie zullen de meest relevante en bruikbare modellen worden gekozen, en deze zullen individueel worden beoordeeld. Naast de inhoudelijke kwaliteit van de gegenereerde feedback, zal er ook gekeken worden naar performance-gerelateerde aspecten. Hierbij worden volgende criteria onderzocht:
+De vierde fase zal het individueel evalueren van verschillende LLMs omvatten, meer bepaald op hun toepassing bij het evalueren van studentenprojecten. Op basis van de literatuurstudie zullen de meest relevante en bruikbare modellen worden gekozen, en deze zullen individueel worden beoordeeld op hun vermogen om code te analyseren, en formatieve feedback te genereren. Naast de inhoudelijke kwaliteit van de gegenereerde feedback, zal er ook gekeken worden naar performance-gerelateerde aspecten. Hierbij worden volgende criteria onderzocht:
 \begin{itemize}
     \item Klopt de output?
     \item Is de output consistent met die van lectoren?
