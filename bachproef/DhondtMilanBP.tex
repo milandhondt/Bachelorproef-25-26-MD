@@ -5,12 +5,6 @@
 
 \documentclass[dutch,dit,thesis]{hogentreport}
 
-% TODO:
-% - If necessary, replace the option `dit`' with your own department!
-%   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
-% - If you write your thesis in English (remark: only possible after getting
-%   explicit approval!), remove the option "dutch," or replace with "english".
-
 \usepackage{lipsum} % For blind text, can be removed after adding actual content
 
 %% Pictures to include in the text can be put in the graphics/ folder
@@ -49,15 +43,15 @@
 
 %%---------- Document metadata -------------------------------------------------
 % TODO: Replace this with your own information
-\author{Ernst Aarden}
-\supervisor{Dhr. F. Van Houte}
-\cosupervisor{Mevr. S. Beeckman}
-\title[Optionele ondertitel]%
-    {Titel van de bachelorproef}
+\author{Dhondt Milan}
+\supervisor{Mevr. V. Depestele}
+\cosupervisor{Dhr. T. Aelbrecht}
+\title
+    {De bruikbaarheid en betrouwbaarheid van LLM gegenereerde feedback op studentenprojecten binnen Front-end Web Development en Web Services.}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
-\partialthesis{false} %% To display 'in partial fulfilment'
+\partialthesis{false}
 %\institution{Internshipcompany BVBA.}
 
 %% Add global exceptions to the hyphenation here
@@ -152,10 +146,9 @@
 
 Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
 
-%% TODO: 
-%\section*{Samenvatting}
+\section*{Samenvatting}
 
-% Kopieer en plak hier de samenvatting (abstract) van je onderzoeksvoorstel.
+Large Language Models (LLM's) hebben een enorme evolutie gekend afgelopen tijd. Zo ook in het onderwijs. Binnen de opleidingsonderdelen Front-End Web Development en Web Services aan HOGENT beoordelen lectoren elk semester tientallen projecten handmatig, een zeer tijdsintensief proces waarbij consistentie moeilijk te waarborgen valt, onder andere doordat er meerdere lectoren zijn. Dit onderzoek vertrekt daarom vanuit de centrale vraag in welke mate LLM's bruikbare en betrouwbare feedback kunnen genereren op de codekwaliteit van studentenprojecten, en hoe deze zich verhoudt tot de beoordelingen van ervaren lectoren. In dit onderzoek worden eerst de huidige evaluatiecriteria en werklast van lectoren verder onderzocht door een interview met een lector van het vak. Vervolgens worden meerdere relevante LLM's getest in een Proof-of-Conceptomgeving. Hier wordt gekeken naar het detecteren van criteria binnen projecten, en ook het genereren van inhoudelijke feedback, en in hoeverre deze overeenkomen met menselijke feedback. Er wordt verwacht dat LLM's zeker een tijdswinst kunnen opleveren voor de lectoren bij het detecteren van criteria. Inhoudelijke feedback lijkt moeilijker en hiervoor zouden lectoren toch beter zelf nog de touwtjes in handen houden. Dit onderzoek biedt de lectoren een objectief beeld om te gaan kijken in welke mate zij LLM's kunnen toepassen binnen hun projectbeoordelingen.
 
 % Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
 \input{../voorstel/voorstel-inhoud}
