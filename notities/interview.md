@@ -14,4 +14,6 @@ Bijvoorbeeld: merkt u verschillen tussen projecten die u aan het begin van een e
 
 5. Merkt u inconsistenties wanneer u uw eigen evaluaties vergelijkt met die van collega's?
 
-6. Zijn er nog andere zaken, frustraties of aandachtspunten die u wil vermelden die relevant zouden kunnen zijn voor dit onderzoek?
+6. Zou u mij 3 voorbeeldprojecten van verschillende kwaliteiten kunnen opleveren? Dus 3 goeie, 3 slechte, 3 gemiddeld?
+
+7. Zijn er nog andere zaken, frustraties of aandachtspunten die u wil vermelden die relevant zouden kunnen zijn voor dit onderzoek?
