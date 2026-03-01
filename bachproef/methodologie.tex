@@ -23,15 +23,29 @@ Het resultaat van deze fase bestond uit een zeer duidelijke nood aan onderzoek, 
 
 De tweede fase bestond uit een systematische literatuurstudie rond:
 \begin{itemize}
-    \item autograding binnen programmeeronderwijs;
-    \item het gebruik van Large Language Models (LLM's) voor code-analyse;
-    \item betrouwbaarheid, hallucinaties en bias in LLM-output;
-    \item prompt-engineering en fine-tuning technieken.
+    \item autograding binnen programmeeronderwijs
+    \item het gebruik van Large Language Models (LLM's) voor code-analyse
+    \item betrouwbaarheid, hallucinaties en bias in LLM-output
+    \item prompt-engineering en fine-tuning technieken
 \end{itemize}
 
 Uit deze literatuurstudie werden verschillende relevante inzichten rondom het inzetten van LLM's verworven die voor de technische uitwerking enorm van pas zullen komen. Verder werd er als concrete deliverable een longlist opgesteld met poteniële LLM's die geschikt zijn voor code-evaluatie, en gebruikt zullen worden bij de technische uitwerking. Naast geschiktheid werden ook technische beperkingen zoals contextlimieten en tokenrestricties onderzocht.
 
+\section{Fase 3: Proof-of-Concept testomgeving}
+
+In de derde fase werd een reproduceerbare testomgeving ontwikkeld waarin verschillende LLM’s systematisch geëvalueerd konden worden. Dit omvat:
+\begin{itemize}
+    \item het implementeren van een opsplitsingsmechanisme om rekening te houden met contextlimieten
+    \item het ontwikkelen van scripts voor automatische projectanalyse
+    \item het ontwerpen van een gestandaardiseerde promptstructuur
+    \item het definiëren van output standaarden
+\end{itemize}
+
+De PoC werd stapgewijs opgebouwd, uitgebreid en verbeterd, waardoor deze fase een grondig gedocumenteerde en reproduceerbare testomgeving oplevert als deliverable.
+
 % =================================================================
+
+
 
 %% TODO: In dit hoofstuk geef je een korte toelichting over hoe je te werk bent
 %% gegaan. Verdeel je onderzoek in grote fasen, en licht in elke fase toe wat
