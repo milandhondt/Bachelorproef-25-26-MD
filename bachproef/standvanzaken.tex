@@ -274,8 +274,35 @@ Om dit onderdeel samen te vatten: bestaande studies tonen aan dat LLM-gegenereer
 
 \subsection{Hallucinaties}
 
-% ==> ook belangrijk, misschien hier nog een extra alinea?
-% TODO: misschien hier extra alinea?
+Een van de meest besproken beperkingen van Large Language Models betreft het fenomeen van zogenaamde hallucinaties. Hiermee wordt verwezen naar het genereren van incorrecte, verzonnen of misleidende informatie die desondanks zeer overtuigend geformuleerd is.
+
+\vspace{1em}
+
+\textcite{Ye2023} analyseren dit fenomeen uitgebreid en stellen dat hallucinaties voortkomen uit de probabilistische aard van taalmodellen. LLM’s voorspellen het meest waarschijnlijke volgende token op basis van trainingsdata, maar beschikken niet over een intrinsiek waarheidscriterium. Hierdoor kunnen zij plausibel klinkende maar foutieve verklaringen genereren, zeker in domeinen waar exacte technische correctheid vereist is, zoals programmeren.
+
+\vspace{1em}
+
+Binnen de context van automatische code-evaluatie vormt dit uiteraard een groot risico. Wanneer een model foutieve feedback geeft over de oorzaak van een bug, een incorrecte optimalisatie voorstelt of een verkeerde interpretatie maakt van een criterium, dan kan dit studenten op het foute spoor zetten. \textcite{Kasneci2023} benadrukken dat dergelijke overtuigend geformuleerde fouten pedagogisch problematisch zijn, aangezien studenten de output van AI-systemen vaak als correct beschouwen.
+
+\vspace{1em}
+
+Daarnaast tonen \textcite{Koutcheme2025} aan dat hoewel moderne modellen sterke prestaties leveren bij feedbackgeneratie, ze niet immuun zijn voor inconsistenties of foutieve evaluaties. Ook \textcite{Mendonca2025} wijzen erop dat zelfs wanneer globale scoring overeenkomt met menselijke evaluatie, individuele beoordelingen kunnen variëren afhankelijk van promptformulering of modelinstellingen.
+
+\vspace{1em}
+
+Naast feitelijke onnauwkeurigheden is er een tweede dimensie van betrouwbaarheid die relevant is voor automatische beoordeling, zijnde consistentie. Omdat LLM’s probabilistisch functioneren, kan dezelfde invoer bij meerdere runs verschillende outputs genereren, afhankelijk van parameters zoals temperatuur en samplingstrategieën. In een beoordelingscontext, waar reproduceerbaarheid en objectiviteit belangrijk zijn, kan dergelijke variabiliteit ongewenst zijn.
+
+\vspace{1em}
+
+Dit is een cruciaal verschil tussen evaluatie via LLM's en met autograding. Klassieke autogradingmechanismen zijn gebaseerd op vaste testcases en leveren identieke resultaten bij identieke input. LLM-systemen daarentegen vereisen expliciete kalibratie en parametercontrole om consistente beoordelingsoutput te garanderen.
+
+\vspace{1em}
+
+Een bijkomende uitdaging is dat hallucinaties moeilijk automatisch detecteerbaar zijn. Zoals \textcite{Ye2023} aangeven, bestaan er momenteel geen sluitende mechanismen om hallucinerende output systematisch te identificeren zonder externe verificatie. Dit impliceert dat menselijke supervisie of aanvullende validatiemechanismen voorlopig noodzakelijk blijven. Binnen dit onderzoek is dit sowieso altijd het geval, hoe nauwkeurig of consistent de LLM feedback ook zou zijn.
+
+\vspace{1em}
+
+Ter samenvatting vormt betrouwbaarheid een kernuitdaging bij het inzetten van LLM’s voor automatische code-evaluatie. Hallucinaties en inconsistenties maken dat dergelijke systemen met voorzichtigheid moeten worden toegepast, zeker in formele beoordelingscontexten zoals die in dit onderzoek.
 
 % =================================================================
 
