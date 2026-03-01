@@ -361,13 +361,50 @@ Samenvattend bevinden LLM-gebaseerde beoordelingssystemen zich op het kruispunt 
 
 \subsection{Wat weten we al?}
 
+De bestaande literatuur toont aan dat Large Language Models in staat zijn om betekenisvolle ondersteuning te bieden binnen programmeeronderwijs. Studies zoals \textcite{Sarsa2022} en \textcite{Koutcheme2025} illustreren dat LLM’s bruikbare codefeedback kunnen genereren en zelfs kunnen functioneren als beoordelaar (LLM-as-a-judge). Daarnaast tonen \textcite{Mendonca2025} aan dat zowel open-source als closed-source modellen een hoge mate van overeenstemming kunnen vertonen met menselijke beoordelaars bij code-gerelateerde evaluaties.
+
+\vspace{1em}
+
+Op pedagogisch vlak wijzen empirische bevindingen van \textcite{Zhou2025} erop dat LLM-gegenereerde feedback prestaties en probleemoplossend gedrag kan verbeteren. Ook \textcite{Lepp2025} tonen aan dat studenten AI-systemen ervaren als ondersteunend bij het begrijpen en verbeteren van hun code.
+
+\vspace{1em}
+
+Tegelijkertijd is er uitgebreide aandacht voor beperkingen en risico’s. \textcite{Ye2023} beschrijven het fenomeen van hallucinaties en de inherente probabilistische aard van LLM’s, terwijl \textcite{Kasneci2023} waarschuwen voor afhankelijkheid, verminderde kritische reflectie en ethische uitdagingen. Juridisch gezien plaatst de Europese AI Act dergelijke systemen, wanneer gebruikt voor formele evaluatie, binnen de high-risk categorie, wat bijkomende vereisten inzake transparantie en menselijke supervisie betekent \autocite{EU2024AIAct}.
+
+\vspace{1em}
+
+Samengevat weten we dat LLM’s technisch capabel zijn om codefeedback te genereren en dat ze het potentieel hebben menselijke beoordelingen te benaderen in consistentie en kwaliteit. We weten eveneens dat hun inzet pedagogische en juridische implicaties met zich meebrengt.
+
 \subsection{Wat weten we nog niet?}
+
+Ondanks deze inzichten blijven er belangrijke open vragen bestaan.
+
+\vspace{1em}
+
+Ten eerste richt een aanzienlijk deel van het bestaande onderzoek zich op relatief afgebakende programmeertaken, zoals individuele codefragmenten of specifieke foutmeldingen. Er is minder bewijs beschikbaar over de inzet van LLM’s bij grotere, projectgebaseerde opdrachten waarin context, architectuurkeuzes en interpretatie van vereisten een grotere rol spelen.
+
+\vspace{1em}
+
+Ten tweede focussen veel studies op globale performantiemetrieken of overeenstemming met menselijke evaluaties, maar minder op de diepgaande analyse van consistentie, reproduceerbaarheid en robuustheid bij herhaalde evaluaties. Gezien de probabilistische aard van LLM’s \textcite{Ye2023}, is het essentieel om te onderzoeken in welke mate beoordelingsuitkomsten stabiel blijven bij identieke input.
+
+\vspace{1em}
+
+Ten derde is er beperkte literatuur die systematisch verschillende types modellen vergelijkt binnen eenzelfde onderwijscontext, met bijzondere aandacht voor verschillen tussen open-source, closed-source en gespecialiseerde AI-platformen. Hoewel \textcite{Mendonca2025} en \textcite{Koutcheme2025} reeds vergelijkende analyses uitvoeren, blijft verdere validatie binnen specifieke didactische omgevingen noodzakelijk.
+
+\vspace{1em}
+
+Tot slot blijft de vraag naar praktische implementeerbaarheid open. Hoe betrouwbaar zijn deze systemen in realistische onderwijsomstandigheden? In welke mate voldoen zij aan pedagogische randvoorwaarden en wettelijke vereisten? En hoe verhouden technische prestaties zich tot didactische bruikbaarheid?
+
+\vspace{1em}
 
 \subsection{Positionering van deze bachelorproef}
 
-% ==> goeie afsluiter
+Deze bachelorproef situeert zich binnen de hierboven geschetste onderzoekskloof. Concreet richt dit onderzoek zich op de evaluatie van LLM-gebaseerde systemen voor automatische code-evaluatie binnen een projectgebaseerde programmeercontext.
 
-% =================================================================
+\vspace{1em}
 
+De studie vergelijkt verschillende modellen en/of platformen op basis van criteria zoals accuraatheid, consistentie, feedbackkwaliteit en toepasbaarheid binnen formele beoordelingsomgevingen. Daarbij wordt niet enkel gekeken naar overeenstemming met menselijke beoordeling, maar ook naar reproduceerbaarheid en betrouwbaarheid van de gegenereerde output.
 
+\vspace{1em}
 
+Door deze focus draagt dit onderzoek bij aan het verfijnen van het huidige begrip van LLM-gebaseerde evaluatie in het onderwijs. Het levert inzichten die relevant zijn voor de specifieke doelgroep, zijnde de lectoren Front-end Web Development en Web Services aan HOGENT. Daarmee beoogt deze bachelorproef een onderbouwde bijdrage te leveren aan het debat rond de verantwoorde inzet van generatieve AI binnen deze specifieke onderzoekscontext.
