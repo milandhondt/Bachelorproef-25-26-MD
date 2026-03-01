@@ -62,9 +62,39 @@ Inleidende alinea
 
 \subsection{Evolutie van autograding}
 
+Binnen het programmeeronderwijs is automatische beoordeling, vaak aangeduid als autograding, al redelijk gekend. De sterke groei van studentenaantallen binnen informaticaopleidingen vergroot de nood aan automatische evaluatievormen en zorgen ervoor dat handmatige beoordelingen steeds moeilijker en vooral tijdsintensiever worden. Hiervoor bieden autograding systemen een eerste oplossing.
+
+\vspace{1em}
+
+Volgens de systematische literatuurstudie van \textcite{Messer2024} maken dergelijke systemen doorgaans gebruik van testcases om de uitvoer van studentenoplossingen te vergelijken met verwachte resultaten. Hierbij wordt voornamelijk gecontroleerd of de code syntactisch correct is, succesvol compileert en de juiste output genereert. Hierbij maakt autograding het mogelijk om snel feedback te kunnen geven aan grote groepen studenten. Het detailniveau van deze feedback lijkt echter wel beperkt.
+
+\vspace{1em}
+
+Een groot voordeel van autograding is de onmiddellijke terugkoppeling. Studenten krijgen vaak vrijwel instant feedback op hun ingediende oplossing, wat het iteratieve leerproces ondersteunt. Daarnaast vermindert het de werklast van docenten aanzienlijk, vooral bij grote opleidingsonderdelen waar honderden inzendingen per semester verwerkt moeten worden \autocite{Messer2024}. Hierdoor kunnen docenten hun tijd efficiënter inzetten voor andere zaken.
+
+\vspace{1em}
+
+Doorheen de jaren zijn autograding-systemen verder geëvolueerd en uitgebreid met extra functionaliteiten, zoals statische code-analyse en eenvoudige stijlcontroles. Toch blijft de kern van deze systemen doorgaans gebaseerd op outputvergelijking via testcases, wat hun toepassingsgebied in belangrijke mate afbakent, door het gebrek aan variërende code op een gelijke manier te beoordelen. Zo wordt code die bv. niet performant is en geen best practices hanteert op gelijke manier beoordeeld als code waarbij er aan deze zaken wel aandacht is besteed.
+
 \subsection{Beperkingen van autograding}
 
-% ==> uitleggen waarom autograding niet voldoende is
+Hoewel autograding aanzienlijke voordelen biedt op het vlak van efficiëntie en schaalbaarheid, wijzen verschillende studies op fundamentele beperkingen. Zoals \textcite{Messer2024} aantonen, ligt de nadruk van traditionele autograding-systemen voornamelijk op kwantitatieve evaluatie, zijnde het al dan niet slagen voor testcases. Dit betekent dat vooral het eindresultaat wordt beoordeeld en dus geen aandacht wordt besteed aan de kwaliteit van de implementatie.
+
+\vspace{1em}
+
+Aspecten zoals codeleesbaarheid, modulariteit, architectuurkeuzes, documentatie, foutafhandeling en teststrategie worden vaak slechts beperkt meegenomen in de automatische evaluatie \autocite{Messer2024}. Hierdoor ontstaat een reductie van complexe programmeercompetenties tot een binaire beoordeling gebaseerd op correcte output. In projecten of taken met een brede waaier aan oplossingen en waarbij er een zeer ruime invulling mogelijk is, zoals binnen de OLOD's Front-end Web Development en Web Services, valt autograding dus zeer lastig toe te passen.
+
+\vspace{1em}
+
+Een bijkomend probleem is de afhankelijkheid van vooraf gedefinieerde testcases. Wanneer een student een creatieve of alternatieve oplossing implementeert die wel correct is, maar niet volledig aansluit bij de verwachte structuur, kan dit leiden tot false negatives. Autograding-systemen beschikken namelijk niet over het vermogen om de bredere context van een implementatie te interpreteren.
+
+\vspace{1em}
+
+Daarnaast is de gegenereerde feedback vaak beperkt tot technische foutmeldingen of het aanduiden van gefaalde testcases. Deze vorm van feedback mist vaak inhoudelijke uitleg of begeleiding, wat de leerwaarde kan beperken. Studenten weten dat een oplossing fout is, maar krijgen onvoldoende inzicht in waarom dit zo is of hoe ze hun aanpak kunnen verbeteren. Het bespaart de lectoren dus oorspronkelijk wel tijd, maar in het geval van fouten moeten ze nog steeds feedback en uitleg geven aan de student.
+
+\vspace{1em}
+
+Samenvattend kan gesteld worden dat autograding een efficiënte en schaalbare oplossing biedt voor basis oefeningen binnen het programmeeronderwijs. Als de opdracht zeer duidelijk en goed afgebakend is, dan kan autograding op bepaalde manieren worden toegepast. Echter biedt autograding onvoldoende ondersteuning voor opdrachten met meerdere mogelijke oplossingen en kan het niet op een kwalitatieve manier worden ingezet voor diepgaande en contextbewuste evaluatie. 
 
 % ================================================================
 
