@@ -156,13 +156,71 @@ Samengevat bieden LLM's duidelijke voordelen ten opzichte van traditionele autog
 
 \subsection{De vergelijking tussen LLM's en menselijke beoordeling}
 
+Een centrale vraag binnen het onderzoek naar LLM-gebaseerde code-evaluatie is in welke mate deze modellen beoordelingen kunnen genereren die overeenkomen met die van de lectoren. Recente studies tonen aan dat de kloof tussen automatische en menselijke beoordeling steeds kleiner en kleiner wordt.
+
+\vspace{1em}
+
+\textcite{Mendonca2025} voerden een systematische vergelijking uit tussen een open-source model (LLaMA 3.2), een premium model (GPT-4o) en menselijke reviewers binnen een programmeercontext. Hun resultaten tonen aan dat beide modellen een hoge mate van overeenstemming vertonen met menselijke scoringspatronen. In het bijzonder bleek het premium model statistisch en praktisch equivalent te scoren ten opzichte van menselijke evaluatoren bij code-gerelateerde vragen. Hieruit kan worden afgeleid dat LLM’s in staat zijn om rubrics op consistente wijze toe te passen.
+
+\vspace{1em}
+
+Ook \textcite{Koutcheme2025} onderzochten het gebruik van LLM’s voor het genereren en beoordelen van programmeerfeedback. Hun studie toont aan dat moderne modellen niet enkel kwalitatieve feedback kunnen produceren, maar ook in staat zijn om de kwaliteit van feedback te beoordelen (LLM-as-a-judge). De prestaties van open-source modellen bleken hierbij nagenoeg vergelijkbaar met betalende alternatieven.
+
+\vspace{1em}
+
+Het bredere concept van LLM’s als reviewer wordt verder onderzocht door \textcite{Eric2023}, die aantoonden dat sterke modellen relatief consistente evaluaties kunnen produceren bij het beoordelen van gegenereerde antwoorden. 
+
+\vspace{1em}
+
+Deze bevindingen suggereren dat LLM’s technisch in staat zijn om menselijke beoordelaars te benaderen in termen van scoringconsistentie. Toch blijft de vraag in welke mate deze overeenstemming behouden blijft bij complexere, projectgebaseerde programmeeropdrachten, waar context, architectuurkeuzes en interpretatie een grotere rol spelen. Ook de grote diversiteit aan richtingen die de studenten nemen bij het uitwerken van de opdracht kan voor moeilijkheden zorgen.
+
 \subsection{Open-source versus closed-source modellen}
+
+Een belangrijke discussie binnen het domein van LLM-gebaseerde evaluatie betreft de vergelijking tussen open-source en closed-source modellen. Closed-source modellen, zoals GPT-4o, staan bekend om hun hoge performantie, maar brengen kosten en afhankelijkheid van externe aanbieders met zich mee. Open-source modellen bieden daarentegen meer controle, transparantie en lokale inzetbaarheid.
+
+\vspace{1em}
+
+\textcite{Koutcheme2025} tonen aan dat recente open-source modellen bijna op hetzelfde niveau presteren als commerciële modellen bij het genereren en beoordelen van programmeerfeedback. Bovendien benadrukken zij dat kleinere modellen in bepaalde contexten zelfs efficiënter kunnen functioneren zonder benoemenswaardige kwaliteitsverliezen.
+
+\vspace{1em}
+
+Ook \textcite{Mendonca2025} bevestigen dat open-source modellen sterke prestaties kunnen leveren, al presteerde het premium model in hun studie statistisch consistenter bij code-gerelateerde beoordelingsvragen. Dit wijst op een mogelijk kwaliteitsverschil, maar toont tegelijk aan dat open-source alternatieven een realistisch en schaalbaar alternatief vormen binnen onderwijscontexten.
+
+\vspace{1em}
+
+Voor onderwijsinstellingen spelen naast performantie ook andere factoren mee, zoals privacy, kostprijs, reproduceerbaarheid en integratiemogelijkheden binnen bestaande infrastructuur. De keuze tussen open-source en closed-source modellen is daarom niet enkel een technische, maar ook een organisatorische en praktische beslissing.
 
 \subsection{Fine-tuning en verbetering van de feedbackkwaliteit}
 
+Hoewel LLM’s via standaard prompting reeds bruikbare feedback kunnen genereren, tonen recente studies aan dat fine-tuning de kwaliteit en stijl van feedback aanzienlijk kan verbeteren, iets wat voor dit onderzoek zeker een belangrijk aandachstpunt zal zijn.
+
+\vspace{1em}
+
+\textcite{Adurean2025} onderzochten het effect van het fine-tunen van generatieve modellen op basis van student-geschreven feedback. Hun resultaten tonen aan dat fine-tuning niet enkel de stilistische gelijkenis met menselijke feedback verhoogt, maar ook de inhoudelijke correctheid kan verbeteren, zelfs wanneer een deel van de trainingsfeedback onvolledig of incorrect is. Dit suggereert dat modellen kunnen leren om feedback te formuleren die dichter aansluit bij pedagogische verwachtingen.
+
+\vspace{1em}
+
+Daarnaast benadrukken \textcite{Koutcheme2025} dat prompt-engineeringstrategieën een belangrijke rol spelen bij het sturen van modeloutput. De manier waarop evaluatiecriteria expliciet worden geformuleerd in een prompt, beïnvloedt de consistentie en nauwkeurigheid van de gegenereerde feedback.
+
+\vspace{1em}
+
+Deze bevindingen zijn bijzonder relevant voor dit onderzoek, aangezien zij impliceren dat de betrouwbaarheid van LLM-gebaseerde evaluatie niet enkel afhankelijk is van het gekozen model, maar ook van de configuratie, instructies en eventuele fine-tuning. Hier zal tijdens de technische uitwerking dus zeker genoeg aandacht aan moeten worden besteed.
+
 \subsection{MastraAI}
 
-% ==> opbouwen naar / onderbouwen van vergelijkende studie
+Naast generieke LLM-modellen bestaan er gespecialiseerde AI-platformen die gericht zijn op code-intelligentie en automatische code-analyse. Dergelijke systemen combineren vaak LLM-technologie met aanvullende analysetools, zoals statische code-analyse of repository-inspectie.
+
+\vspace{1em}
+
+Hoewel academische literatuur over MastraAI specifiek beperkt is, past het concept binnen een bredere evolutie waarbij LLM’s geïntegreerd worden in ontwikkelomgevingen om codekwaliteit te bewaken en codesuggesties te formuleren. Volgens \textcite{Kasneci2023} ligt de meerwaarde van dergelijke toepassingen in het combineren van generatieve capaciteiten met didactische ondersteuning, mits er voldoende menselijk toezicht blijft.
+
+\vspace{1em}
+
+De integratie van een platform zoals MastraAI binnen een testomgeving kan toelaten om systematisch te onderzoeken in welke mate gespecialiseerde tools verschillen van generieke LLM’s op vlak van consistentie, accuraatheid en toepasbaarheid binnen projectgebaseerde evaluatie. Verder kan automatisering en het gebruiken van algemene richtlijnen voor meer consistentie zorgen.
+
+\vspace{1em}
+
+Samenvattend toont de literatuur aan dat LLM’s potentieel hebben om menselijke beoordelaars te benaderen in scoringconsistentie, dat open-source modellen competitief zijn met closed-source alternatieven, en dat fine-tuning en prompt-engineering een cruciale rol spelen in het verbeteren van feedbackkwaliteit. Tegelijkertijd blijft menselijk toezicht wel nog altijd noodzakelijk, zeker binnen complexe studentenprojecten.
 
 % =================================================================
 
