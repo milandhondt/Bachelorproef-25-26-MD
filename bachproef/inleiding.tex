@@ -5,19 +5,19 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De opkomst van Large Language Models (LLM’s) zoals ChatGPT, Gemini en GitHub Copilot heeft een duidelijke impact op de manier waarop software ontwikkeld wordt. Binnen het programmeeronderwijs worden deze modellen steeds vaker gebruikt door studenten om code te schrijven, te begrijpen en te verbeteren. Ook binnen projecten, waar studenten te maken krijgen met steeds grotere en complexere codebases, worden LLM's ingezet.
+De opkomst van tools zoals ChatGPT, Gemini en GitHub Copilot, die gebruik maken van Large Language Models (LLM’s) heeft een duidelijke impact op de manier waarop software ontwikkeld wordt. Uit recente onderzoeken blijkt dat studenten en beginnende programmeurs LLM’s steeds vaker gebruiken om code te schrijven, begrijpen en verbeteren, waarbij sommige studies aangeven dat meer dan 70 procent van de studenten in programmeeronderwijs regelmatig AI-gebaseerde code-assistenten inzet \autocite{Lepp2025,Kazemitabaar2023}. Deze tools kunnen niet alleen syntaxfouten detecteren, maar ook de context van implementaties begrijpen en suggesties geven voor verbeteringen, iets wat traditionele autograding tools niet kunnen \autocite{Kasneci2023}.
 
 \vspace{1em}
 
-Dat LLM's ingezet kunnen worden voor code generatie is duidelijk. Echter is hun rol bij het evalueren van code minder duidelijk. Meer specifiek, is het onduidelijk in welke mate LLM's kunnen bijdragen aan het evalueren van codekwaliteit en het genereren van formatieve feedback op studentenprojecten.
+Dat LLM's ingezet kunnen worden voor code generatie is duidelijk. Echter is het gebruik ervan voor het evalueren van codekwaliteit en het geven van feedback nog onvoldoende onderzocht \autocite{Mendonca2025,Koutcheme2025}. Meer specifiek, is het onduidelijk in welke mate LLM's kunnen bijdragen aan het evalueren van codekwaliteit en het genereren van formatieve feedback op studentenprojecten.
 
 \vspace{1em}
 
-De evaluatie van studentenprojecten binnen de vakken Front-End Web Development en Web Services kan een zeer complex en tijdsintensief proces zijn. Niet alleen is er technische kennis vereist, er is ook een nood aan het consistent toepassen van de evaluatiecriteria en daarboven moet er ook genoeg aandacht worden besteed aan het geven van inhoudelijke feedback. Hier zou het zeer interessant zijn om LLM's te gebruiken ter ondersteuning. Deze kunnen bepaalde repetitieve of structurele aspecten van de evaluatie ondersteunen. Echter is hun betrouwbaarheid, consistentie en bruikbaarheid nog onvoldoende onderzocht binnen deze context.
+De evaluatie van studentenprojecten binnen de opleidingsonderdelen (OLOD's) Front-End Web Development en Web Services kan een zeer complex en tijdsintensief proces zijn. Niet alleen is er technische kennis vereist, er is ook een nood aan het consistent toepassen van de evaluatiecriteria en daarboven moet er ook genoeg aandacht worden besteed aan het geven van inhoudelijke feedback. Hier zou het zeer interessant zijn om LLM's te gebruiken ter ondersteuning. Deze kunnen bepaalde repetitieve of structurele aspecten van de evaluatie ondersteunen. Echter is hun betrouwbaarheid, consistentie en bruikbaarheid nog onvoldoende onderzocht binnen deze context.
 
 \vspace{1em}
 
-Deze bachelorproef vertrekt vanuit de nood aan een beter inzicht in de mogelijkheden en beperkingen van LLM's, ter ondersteuning bij het evalueren van studentenprojecten binnen de vakken Front-End Web Development en Web Services. Dit onderwerp zal systematisch onderzocht worden en bijdragen aan het geven van een realistisch beeld van hoe LLM's al dan niet kunnen worden ingezet bij het evalueren van deze projecten.
+Deze bachelorproef vertrekt vanuit de nood aan een beter inzicht in de mogelijkheden en beperkingen van LLM's, ter ondersteuning bij het evalueren van studentenprojecten binnen de OLOD's Front-End Web Development en Web Services. Dit onderwerp zal systematisch onderzocht worden en bijdragen aan het geven van een realistisch beeld van hoe LLM's al dan niet kunnen worden ingezet bij het evalueren van deze projecten.
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
@@ -46,7 +46,7 @@ Deze onderzoeksvraag kan opgesplitst worden in meerdere deelvragen, zowel met be
 \textbf{\newline Deelvragen probleemdomein:}
 \begin{enumerate}
     \item Welke specifieke evaluatiecriteria worden momenteel gebruikt bij de evaluatie van projecten binnen Front-end Web Development en Web Services?
-    \item Hoeveel tijd wordt gemiddeld gespendeerd aan het beoordelen van 1 project?
+    \item Hoeveel tijd wordt gemiddeld gespendeerd aan het beoordelen van één project?
     \item Van de tijd die gespendeerd wordt aan het beoordelen van één project, welk deel is gericht op het controleren van de criteria, en welk deel is gericht op het geven van inhoudelijke feedback?
     \item In welke mate ervaren de lectoren inconsistenties in hun eigen beoordelingen ten opzichte van hun collega's?
 \end{enumerate}
@@ -66,14 +66,14 @@ Deze onderzoeksvraag kan opgesplitst worden in meerdere deelvragen, zowel met be
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Het beoogde resultaat van dit onderzoek bevat meerdere zaken. Enerzijds een grondig onderbouwd onderzoeksverslag, anderzijds een goed gedocumenteerde Proof-of-Concept(PoC) testomgeving voor het evalueren van studentenprojecten.
+Het beoogde resultaat van dit onderzoek bevat meerdere zaken. Enerzijds een grondig onderbouwd onderzoeksverslag, anderzijds een goed gedocumenteerde Proof-of-Concept(PoC) voor het evalueren van studentenprojecten.
 
 \vspace{1em}
 
 Ten eerste moet er een onderzoeksverslag worden opgeleverd, waarin er op een gestructureerde en onderbouwde manier geanalyseerd wordt in welke mate Large Language Models (LLM's) bruikbare en betrouwbare formatieve feedback kunnen genereren op de codekwaliteit van studentenprojecten binnen Front-End Web Development en Web Services. Dit onderzoeksverslag bevat:
 \begin{itemize}
     \item een overzicht van de huidige evaluatiecriteria en methodes die door lectoren worden gebruikt
-    \item een analyse van verschillende LLM's op vlak van criteriadetectie, consistentie,\ldots
+    \item een analyse van verschillende LLM's op vlak van criteriadetectie, consistentie\ldots
     \item een vergelijking tussen de feedback van ervaren lectoren en de LLM-gegenereerde feedback
     \item de situering van dit onderzoek binnen de AI act, en hoe hier mee moet omgegaan worden als lectoren
     \item conclusies en concrete aanbevelingen voor lectoren, omtrent het inzetten van LLM's bij de evaluatie van studentenprojecten.
