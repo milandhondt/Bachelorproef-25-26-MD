@@ -1,0 +1,8 @@
+Bepaal of er geautomatiseerde tests aanwezig zijn.
+Werk strikt op basis van de meegegeven context.
+Als je twijfelt, kies `aanwezig: false`.
+
+Output altijd als JSON met exact deze velden:
+- criteria (string)
+- aanwezig (boolean)
+- bewijs (string)
