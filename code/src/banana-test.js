@@ -1,13 +1,14 @@
 import "dotenv/config";
-import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const res = await fetch("http://localhost:11434/api/generate", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    model: process.env.MODEL,
+    prompt: "Say banana",
+    stream: false,
+  }),
 });
 
-const response = await openai.responses.create({
-  model: "gpt-5-nano",
-  input: "output 'banana' if this is working",
-});
-
-console.log(response.output_text);
+const data = await res.json();
+console.log(data.response);
