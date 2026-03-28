@@ -6,7 +6,7 @@ import {
 } from "@mastra/core/ai-tracing";
 import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
-import { codingAgent } from "./agents/coding-agent";
+import { codingAgent } from "./agents/evaluation-agent";
 
 export const mastra = new Mastra({
   agents: { codingAgent },
