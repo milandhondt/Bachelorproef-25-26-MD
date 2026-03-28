@@ -135,10 +135,6 @@ sympy-plots-for-*.tex/
 output/
 out/
 
-# generated POC evaluation results
-code/src/poc/resultaten/
-
-# node template hieronder
 # Logs
 logs
 *.log
