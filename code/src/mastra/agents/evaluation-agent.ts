@@ -81,9 +81,6 @@ For each predefined criterion:
 
 Always return output in a structured and consistent format:
 
-### Project Summary
-- Short high-level description of the project quality
-
 ### Criteria Evaluation
 For each criterion:
 - Name

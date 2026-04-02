@@ -14,8 +14,14 @@ export async function runEvaluationPipeline() {
     path.join(POC, "prompts", "detecteer_testing.txt"),
     "utf8",
   );
+
+  // const project = await fs.readFile(
+  //   path.join(POC, "projecten", "voorbeeld-project.md"),
+  //   "utf8",
+  // );
+
   const project = await fs.readFile(
-    path.join(POC, "projecten", "voorbeeld-project.md"),
+    path.join(POC, "projecten", "slecht-voorbeeld.md"),
     "utf8",
   );
 
@@ -36,7 +42,7 @@ ${project}`;
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      model: process.env.MODEL || "llama3",
+      model: process.env.MODEL,
       prompt: ollamaPrompt,
       stream: false,
     }),

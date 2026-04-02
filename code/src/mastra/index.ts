@@ -6,10 +6,10 @@ import {
 } from "@mastra/core/ai-tracing";
 import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
-import { codingAgent } from "./agents/evaluation-agent";
+import { evaluationAgent } from "./agents/evaluation-agent";
 
 export const mastra = new Mastra({
-  agents: { codingAgent },
+  agents: { evaluationAgent },
   storage: new LibSQLStore({ url: "file:../../mastra.db" }),
   logger: new PinoLogger({
     name: "Mastra",
