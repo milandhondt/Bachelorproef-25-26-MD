@@ -1,22 +1,9 @@
 import { Agent } from "@mastra/core/agent";
-import { LibSQLStore, LibSQLVector } from "@mastra/libsql";
-import { Memory } from "@mastra/memory";
-import {
-  checkFileExists,
-  createDirectory,
-  createSandbox,
-  deleteFile,
-  getFileInfo,
-  getFileSize,
-  listFiles,
-  readFile,
-  runCode,
-  runCommand,
-  watchDirectory,
-  writeFile,
-  writeFiles,
-} from "../tools";
-import { fastembed } from "@mastra/fastembed";
+import { createOllama } from "ollama-ai-provider";
+
+const ollama = createOllama({
+  baseURL: process.env.OLLAMA_BASE_URL || "http://localhost:11434/api",
+});
 
 export const evaluationAgent = new Agent({
   id: "evaluation-agent",
@@ -117,33 +104,6 @@ For each criterion:
 
 Your goal is to produce structured, reproducible evaluations of student codebases that can later be analyzed by a human researcher.
 `,
-  model: process.env.MODEL || "openai/gpt-4o-mini",
-  tools: {
-    createSandbox,
-    runCode,
-    readFile,
-    writeFile,
-    writeFiles,
-    listFiles,
-    deleteFile,
-    createDirectory,
-    getFileInfo,
-    checkFileExists,
-    getFileSize,
-    watchDirectory,
-    runCommand,
-  },
-  memory: new Memory({
-    storage: new LibSQLStore({ url: "file:../../mastra.db" }),
-    options: {
-      semanticRecall: true,
-      workingMemory: { enabled: true },
-      threads: {
-        generateTitle: true,
-      },
-    },
-    embedder: fastembed,
-    vector: new LibSQLVector({ connectionUrl: "file:../../mastra.db" }),
-  }),
+  model: ollama(process.env.MODEL || "llama3"),
   defaultStreamOptions: { maxSteps: 20 },
 });

@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { mastra } from "../../mastra/runtime.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "..");
@@ -14,18 +15,12 @@ export async function runEvaluationPipeline() {
     path.join(POC, "prompts", "detecteer_testing.txt"),
     "utf8",
   );
-
-  // const project = await fs.readFile(
-  //   path.join(POC, "projecten", "voorbeeld-project.md"),
-  //   "utf8",
-  // );
-
   const project = await fs.readFile(
-    path.join(POC, "projecten", "slecht-voorbeeld.md"),
+    path.join(POC, "projecten", "voorbeeld-project.md"),
     "utf8",
   );
 
-  const ollamaPrompt = `Evalueer dit studentenproject op basis van een criterium.
+  const agentPrompt = `Evalueer dit studentenproject op basis van een criterium.
 Geef ALLEEN geldige JSON terug met exact deze opbouw:
 {"criteria": string, "aanwezig": boolean, "bewijs": string}
 
@@ -38,33 +33,21 @@ ${prompt}
 Projectcontext:
 ${project}`;
 
-  const res = await fetch("http://localhost:11434/api/generate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      model: process.env.MODEL,
-      prompt: ollamaPrompt,
-      stream: false,
-    }),
-  });
+  const agent = mastra.getAgent("evaluationAgent");
+  const response = await agent.generateLegacy(agentPrompt);
 
-  if (!res.ok) {
-    throw new Error(`Ollama-aanroep mislukt (${res.status})`);
-  }
-
-  const data = await res.json();
   let parsed;
   try {
-    parsed = JSON.parse(data.response);
+    parsed = JSON.parse(response.text);
   } catch {
-    const match = data.response.match(/\{[\s\S]*\}/);
+    const match = String(response.text || "").match(/\{[\s\S]*\}/);
     parsed = JSON.parse(match ? match[0] : "{}");
   }
 
   const output = {
-    criteria: String(parsed.criteria || "testing"),
+    criteria: String(parsed.criteria ?? ""),
     aanwezig: Boolean(parsed.aanwezig),
-    bewijs: String(parsed.bewijs || ""),
+    bewijs: String(parsed.bewijs ?? ""),
   };
 
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
