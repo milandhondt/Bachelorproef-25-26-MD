@@ -15,8 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^17.2.3",
-    "openai": "^6.15.0",
     "@daytonaio/sdk": "^0.120.0",
     "@e2b/code-interpreter": "^1.5.1",
     "@mastra/core": "^0.24.9",
@@ -25,6 +23,9 @@
     "@mastra/loggers": "^0.10.19",
     "@mastra/mcp": "^0.14.5",
     "@mastra/memory": "^0.15.13",
+    "dotenv": "^17.2.3",
+    "ollama-ai-provider": "^1.2.0",
+    "openai": "^6.15.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
