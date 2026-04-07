@@ -1,9 +1,4 @@
 import { Agent } from "@mastra/core/agent";
-import { createOllama } from "ollama-ai-provider";
-
-const ollama = createOllama({
-  baseURL: process.env.OLLAMA_BASE_URL || "http://localhost:11434/api",
-});
 
 export const evaluationAgent = new Agent({
   id: "evaluation-agent",
@@ -104,6 +99,10 @@ For each criterion:
 
 Your goal is to produce structured, reproducible evaluations of student codebases that can later be analyzed by a human researcher.
 `,
-  model: ollama(process.env.MODEL || "llama3"),
+  model: {
+    id: `ollama/${process.env.MODEL || "qwen3-coder:480b-cloud"}`,
+    url: process.env.OLLAMA_V1_BASE_URL || "http://localhost:11434/v1",
+    apiKey: process.env.OLLAMA_API_KEY || "ollama",
+  },
   defaultStreamOptions: { maxSteps: 20 },
 });

@@ -34,7 +34,7 @@ Projectcontext:
 ${project}`;
 
   const agent = mastra.getAgent("evaluationAgent");
-  const response = await agent.generateLegacy(agentPrompt);
+  const response = await agent.generate(agentPrompt);
 
   let parsed;
   try {
