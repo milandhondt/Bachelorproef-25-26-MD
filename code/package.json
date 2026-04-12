@@ -8,7 +8,7 @@
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start",
-    "test": "node src/server.js",
+    "test": "npx tsx src/server.js",
     "test:banana": "node src/banana-test.js"
   },
   "keywords": [],
@@ -23,15 +23,21 @@
     "@mastra/loggers": "^0.10.19",
     "@mastra/mcp": "^0.14.5",
     "@mastra/memory": "^0.15.13",
+    "bufferutil": "^4.1.0",
     "dotenv": "^17.2.3",
+    "enquirer": "^2.4.1",
     "ollama-ai-provider": "^1.2.0",
     "openai": "^6.15.0",
+    "supports-color": "^10.2.2",
+    "utf-8-validate": "^6.0.6",
+    "xlsx": "^0.18.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",
     "mastra": "^0.18.9",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
     "typescript": "^5.9.3"
   }
 }
