@@ -6,6 +6,7 @@ import {
 } from "@mastra/core/ai-tracing";
 import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
+// @ts-expect-error - No declaration file inside JS evaluation agent
 import { evaluationAgent } from "./agents/evaluation-agent.js";
 
 export const mastra = new Mastra({
