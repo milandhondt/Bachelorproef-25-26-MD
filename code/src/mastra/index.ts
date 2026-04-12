@@ -6,11 +6,13 @@ import {
 } from "@mastra/core/ai-tracing";
 import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
-// @ts-expect-error JS runtime agent is source of truth for evaluation flow.
 import { evaluationAgent } from "./agents/evaluation-agent.js";
 
 export const mastra = new Mastra({
   agents: { evaluationAgent },
+  bundler: {
+    externals: ["supports-color", "bufferutil", "utf-8-validate"],
+  },
   storage: new LibSQLStore({ url: "file:../../mastra.db" }),
   logger: new PinoLogger({
     name: "Mastra",
