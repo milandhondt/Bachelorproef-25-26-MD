@@ -1,0 +1,2 @@
+Controleer de isolatie van de datalaag.
+Bevat de specifieke service laag géén ruwe SQL queries, connection strings of databank-adapter imports? Query-logica moet afzonderlijk in een repository/DAO of puur ORM bestand liggen.

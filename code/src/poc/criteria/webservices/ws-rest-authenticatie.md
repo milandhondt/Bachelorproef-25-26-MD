@@ -1,0 +1,2 @@
+Controleer de beveiliging van de API.
+Is er degelijke autorisatie/authenticatie (zoals JWT tokens, Passport, sessies) aanwezig en effectief toegepast op afgeschermde routes m.b.v. guards of middleware?

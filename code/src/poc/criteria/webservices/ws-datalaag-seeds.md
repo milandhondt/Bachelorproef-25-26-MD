@@ -1,0 +1,2 @@
+Controleer de datalaag van de applicatie.
+Bevat de applicatie database seeds (dummy/initiële data die in de databank geïnjecteerd kan worden)? Zoek expliciet naar seed-scripts (bijv. seed.ts) met invoegfuncties.

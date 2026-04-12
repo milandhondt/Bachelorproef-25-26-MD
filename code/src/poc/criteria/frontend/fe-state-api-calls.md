@@ -1,0 +1,2 @@
+Controleer de communicatie met externe diensten.
+Vind code/files waar fetch, axios of react-query gebruikt wordt, én verifieer dat deze methoden daadwerkelijk in de componenten / logic gebruikt worden om externe data op te halen of weg te schrijven (naast enkel de login).

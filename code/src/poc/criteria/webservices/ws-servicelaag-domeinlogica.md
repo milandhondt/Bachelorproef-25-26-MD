@@ -1,0 +1,2 @@
+Controleer de gelaagde architectuur.
+Wordt alle wezenlijke domein/business logica verwerkt in een afzonderlijke 'service' laag of use-cases map, en wordt de logica niet rechtstreeks in de REST-controllers geschreven? Constateer of controllers leeg/dun zijn.

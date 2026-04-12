@@ -1,0 +1,2 @@
+Controleer de handgeschreven documentatie.
+Een standaard gegenereerde React/Vite/Next lint readme is ONGESCHIKT! Kijk naar de inhoud van de `README.md` in de react applicatie, OF kijk elders in de repository naar een `dossier.md`. Bevat een van deze bestanden daadwerkelijke, specifieke informatie over dít studentenproject (uitleg, functies, aanpak, bugs...)?

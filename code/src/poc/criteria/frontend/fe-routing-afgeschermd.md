@@ -1,0 +1,2 @@
+Controleer client-side authenticatie.
+Is er routing logica (zoals React Router) aanwezig waarbij specifieke paden (PrivateRoute / ProtectedRoute Guards) enkel renderen of redirecten als de client "authenticatiedata" of een geldig ingelogd state object bezit?

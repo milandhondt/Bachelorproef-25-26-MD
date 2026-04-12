@@ -1,0 +1,2 @@
+Controleer de datalaag van de applicatie.
+Is er gebruik gemaakt van database migraties (bijv. via Knex, Prisma, Sequelize, Drizzle, etc.) om de databank structuur te beheren? Zoek fysiek naar migratie bestanden met SQL queries of timestamps in hun naam. Bevestig de aanwezigheid.

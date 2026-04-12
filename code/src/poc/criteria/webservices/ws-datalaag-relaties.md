@@ -1,0 +1,2 @@
+Controleer de databank schema's.
+Zoek de Prisma schema bestanden, TypeORM entities of Drizzle schema's. Verifieer expliciet of er minstens 3 databanktabellen / entiteiten gemodelleerd zijn die met elkaar verbonden zijn via Foreign Keys of relaties (zoals 1-op-veel of veel-op-veel).

@@ -1,0 +1,2 @@
+Controleer foutafhandeling in de REST API.
+Worden er in de backend degelijke custom foutboodschappen afgedwongen m.b.v. correcte HTTP status codes (404, 400, 500) via een error afhandelaar (bijv. specifieke custom Exeption Filters of error middleware, of NotFoundException calls)?

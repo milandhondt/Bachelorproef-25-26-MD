@@ -1,0 +1,2 @@
+Controleer de backend testen heel streng.
+Ga NOOIT af op `package.json`. Vind de map met testen (bijv `/test`, `/tests` of `*.spec.ts/js` bestanden) en open de bestanden! Bevatten ze daadwerkelijk uitgeschreven test-suites met daarin verzoeken/requests (bijv. via Supertest) naar backend REST routes, en met `expect()` assertions? Zo ja -> true. Indien enkel lege boilerplate is gegenereerd -> false.

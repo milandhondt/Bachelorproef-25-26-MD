@@ -1,0 +1,2 @@
+Controleer formulier afhandeling.
+Navigeer in de bestanden naar componenten die formulieren (`<form>`) bevatten. Is hier bewijsbaar validatie toegepast in de code? Kijk naar checks via react-hook-form, yup validators of state gebaseerde checks die een zenden blokkeren en errors renderen bij ongeldige foute input.

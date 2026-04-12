@@ -1,0 +1,2 @@
+Controleer de End-To-End Testen heel streng.
+Ga NOOIT blind uit van `package.json` dependencies! Zoek naar de daadwerkelijke de Cypress map (bijv `cypress/e2e`) of Playwright test map, en OPEN deze bestanden met `readFile`. Staan er daadwerkelijk uitgeschreven scenario's in (zoals `cy.visit('...')`, `cy.get(...).click()`) met validaties? Er moeten functionele end-to-end user-flows aanwezig zijn! Indien de mappen ontbreken of enkel leeg aangemaakt zijn -> buis de test (false).

@@ -1,0 +1,2 @@
+Controleer de REST API routes.
+Wordt er op meerdere routes expliciete invoervalidatie toegepast (bijv. Joi, Zod, class-validator) en resulteert een foute validatie in een afgewezen HTTP-request (400 Bad Request)? Focus niet alleen op DTO swagger decorators, maar kijk of de pipe/middleware daadwerkelijk de body valideert.

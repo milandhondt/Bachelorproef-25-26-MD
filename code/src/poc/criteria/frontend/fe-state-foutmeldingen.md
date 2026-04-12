@@ -1,0 +1,2 @@
+Controleer actieve Error weergeave.
+Zoek naar hoe API-calls falen (bv. catch blocks of SWR/ReactQuery isError output). Worden deze foutstatussen vervolgens expliciet gekoppeld aan de UI door middel van foutmelding-componenten of visuele tags zodat de gebruiker weet dat het fout ging? Een simpele console.log is ONDOELTREFFEND!

@@ -1,0 +1,2 @@
+Controleer de REST API routes op volledigheid.
+Zijn er voor meerdere entiteiten (bijv. users, products) alle standaard CRUD-operaties (Create, Read, Update, Delete) aanwezig en gekoppeld aan de juiste HTTP-methoden (GET, POST, PUT/PATCH, DELETE)?

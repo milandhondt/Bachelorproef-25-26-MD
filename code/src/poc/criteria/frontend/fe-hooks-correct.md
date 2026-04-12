@@ -1,0 +1,2 @@
+Controleer anti-patterns in React Hooks.
+Inspecteer in componenten hoe useState en useEffect worden beheerd. Let op grote rode vlaggen zoals oneindige renders, het muteren van state variabelen zonder de setter functie te gebruiken, of ongecontroleerde the-deep prop-drilling. Ziet de flow er stabiel bewaard uit?
