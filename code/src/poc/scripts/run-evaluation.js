@@ -7,10 +7,6 @@ import { mastra } from "../../mastra/index.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "..");
 
-/**
- * Recursively upload a local directory into an E2B sandbox.
- * Skips node_modules and .git directories.
- */
 async function uploadDirectory(sandbox, localDir, sandboxDir) {
   const entries = await fs.readdir(localDir, { withFileTypes: true });
 
@@ -28,19 +24,6 @@ async function uploadDirectory(sandbox, localDir, sandboxDir) {
   }
 }
 
-/**
- * Run the full evaluation pipeline:
- *  1. Create an E2B sandbox
- *  2. Upload the student project into it
- *  3. Ask the evaluation agent to explore & evaluate the project
- *  4. Parse the structured JSON response
- *  5. Save results to disk
- *  6. Tear down the sandbox
- *
- * @param {object}  opts
- * @param {string}  [opts.projectDir]
- * @param {Array<{domain: string, criteriaFile: string}>} opts.tasks
- */
 export async function runEvaluationPipeline(opts = {}) {
   const {
     projectDir = path.join(POC, "projecten", "voorbeeld-project"),
@@ -51,13 +34,11 @@ export async function runEvaluationPipeline(opts = {}) {
     throw new Error("No evaluation tasks provided");
   }
 
-  // ── 1. Create sandbox ────────────────────────────────────────────
   console.log("Creating E2B sandbox...");
   const sandbox = await Sandbox.create({ timeoutMs: 30 * 60 * 1000 });
   console.log(`Sandbox created: ${sandbox.sandboxId}`);
 
   try {
-    // ── 3. Upload project files ──────────────────────────────────────
     const projectName = path.basename(projectDir);
     const sandboxProjectPath = `/home/user/${projectName}`;
 
@@ -65,7 +46,6 @@ export async function runEvaluationPipeline(opts = {}) {
     await uploadDirectory(sandbox, projectDir, sandboxProjectPath);
     console.log("Project uploaded.");
 
-    // ── 4. Loop through tasks ─────────────────────────────────────────
     const results = [];
     for (const { domain, criteriaFile } of tasks) {
       console.log(`\nEvaluating [${domain}] criteria: ${criteriaFile}...`);
@@ -155,14 +135,12 @@ Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze str
 
     return results;
   } finally {
-    // ── 8. Cleanup ───────────────────────────────────────────────────
     console.log("Destroying sandbox...");
     await sandbox.kill();
     console.log("Sandbox destroyed.");
   }
 }
 
-/** Lazily resolve the agent so the Mastra instance is fully initialised. */
 function agent() {
   return mastra.getAgent("evaluationAgent");
 }
