@@ -3,6 +3,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Sandbox } from "@e2b/code-interpreter";
 import { mastra } from "../../mastra/index.js";
+import {
+  buildCriteriaPrompt,
+  formatDossierContext,
+  getResponseText,
+  parseJsonResponse,
+  runDossierIntake,
+} from "./dossier-intake.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "..");
@@ -46,57 +53,68 @@ export async function runEvaluationPipeline(opts = {}) {
     await uploadDirectory(sandbox, projectDir, sandboxProjectPath);
     console.log("Project uploaded.");
 
+    const dossierIntake = await runDossierIntake({
+      evaluationAgent: agent(),
+      sandboxId: sandbox.sandboxId,
+      sandboxProjectPath,
+      projectName,
+    });
+
+    const intakeTs = new Date().toISOString().replace(/[:.]/g, "-");
+    const dossierOutputPath = path.join(
+      POC,
+      "resultaten",
+      `dossier-${projectName}-${intakeTs}.json`,
+    );
+    await fs.mkdir(path.dirname(dossierOutputPath), { recursive: true });
+    await fs.writeFile(
+      dossierOutputPath,
+      JSON.stringify(
+        {
+          ...dossierIntake,
+          _meta: {
+            model: process.env.MODEL || "qwen3-coder:480b-cloud",
+            sandboxId: sandbox.sandboxId,
+            project: projectName,
+            timestamp: new Date().toISOString(),
+            type: "dossier-intake",
+          },
+        },
+        null,
+        2,
+      ) + "\n",
+      "utf8",
+    );
+    console.log(`Dossier intake saved to: ${dossierOutputPath}`);
+
+    const dossierContext = formatDossierContext(dossierIntake);
+
     const results = [];
     for (const { domain, criteriaFile } of tasks) {
       console.log(`\nEvaluating [${domain}] criteria: ${criteriaFile}...`);
-      
+
       const criteriaText = await fs.readFile(
         path.join(POC, "criteria", domain, criteriaFile),
         "utf8",
       );
 
-      const agentPrompt = `
-Evalueer het studentenproject dat zich bevindt in de sandbox.
-
-Sandbox ID: ${sandbox.sandboxId}
-Project root: ${sandboxProjectPath}
-Topic: Dit criterium is gericht op de ${domain} van het project. Zoek de juiste map op binnen het project alvorens je diepgaand bestanden inleest.
-
-Gebruik je tools om het project te verkennen:
-1. Gebruik listFiles met sandboxId "${sandbox.sandboxId}" en path "${sandboxProjectPath}" om de mappenstructuur te bekijken
-2. Gebruik readFile om relevante bronbestanden te lezen
-3. Gebruik runCommand als je commando's wilt uitvoeren
-
-Evalueer het project op basis van het volgende criterium:
-
-${criteriaText}
-
-Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze structuur:
-{
-  "criteria": "naam van het criterium",
-  "aanwezig": true of false,
-  "bewijs": "uitleg met verwijzingen naar specifieke bestanden en code",
-  "feedback": "constructieve feedback voor de student"
-}
-`.trim();
+      const agentPrompt = buildCriteriaPrompt({
+        sandboxId: sandbox.sandboxId,
+        sandboxProjectPath,
+        domain,
+        criteriaText,
+        dossierContext,
+      });
 
       try {
         console.log(`Running agent...`);
         const response = await agent().generate(agentPrompt, { maxSteps: 15 });
         console.log("Agent response received.");
 
-        let parsed;
-        try {
-          parsed = JSON.parse(response.text);
-        } catch {
-          const match = String(response.text || "").match(/\{[\s\S]*\}/);
-          if (match) {
-            parsed = JSON.parse(match[0]);
-          } else {
-            console.error("Raw response:", response.text);
-            throw new Error("Could not parse agent response as JSON");
-          }
-        }
+        const parsed = parseJsonResponse(
+          getResponseText(response),
+          `criteria ${criteriaFile}`,
+        );
 
         const output = {
           criteria: String(parsed.criteria ?? ""),
@@ -109,6 +127,7 @@ Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze str
             project: projectName,
             domain,
             criteriaFile,
+            dossierIntakePath: dossierOutputPath,
             timestamp: new Date().toISOString(),
           },
         };
