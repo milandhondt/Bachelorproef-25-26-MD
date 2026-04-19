@@ -18,6 +18,7 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "..");
+const DEFAULT_SANDBOX_TIMEOUT_MS = 60 * 60 * 1000;
 
 async function uploadDirectory(sandbox, localDir, sandboxDir) {
   const entries = await fs.readdir(localDir, { withFileTypes: true });
@@ -46,8 +47,12 @@ export async function runEvaluationPipeline(opts = {}) {
     throw new Error("No evaluation tasks provided");
   }
 
-  console.log("Creating E2B sandbox...");
-  const sandbox = await Sandbox.create({ timeoutMs: 30 * 60 * 1000 });
+  console.log(
+    `Creating E2B sandbox (timeout ${Math.round(DEFAULT_SANDBOX_TIMEOUT_MS / 60000)} min)...`,
+  );
+  const sandbox = await Sandbox.create({
+    timeoutMs: DEFAULT_SANDBOX_TIMEOUT_MS,
+  });
   console.log(`Sandbox created: ${sandbox.sandboxId}`);
 
   try {
@@ -157,6 +162,7 @@ export async function runEvaluationPipeline(opts = {}) {
         sandboxId: sandbox.sandboxId,
         project: projectName,
         timestamp: new Date().toISOString(),
+        sandboxTimeoutMs: DEFAULT_SANDBOX_TIMEOUT_MS,
         criteriaRequested: tasks.length,
         criteriaEvaluated: results.length,
         criteriaFailed: failures.length,
