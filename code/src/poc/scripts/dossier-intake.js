@@ -80,6 +80,44 @@ export function parseJsonResponse(rawText, contextLabel) {
   );
 }
 
+export function normalizeAanwezigStatus(value) {
+  if (typeof value === "boolean") {
+    return value ? "aanwezig" : "afwezig";
+  }
+
+  if (typeof value !== "string") {
+    return "onduidelijk";
+  }
+
+  const normalized = value.trim().toLowerCase();
+
+  if (["aanwezig", "present", "true", "yes", "ja"].includes(normalized)) {
+    return "aanwezig";
+  }
+
+  if (
+    ["afwezig", "absent", "missing", "false", "no", "nee"].includes(normalized)
+  ) {
+    return "afwezig";
+  }
+
+  if (
+    [
+      "onduidelijk",
+      "unknown",
+      "unclear",
+      "inconclusive",
+      "partially present",
+      "gedeeltelijk",
+      "twijfelachtig",
+    ].includes(normalized)
+  ) {
+    return "onduidelijk";
+  }
+
+  return "onduidelijk";
+}
+
 function normalizeStringArray(value) {
   if (!Array.isArray(value)) return [];
   return value.map((item) => String(item ?? "").trim()).filter(Boolean);
@@ -219,10 +257,15 @@ Evalueer het project op basis van het volgende criterium:
 
 ${criteriaText}
 
+Beslisstatus (verplicht):
+- Gebruik "aanwezig" alleen als je direct en overtuigend bewijs ziet in code/configuratie.
+- Gebruik "afwezig" als je voldoende hebt gezocht op relevante plaatsen en het criterium niet aantreft.
+- Gebruik "onduidelijk" als bewijs tegenstrijdig is of te beperkt voor een harde ja/nee conclusie.
+
 Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze structuur:
 {
   "criteria": "naam van het criterium",
-  "aanwezig": true of false,
+  "aanwezig": "aanwezig" | "afwezig" | "onduidelijk",
   "bewijs": "uitleg met verwijzingen naar specifieke bestanden en code",
   "feedback": "constructieve feedback voor de student"
 }

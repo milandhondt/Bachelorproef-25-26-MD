@@ -7,6 +7,7 @@ import {
   buildCriteriaPrompt,
   formatDossierContext,
   getResponseText,
+  normalizeAanwezigStatus,
   parseJsonResponse,
   runDossierIntake,
 } from "./dossier-intake.js";
@@ -118,7 +119,7 @@ export async function runEvaluationPipeline(opts = {}) {
 
         const output = {
           criteria: String(parsed.criteria ?? ""),
-          aanwezig: Boolean(parsed.aanwezig),
+          aanwezig: normalizeAanwezigStatus(parsed.aanwezig ?? parsed.status),
           bewijs: String(parsed.bewijs ?? ""),
           feedback: String(parsed.feedback ?? ""),
           _meta: {
