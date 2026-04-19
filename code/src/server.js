@@ -86,10 +86,12 @@ async function startWizard() {
       `\nStarting evaluation pipeline for ${targetProject} against ${tasks.length} criteria...`,
     );
 
-    const results = await runEvaluationPipeline({
-      projectDir: path.join(projectsDir, targetProject),
-      tasks,
-    });
+    const { results, bundleOutputPath, failures } = await runEvaluationPipeline(
+      {
+        projectDir: path.join(projectsDir, targetProject),
+        tasks,
+      },
+    );
 
     console.log("\n════════════════════════════════════════════");
     console.log("        Alle evaluaties voltooid              ");
@@ -103,8 +105,13 @@ async function startWizard() {
       if (result.output?._meta?.specialistAgent) {
         console.log(`   Agent:     ${result.output._meta.specialistAgent}`);
       }
-      console.log(`   Bestand:   ${path.basename(result.outputPath)}`);
     }
+
+    if (failures.length > 0) {
+      console.log(`\nMislukte criteria: ${failures.length}`);
+    }
+
+    console.log(`\nBundle bestand: ${path.basename(bundleOutputPath)}`);
   } catch (err) {
     if (err !== "") {
       console.error("Evaluatie mislukt.");

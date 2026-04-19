@@ -7,6 +7,7 @@ Deze map bevat de code voor de POC-evaluator (multi-agent pipeline) die studente
 - `npm run test`: start de interactieve evaluatie-wizard in de terminal (aanbevolen).
 
 De evaluatie-output wordt weggeschreven naar `src/poc/resultaten`.
+Per run wordt exact een bundelbestand aangemaakt: `eval-run-<project>-<timestamp>.json`.
 
 ## Vereisten
 
@@ -67,6 +68,7 @@ Wat er dan gebeurt:
    - API
    - testen
 6. Per criterium krijg je een resultaat: `aanwezig`, `afwezig` of `onduidelijk`.
+7. Alle resultaten (dossier-intake + criteria + eventuele failures) komen samen in een JSON-bestand.
 
 ## Troubleshooting
 

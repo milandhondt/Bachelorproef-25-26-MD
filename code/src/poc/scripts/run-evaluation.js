@@ -66,36 +66,18 @@ export async function runEvaluationPipeline(opts = {}) {
       projectName,
     });
 
-    const intakeTs = new Date().toISOString().replace(/[:.]/g, "-");
-    const dossierOutputPath = path.join(
-      POC,
-      "resultaten",
-      `dossier-${projectName}-${intakeTs}.json`,
+    const runTs = new Date().toISOString().replace(/[:.]/g, "-");
+    const resultsDir = path.join(POC, "resultaten");
+    const bundleOutputPath = path.join(
+      resultsDir,
+      `eval-run-${projectName}-${runTs}.json`,
     );
-    await fs.mkdir(path.dirname(dossierOutputPath), { recursive: true });
-    await fs.writeFile(
-      dossierOutputPath,
-      JSON.stringify(
-        {
-          ...dossierIntake,
-          _meta: {
-            model: process.env.MODEL || "qwen3-coder:480b-cloud",
-            sandboxId: sandbox.sandboxId,
-            project: projectName,
-            timestamp: new Date().toISOString(),
-            type: "dossier-intake",
-          },
-        },
-        null,
-        2,
-      ) + "\n",
-      "utf8",
-    );
-    console.log(`Dossier intake saved to: ${dossierOutputPath}`);
+    await fs.mkdir(resultsDir, { recursive: true });
 
     const dossierContext = formatDossierContext(dossierIntake);
 
     const results = [];
+    const failures = [];
     for (const { domain, criteriaFile } of tasks) {
       console.log(`\nEvaluating [${domain}] criteria: ${criteriaFile}...`);
 
@@ -149,34 +131,53 @@ export async function runEvaluationPipeline(opts = {}) {
             project: projectName,
             domain,
             criteriaFile,
-            dossierIntakePath: dossierOutputPath,
+            bundleOutputPath,
+            dossierIncludedInBundle: true,
             specialistAgent: route.agentKey,
             coordinatorReason: route.reason,
             timestamp: new Date().toISOString(),
           },
         };
 
-        const ts = new Date().toISOString().replace(/[:.]/g, "-");
-        const outputPath = path.join(
-          POC,
-          "resultaten",
-          `eval-${projectName}-${domain}-${criteriaFile.replace(".md", "")}-${ts}.json`,
-        );
-
-        await fs.mkdir(path.dirname(outputPath), { recursive: true });
-        await fs.writeFile(
-          outputPath,
-          JSON.stringify(output, null, 2) + "\n",
-          "utf8",
-        );
-
-        results.push({ outputPath, output });
+        results.push({ outputPath: bundleOutputPath, output });
       } catch (err) {
         console.error(`Evaluation for ${criteriaFile} failed:`, err.message);
+        failures.push({
+          domain,
+          criteriaFile,
+          error: String(err?.message ?? err),
+        });
       }
     }
 
-    return results;
+    const bundleOutput = {
+      _meta: {
+        type: "evaluation-run",
+        model: process.env.MODEL || "qwen3-coder:480b-cloud",
+        sandboxId: sandbox.sandboxId,
+        project: projectName,
+        timestamp: new Date().toISOString(),
+        criteriaRequested: tasks.length,
+        criteriaEvaluated: results.length,
+        criteriaFailed: failures.length,
+      },
+      dossierIntake,
+      evaluations: results.map((result) => result.output),
+      failures,
+    };
+
+    await fs.writeFile(
+      bundleOutputPath,
+      JSON.stringify(bundleOutput, null, 2) + "\n",
+      "utf8",
+    );
+    console.log(`Evaluation run saved to: ${bundleOutputPath}`);
+
+    return {
+      bundleOutputPath,
+      results,
+      failures,
+    };
   } finally {
     console.log("Destroying sandbox...");
     await sandbox.kill();
