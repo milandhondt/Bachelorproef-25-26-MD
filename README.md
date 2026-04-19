@@ -8,6 +8,19 @@ Deze repository bevat LaTeX sjablonen voor gebruik bij het opmaken van je bachel
 
 **LET OP.** Voor het academiejaar 2022-2023 zijn er nieuwe sjablonen gepubliceerd die conform zijn met de huidige huisstijl van HOGENT.
 
+## Opstarten van de evaluatie-POC (code)
+
+Naast de LaTeX-sjablonen bevat deze repository ook een code-POC voor geautomatiseerde projectevaluatie.
+
+Voor de meest actuele opstartinstructies, zie:
+- [code/README.md](./code/README.md)
+
+Snelle start:
+1. Ga naar de map `code`
+2. Voer `npm install` uit
+3. Maak `code/.env` aan met sandbox provider key (`E2B_API_KEY`)
+4. Start de wizard met `npm run test`
+
 ## Aan de slag
 
 Om deze sjablonen te gebruiken, kan je de repository downloaden via de groene knop rechtsboven deze pagina. Het is beter een ZIP te downloaden en zelf een Github repository te initialiseren dan deze repository te klonen. In het laatste geval neem je dan immers ook de gehele historiek van wijzigingen in het sjabloon zelf mee en dat is niet relevant voor jouw werk. Maak daarna een Github-repository voor jezelf aan (`git init .`). Gebruik altijd een versiebeheersysteem om een LaTeX-document bij te houden! Creëer een Github-repository die je deelt met je promotor en/of andere belanghebbenden.

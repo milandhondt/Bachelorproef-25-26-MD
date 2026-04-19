@@ -1,26 +1,83 @@
-# Mijn BP project opstarten
+# BP evaluatiecode opstarten
 
-## .env file
-Maak een .env file aan in de **code** map. Hierin komen volgende zaken:
-```
-OPENAI_API_KEY=sk-proj-...
-E2B_API_KEY=e2b_...
-MODEL="openai/gpt-4o-mini"
+Deze map bevat de code voor de POC-evaluator (multi-agent pipeline) die studentenprojecten beoordeelt op basis van criteria.
+
+## Wat je hier kan draaien
+
+- `npm run test`: start de interactieve evaluatie-wizard in de terminal (aanbevolen).
+
+De evaluatie-output wordt weggeschreven naar `src/poc/resultaten`.
+
+## Vereisten
+
+- Node.js 20+
+- npm 10+
+- Een sandbox provider key:
+  - `E2B_API_KEY`
+- Een Ollama-compatibele model endpoint
+
+## 1. Dependencies installeren
+
+Open een terminal in de map `code` en voer uit:
+
+```bash
+npm install
 ```
 
-De API keys zijn gratis aan te vragen op volgende manier:
-- OPENAI_API_KEY:
-1. Ga naar https://platform.openai.com/settings/organization/api-keys en log in of maak een account aan.
-2. Maak een nieuwe key aan met een naam en project naar keuze. Laat de permissies voor het gemak op 'All' staan.
-3. Voeg de key, startende met "sk-proj-" toe aan uw .env file met als variabelenaam "OPENAI_API_KEY".
-  
-- E2B_API_KEY:
+## 2. `.env` configureren
+
+Maak een bestand `code/.env` met minimaal deze variabelen:
+
+```env
+# E2B_API_KEY=e2b_...
+
+# Modelconfiguratie (Ollama-compatible)
+MODEL=qwen3-coder:480b-cloud
+OLLAMA_V1_BASE_URL=http://localhost:11434/v1
+OLLAMA_API_KEY=ollama
+```
+
+De E2B_API_KEY is gratis aan te vragen op volgende manier:
+
 1. Ga naar https://e2b.dev/sign-in en log in of maak een account aan.
 2. Ga links naar het tabje "API keys" en maak een nieuwe key aan met een naam naar keuze.
-3. Voeg de key, startende met "e2b_" toe aan uw .env file met als variabelenaam "E2B_API_KEY".
+3. Voeg de key, startende met "e2b\_" toe aan uw .env file met als variabelenaam "E2B_API_KEY".
 
-Het model is volledig zelf te kiezen. Bij het aanmaken van een nieuwe key is er standaard een gratis budget op uw account wat u kan opgebruiken. Hoe sterker het model, hoe sneller dat budget op zal zijn. 
+Opmerking:
 
-## Het project opstarten
-Om het project op te starten opent u een terminal venster, en navigeert u naar de map "code" binnen deze repo.
-Hier voert u het commando ```npm run dev``` uit, om de applicatie op te starten. Wanneer de applicatie is opgestart, kunt u in een browser naar http://localhost:4111 surfen, om via een grafische interface te interacten met de coding agent.
+- `MODEL` wordt intern gebruikt als `ollama/<MODEL>`.
+- Gebruik je een remote endpoint, pas dan `OLLAMA_V1_BASE_URL` en `OLLAMA_API_KEY` aan.
+
+## 3. Evaluatie starten (aanbevolen flow)
+
+```bash
+npm run test
+```
+
+Wat er dan gebeurt:
+
+1. Je kiest een studentenproject.
+2. De wizard bepaalt automatisch de relevante domeinen/criteria.
+3. De pipeline uploadt het project naar een sandbox.
+4. Een verplichte dossier-intake bouwt projectcontext op.
+5. Een coordinator routeert elk criterium naar een specialist-agent:
+   - dossier
+   - datalaag
+   - servicelaag
+   - API
+   - testen
+6. Per criterium krijg je een resultaat: `aanwezig`, `afwezig` of `onduidelijk`.
+
+## Troubleshooting
+
+- Fout: `No sandbox provider configured`
+  - Zet `E2B_API_KEY` in `code/.env`.
+
+- Fout: connectie naar `127.0.0.1:11434` mislukt
+  - Start lokaal Ollama, of zet `OLLAMA_V1_BASE_URL` naar je remote endpoint.
+
+- Fout: unauthorized/auth bij model endpoint
+  - Controleer `OLLAMA_API_KEY`.
+
+- Geen projecten gevonden in wizard
+  - Voeg projecten toe onder `src/poc/projecten`.
