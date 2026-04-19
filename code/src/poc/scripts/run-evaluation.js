@@ -4,6 +4,10 @@ import { fileURLToPath } from "node:url";
 import { Sandbox } from "@e2b/code-interpreter";
 import { mastra } from "../../mastra/index.js";
 import {
+  getSpecialistProfile,
+  routeCriterionToSpecialist,
+} from "../../mastra/agents/coordinator-agent.js";
+import {
   buildCriteriaPrompt,
   formatDossierContext,
   getResponseText,
@@ -54,8 +58,9 @@ export async function runEvaluationPipeline(opts = {}) {
     await uploadDirectory(sandbox, projectDir, sandboxProjectPath);
     console.log("Project uploaded.");
 
+    const dossierAgent = getAgentOrThrow("dossierAgent");
     const dossierIntake = await runDossierIntake({
-      evaluationAgent: agent(),
+      dossierAgent,
       sandboxId: sandbox.sandboxId,
       sandboxProjectPath,
       projectName,
@@ -99,17 +104,33 @@ export async function runEvaluationPipeline(opts = {}) {
         "utf8",
       );
 
+      const route = routeCriterionToSpecialist({
+        domain,
+        criteriaFile,
+        criteriaText,
+      });
+      const specialist = getSpecialistProfile(route.agentKey);
+      const specialistAgent = getAgentOrThrow(route.agentKey);
+      console.log(
+        `Coordinator routed to [${specialist.name}] (${route.reason})`,
+      );
+
       const agentPrompt = buildCriteriaPrompt({
         sandboxId: sandbox.sandboxId,
         sandboxProjectPath,
         domain,
         criteriaText,
         dossierContext,
+        specialistName: specialist.name,
+        specialistFocus: specialist.focus,
+        coordinatorReason: route.reason,
       });
 
       try {
         console.log(`Running agent...`);
-        const response = await agent().generate(agentPrompt, { maxSteps: 15 });
+        const response = await specialistAgent.generate(agentPrompt, {
+          maxSteps: 15,
+        });
         console.log("Agent response received.");
 
         const parsed = parseJsonResponse(
@@ -129,6 +150,8 @@ export async function runEvaluationPipeline(opts = {}) {
             domain,
             criteriaFile,
             dossierIntakePath: dossierOutputPath,
+            specialistAgent: route.agentKey,
+            coordinatorReason: route.reason,
             timestamp: new Date().toISOString(),
           },
         };
@@ -161,6 +184,10 @@ export async function runEvaluationPipeline(opts = {}) {
   }
 }
 
-function agent() {
-  return mastra.getAgent("evaluationAgent");
+function getAgentOrThrow(agentKey) {
+  const resolved = mastra.getAgent(agentKey);
+  if (!resolved) {
+    throw new Error(`Configured agent not found: ${agentKey}`);
+  }
+  return resolved;
 }

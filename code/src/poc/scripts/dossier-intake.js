@@ -236,6 +236,9 @@ export function buildCriteriaPrompt({
   domain,
   criteriaText,
   dossierContext,
+  specialistName = "Specialist Agent",
+  specialistFocus = "algemene criteria-evaluatie",
+  coordinatorReason = "geen expliciete routeinformatie",
 }) {
   return `
 Evalueer het studentenproject dat zich bevindt in de sandbox.
@@ -243,6 +246,11 @@ Evalueer het studentenproject dat zich bevindt in de sandbox.
 Sandbox ID: ${sandboxId}
 Project root: ${sandboxProjectPath}
 Topic: Dit criterium is gericht op de ${domain} van het project. Zoek de juiste map op binnen het project alvorens je diepgaand bestanden inleest.
+
+Coordinator routing:
+- Gekozen specialist-agent: ${specialistName}
+- Focus van deze specialist: ${specialistFocus}
+- Routing reden: ${coordinatorReason}
 
 VERPLICHT: gebruik eerst onderstaande dossier-intake context als startpunt en verfijn die met extra tool-calls voor dit specifieke criterium.
 
@@ -273,19 +281,19 @@ Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze str
 }
 
 export async function runDossierIntake({
-  evaluationAgent,
+  dossierAgent,
   sandboxId,
   sandboxProjectPath,
   projectName,
   maxSteps = 20,
 }) {
-  if (!evaluationAgent || typeof evaluationAgent.generate !== "function") {
-    throw new Error("Dossier intake failed: evaluationAgent is ongeldig");
+  if (!dossierAgent || typeof dossierAgent.generate !== "function") {
+    throw new Error("Dossier intake failed: dossierAgent is ongeldig");
   }
 
   console.log("Running mandatory dossier intake...");
   const prompt = buildDossierIntakePrompt({ sandboxId, sandboxProjectPath });
-  const response = await evaluationAgent.generate(prompt, { maxSteps });
+  const response = await dossierAgent.generate(prompt, { maxSteps });
   const responseText = getResponseText(response);
   const parsed = parseJsonResponse(responseText, "dossier intake");
   const dossier = normalizeDossierIntake(parsed, projectName);

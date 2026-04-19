@@ -8,9 +8,29 @@ import { LibSQLStore } from "@mastra/libsql";
 import { PinoLogger } from "@mastra/loggers";
 // @ts-expect-error - No declaration file inside JS evaluation agent
 import { evaluationAgent } from "./agents/evaluation-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { evaluationCoordinatorAgent } from "./agents/coordinator-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { dossierAgent } from "./agents/dossier-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { dataLayerAgent } from "./agents/data-layer-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { serviceAgent } from "./agents/service-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { apiAgent } from "./agents/api-agent.js";
+// @ts-expect-error - No declaration file inside JS coordinator/specialist agents
+import { testAgent } from "./agents/test-agent.js";
 
 export const mastra = new Mastra({
-  agents: { evaluationAgent },
+  agents: {
+    evaluationAgent,
+    evaluationCoordinatorAgent,
+    dossierAgent,
+    dataLayerAgent,
+    serviceAgent,
+    apiAgent,
+    testAgent,
+  },
   bundler: {
     externals: ["supports-color", "bufferutil", "utf-8-validate"],
   },

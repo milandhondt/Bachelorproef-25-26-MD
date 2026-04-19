@@ -100,6 +100,9 @@ async function startWizard() {
         `\n➔ Criterium: [${result.output._meta.domain}] ${result.output.criteria}`,
       );
       console.log(`   Status:    ${result.output.aanwezig}`);
+      if (result.output?._meta?.specialistAgent) {
+        console.log(`   Agent:     ${result.output._meta.specialistAgent}`);
+      }
       console.log(`   Bestand:   ${path.basename(result.outputPath)}`);
     }
   } catch (err) {
