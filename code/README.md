@@ -11,6 +11,15 @@ Deze map bevat de code voor de POC-evaluator (multi-agent pipeline) die studente
 De evaluatie-output wordt weggeschreven naar `src/poc/resultaten`.
 Per run wordt exact een bundelbestand aangemaakt: `eval-<flow>-run-<project>-<timestamp>.json`.
 
+De voorbeeldprojecten die gebruikt worden als referentie voor vergelijking moet je plaatsen in:
+`src/poc/projecten/evaluatiekaarten/voorbeeldapplicatie/`
+Als die map ontbreekt, stopt de flow met een fout.
+
+De voorbeeldprojecten voor Front-End Web Development en Web Services vindt u hier:
+
+- [Front-end Web Development](https://github.com/HOGENT-frontendweb/frontendweb-budget)
+- [Web Services](https://github.com/HOGENT-frontendweb/webservices-budget)
+
 ## Vereisten
 
 - Node.js 20+
@@ -72,6 +81,8 @@ Wat er dan gebeurt:
    - testen
 7. Per criterium krijg je een resultaat: `aanwezig`, `afwezig` of `onduidelijk`.
 8. Alle resultaten (dossier-intake + criteria + eventuele failures) komen samen in een JSON-bestand.
+
+Bij de ontvankelijkheidsflow worden enkel de code-verifieerbare criteria meegenomen.
 
 ## Troubleshooting
 

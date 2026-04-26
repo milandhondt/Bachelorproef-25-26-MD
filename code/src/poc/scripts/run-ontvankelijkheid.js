@@ -22,5 +22,6 @@ export async function runOntvankelijkheidPipeline(opts = {}) {
     projectDir,
     tasks: resolvedTasks,
     flowLabel: "ontvankelijkheid",
+    requireReferenceProject: true,
   });
 }

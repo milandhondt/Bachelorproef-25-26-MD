@@ -22,5 +22,6 @@ export async function runEvaluatiecriteriaPipeline(opts = {}) {
     projectDir,
     tasks: resolvedTasks,
     flowLabel: "evaluatiecriteria",
+    requireReferenceProject: true,
   });
 }

@@ -233,6 +233,7 @@ Geef je antwoord als geldige JSON (geen markdown code-fences) met exact deze str
 export function buildCriteriaPrompt({
   sandboxId,
   sandboxProjectPath,
+  referenceProjectPath,
   domain,
   criteriaText,
   dossierContext,
@@ -245,6 +246,7 @@ Evalueer het studentenproject dat zich bevindt in de sandbox.
 
 Sandbox ID: ${sandboxId}
 Project root: ${sandboxProjectPath}
+Referentieproject root: ${referenceProjectPath || "geen referentieproject beschikbaar"}
 Topic: Dit criterium is gericht op de ${domain} van het project. Zoek de juiste map op binnen het project alvorens je diepgaand bestanden inleest.
 
 Coordinator routing:
@@ -258,8 +260,9 @@ ${dossierContext}
 
 Gebruik je tools om het project te verkennen:
 1. Gebruik listFiles met sandboxId "${sandboxId}" en path "${sandboxProjectPath}" om de mappenstructuur te bekijken
-2. Gebruik readFile om relevante bronbestanden te lezen
-3. Gebruik runCommand als je commando's wilt uitvoeren
+2. Gebruik listFiles met sandboxId "${sandboxId}" en path "${referenceProjectPath || sandboxProjectPath}" om het voorbeeldproject te bekijken als je een vergelijkingspunt nodig hebt
+3. Gebruik readFile om relevante bronbestanden te lezen
+4. Gebruik runCommand als je commando's wilt uitvoeren
 
 Evalueer het project op basis van het volgende criterium:
 

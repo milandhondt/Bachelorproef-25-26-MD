@@ -19,6 +19,13 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "..");
 const DEFAULT_SANDBOX_TIMEOUT_MS = 60 * 60 * 1000;
+const DEFAULT_REFERENCE_PROJECT_DIR = path.join(
+  POC,
+  "projecten",
+  "evaluatiekaarten",
+  "voorbeeldapplicatie",
+);
+const DEFAULT_REFERENCE_PROJECT_PATH = "/home/user/__voorbeeldapplicatie";
 
 async function uploadDirectory(sandbox, localDir, sandboxDir) {
   const entries = await fs.readdir(localDir, { withFileTypes: true });
@@ -37,11 +44,22 @@ async function uploadDirectory(sandbox, localDir, sandboxDir) {
   }
 }
 
+async function pathExists(resourcePath) {
+  try {
+    await fs.access(resourcePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function runEvaluationPipeline(opts = {}) {
   const {
     projectDir = path.join(POC, "projecten", "voorbeeld-project"),
     tasks = [],
     flowLabel = "evaluatiecriteria",
+    referenceProjectDir = DEFAULT_REFERENCE_PROJECT_DIR,
+    requireReferenceProject = false,
   } = opts;
 
   if (tasks.length === 0) {
@@ -59,10 +77,27 @@ export async function runEvaluationPipeline(opts = {}) {
   try {
     const projectName = path.basename(projectDir);
     const sandboxProjectPath = `/home/user/${projectName}`;
+    const referenceProjectPath = DEFAULT_REFERENCE_PROJECT_PATH;
 
     console.log(`Uploading project "${projectName}" to sandbox...`);
     await uploadDirectory(sandbox, projectDir, sandboxProjectPath);
     console.log("Project uploaded.");
+
+    const hasReferenceProject = await pathExists(referenceProjectDir);
+    if (hasReferenceProject) {
+      console.log("Uploading reference example project to sandbox...");
+      await uploadDirectory(sandbox, referenceProjectDir, referenceProjectPath);
+      console.log(`Reference project uploaded: ${referenceProjectPath}`);
+    } else {
+      if (requireReferenceProject) {
+        throw new Error(
+          `Reference project not found at ${referenceProjectDir}`,
+        );
+      }
+      console.log(
+        `Reference project not found at ${referenceProjectDir}; continuing without it.`,
+      );
+    }
 
     const dossierAgent = getAgentOrThrow("dossierAgent");
     const dossierIntake = await runDossierIntake({
@@ -107,6 +142,9 @@ export async function runEvaluationPipeline(opts = {}) {
       const agentPrompt = buildCriteriaPrompt({
         sandboxId: sandbox.sandboxId,
         sandboxProjectPath,
+        referenceProjectPath: hasReferenceProject
+          ? referenceProjectPath
+          : undefined,
         domain,
         criteriaText,
         dossierContext,
@@ -138,6 +176,9 @@ export async function runEvaluationPipeline(opts = {}) {
             project: projectName,
             domain,
             criteriaFile,
+            referenceProjectPath: hasReferenceProject
+              ? referenceProjectPath
+              : null,
             bundleOutputPath,
             dossierIncludedInBundle: true,
             specialistAgent: route.agentKey,
@@ -171,6 +212,12 @@ export async function runEvaluationPipeline(opts = {}) {
         criteriaFailed: failures.length,
       },
       dossierIntake,
+      referenceProject: hasReferenceProject
+        ? {
+            localPath: referenceProjectDir,
+            sandboxPath: referenceProjectPath,
+          }
+        : null,
       evaluations: results.map((result) => result.output),
       failures,
     };
