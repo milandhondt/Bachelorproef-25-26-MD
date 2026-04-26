@@ -9,6 +9,8 @@
     "build": "mastra build",
     "start": "mastra start",
     "test": "npx tsx src/server.js",
+    "test:ontvankelijkheid": "npx tsx src/server-ontvankelijkheid.js",
+    "test:evaluatiecriteria": "npx tsx src/server-evaluatiecriteria.js",
     "test:banana": "node src/banana-test.js"
   },
   "keywords": [],

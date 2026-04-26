@@ -4,10 +4,8 @@ import { fileURLToPath } from "node:url";
 import { promises as fs } from "node:fs";
 import enquirer from "enquirer";
 import { runEvaluatiecriteriaPipeline } from "./poc/scripts/run-evaluatiecriteria.js";
-import { runOntvankelijkheidPipeline } from "./poc/scripts/run-ontvankelijkheid.js";
 
 const { prompt } = enquirer;
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const POC = path.resolve(__dirname, "poc");
 
@@ -22,10 +20,9 @@ async function getSubdirectories(dir) {
 
 async function startWizard() {
   console.log("==========================================");
-  console.log("        Student Project Evaluator         ");
+  console.log("      Evaluatiecriteria Evaluator         ");
   console.log("==========================================\n");
 
-  // 1. Scan projects
   const projectsDir = path.join(POC, "projecten");
   let projects = await getSubdirectories(projectsDir);
   projects = projects.filter((p) => !p.startsWith("evaluatie"));
@@ -36,43 +33,20 @@ async function startWizard() {
   }
 
   try {
-    // 2. Prompt for Project
     const { targetProject } = await prompt({
       type: "select",
       name: "targetProject",
-      message: "Select a student project to evaluate:",
+      message: "Select a student project:",
       choices: projects,
     });
 
-    const { selectedFlow } = await prompt({
-      type: "select",
-      name: "selectedFlow",
-      message: "Kies welke flow je wilt uitvoeren:",
-      choices: [
-        {
-          name: "ontvankelijkheid",
-          message: "Ontvankelijkheidscriteria",
-        },
-        {
-          name: "evaluatiecriteria",
-          message: "Evaluatiecriteria",
-        },
-      ],
-    });
-
-    console.log(`\nStarting ${selectedFlow} flow for ${targetProject}...`);
-
-    const pipeline =
-      selectedFlow === "ontvankelijkheid"
-        ? runOntvankelijkheidPipeline
-        : runEvaluatiecriteriaPipeline;
-
-    const { results, bundleOutputPath, failures } = await pipeline({
-      projectDir: path.join(projectsDir, targetProject),
-    });
+    const { results, bundleOutputPath, failures } =
+      await runEvaluatiecriteriaPipeline({
+        projectDir: path.join(projectsDir, targetProject),
+      });
 
     console.log("\n════════════════════════════════════════════");
-    console.log("        Flow voltooid                        ");
+    console.log("      Evaluatiecriteria voltooid           ");
     console.log("══════════════════════════════════════════════");
 
     for (const result of results) {
@@ -80,9 +54,6 @@ async function startWizard() {
         `\n➔ Criterium: [${result.output._meta.domain}] ${result.output.criteria}`,
       );
       console.log(`   Status:    ${result.output.aanwezig}`);
-      if (result.output?._meta?.specialistAgent) {
-        console.log(`   Agent:     ${result.output._meta.specialistAgent}`);
-      }
     }
 
     if (failures.length > 0) {
@@ -91,10 +62,8 @@ async function startWizard() {
 
     console.log(`\nBundle bestand: ${path.basename(bundleOutputPath)}`);
   } catch (err) {
-    if (err !== "") {
-      console.error("Evaluatie mislukt.");
-      console.error(err instanceof Error ? err.message : err);
-    }
+    console.error("Evaluatiecriteria-flow mislukt.");
+    console.error(err instanceof Error ? err.message : err);
     process.exitCode = 1;
   }
 }

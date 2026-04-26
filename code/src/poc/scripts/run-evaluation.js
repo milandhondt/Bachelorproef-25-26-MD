@@ -41,6 +41,7 @@ export async function runEvaluationPipeline(opts = {}) {
   const {
     projectDir = path.join(POC, "projecten", "voorbeeld-project"),
     tasks = [],
+    flowLabel = "evaluatiecriteria",
   } = opts;
 
   if (tasks.length === 0) {
@@ -73,9 +74,10 @@ export async function runEvaluationPipeline(opts = {}) {
 
     const runTs = new Date().toISOString().replace(/[:.]/g, "-");
     const resultsDir = path.join(POC, "resultaten");
+    const safeFlowLabel = String(flowLabel).replace(/[^a-z0-9_-]/gi, "-");
     const bundleOutputPath = path.join(
       resultsDir,
-      `eval-run-${projectName}-${runTs}.json`,
+      `eval-${safeFlowLabel}-run-${projectName}-${runTs}.json`,
     );
     await fs.mkdir(resultsDir, { recursive: true });
 
@@ -158,6 +160,7 @@ export async function runEvaluationPipeline(opts = {}) {
     const bundleOutput = {
       _meta: {
         type: "evaluation-run",
+        flow: flowLabel,
         model: process.env.MODEL || "qwen3-coder:480b-cloud",
         sandboxId: sandbox.sandboxId,
         project: projectName,

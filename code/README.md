@@ -5,9 +5,11 @@ Deze map bevat de code voor de POC-evaluator (multi-agent pipeline) die studente
 ## Wat je hier kan draaien
 
 - `npm run test`: start de interactieve evaluatie-wizard in de terminal (aanbevolen).
+- `npm run test:ontvankelijkheid`: start enkel de ontvankelijkheidsflow.
+- `npm run test:evaluatiecriteria`: start enkel de evaluatiecriteria-flow.
 
 De evaluatie-output wordt weggeschreven naar `src/poc/resultaten`.
-Per run wordt exact een bundelbestand aangemaakt: `eval-run-<project>-<timestamp>.json`.
+Per run wordt exact een bundelbestand aangemaakt: `eval-<flow>-run-<project>-<timestamp>.json`.
 
 ## Vereisten
 
@@ -58,17 +60,18 @@ npm run test
 Wat er dan gebeurt:
 
 1. Je kiest een studentenproject.
-2. De wizard bepaalt automatisch de relevante domeinen/criteria.
-3. De pipeline uploadt het project naar een sandbox.
-4. Een verplichte dossier-intake bouwt projectcontext op.
-5. Een coordinator routeert elk criterium naar een specialist-agent:
+2. Je kiest welke flow je wilt uitvoeren (ontvankelijkheid of evaluatiecriteria).
+3. De pipeline bepaalt automatisch de relevante criteria voor die flow.
+4. De pipeline uploadt het project naar een sandbox.
+5. Een verplichte dossier-intake bouwt projectcontext op.
+6. Een coordinator routeert elk criterium naar een specialist-agent:
    - dossier
    - datalaag
    - servicelaag
    - API
    - testen
-6. Per criterium krijg je een resultaat: `aanwezig`, `afwezig` of `onduidelijk`.
-7. Alle resultaten (dossier-intake + criteria + eventuele failures) komen samen in een JSON-bestand.
+7. Per criterium krijg je een resultaat: `aanwezig`, `afwezig` of `onduidelijk`.
+8. Alle resultaten (dossier-intake + criteria + eventuele failures) komen samen in een JSON-bestand.
 
 ## Troubleshooting
 
