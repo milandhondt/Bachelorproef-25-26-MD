@@ -1,0 +1,156 @@
+%%=============================================================================
+%% POC
+%%=============================================================================
+\chapter{Proof-of-Concept}%
+\label{ch:poc}
+
+\section{De Evaluatieflow}
+
+De geautomatiseerde evaluatie van studentenprojecten binnen de proof-of-concept wordt aangestuurd door een gecentraliseerd script (\texttt{run-evaluation.js}). Dit proces is opgebouwd uit verschillende opeenvolgende fasen om een veilige, contextbewuste en doeltreffende code-evaluatie te garanderen.
+
+\vspace{1em}
+
+\subsection{Stap 1: Initialisatie en Isolatie (Sandbox Setup)}
+
+De veiligheid en integriteit van het evaluatieproces vormen een primaire zorg bij het geautomatiseerd uitvoeren en inspecteren van studentencode. Daarom start de flow met het opzetten van een geïsoleerde 'sandbox' omgeving via E2B. Deze sandbox fungeert als een afgeschermde virtuele machine met een vaste time-out limiet.
+
+\vspace{1em}
+
+Zodra de sandbox operationeel is, wordt de broncode van de student ingeladen in de tijdelijke omgeving. Ook wordt tijdens deze stap het voorbeeldproject voor beide OLOD's ingeladen. Dit stelt de latere AI-agents in staat om de implementatie van de student te vergelijken met een beoogd resultaat.
+
+\subsection{Stap 2: Verkennende Analyse (Dossier Intake)}
+
+Alvorens de aanwezigheid van individuele criteria te controleren, is het cruciaal dat het systeem de bredere context van het project begrijpt. Hiervoor is een specifieke AI-agent ontwikkeld: de \texttt{dossierAgent}. Deze agent voert een initiële verkenning uit in de sandbox om een globaal ``projectdossier'' op te bouwen.
+
+\vspace{1em}
+
+Tijdens deze fase maakt de agent iteratief gebruik van tools om de mappenstructuur te verkennen, documentatie (zoals README-bestanden) in te lezen en configuratiebestanden (zoals \texttt{package.json} of Dockerfiles) te analyseren. Het resultaat wordt geparst tot een gestructureerd JSON-object dat onder meer de technologiestack, startinstructies, potentiële risico's, en de belangrijkste componenten (frontend, backend, database, tests) beschrijft. Dit voorkomt dat het systeem bij het beoordelen van elk afzonderlijk criterium de projectstructuur opnieuw moet ontdekken en vermindert onnodige tool calls.
+
+\subsection{Stap 3: Dynamische Routing (Coordinator Agent)}
+
+De eigenlijke evaluatie is opgedeeld in specifieke criteria-taken. Voor elk criterium wordt het beschrijvende markdown-bestand ingelezen. In plaats van alle criteria door één generiek model te laten beoordelen, maakt het systeem gebruik van een routing-mechanisme.
+
+\vspace{1em}
+
+Een gespecialiseerde \texttt{coordinatorAgent} analyseert de inhoud van het criterium en beslist (via een routeringsfunctie) welke andere agent het meest geschikt is om dit specifieke onderdeel te beoordelen. Zo kan een criterium over REST API-architectuur worden toegewezen aan een backend-agent, terwijl een UI-gerelateerd criterium naar een frontend-agent gaat. De coördinator voegt hierbij ook zijn redenering aan toe, wat handig is om de keuze voor bepaalde beslissingen beter te kunnen begrijpen.
+
+\subsection{Stap 4: Specialistische Evaluatie met Tooling}
+
+Na de toewijzing genereert het systeem een uitgebreide prompt voor de geselecteerde specialist-agent. Deze instructie bundelt alle verzamelde informatie:
+\begin{itemize}
+    \item De identificatiegegevens van de sandbox en projectpaden.
+    \item De algemene projectcontext die verzameld werd tijdens de dossier intake.
+    \item De specifieke criterium-tekst.
+    \item De rol, focus en de routeringsreden van de gekozen agent.
+\end{itemize}
+
+De specialist-agent begint vervolgens aan een iteratief evaluatieproces. Binnen een vastgelegde limiet (bijvoorbeeld 15 stappen) roept de agent autonoom tools aan. Hij kan bestanden openen, broncode regel voor regel inspecteren, of eventueel commando's uitvoeren binnen de sandbox om bewijsmateriaal te verzamelen voor het specifieke criterium.
+
+\subsection{Stap 5: Gestructureerde Parsing en Besluitvorming}
+
+Zodra de specialist-agent zijn onderzoek heeft afgerond, retourneert hij zijn bevindingen. Om deze ruwe output om te zetten in applicatiedata, wordt een strikt parsing-mechanisme toegepast waarbij het antwoord moet voldoen aan een vooraf gedefinieerde JSON-structuur.
+
+\vspace{1em}
+
+Hierbij dwingt het systeem de agent om de evaluatiestatus te normaliseren naar één van de drie mogelijke uitkomsten:
+\begin{itemize}
+    \item \textbf{Aanwezig}: Er is direct en overtuigend bewijs gevonden in de code of configuratie.
+    \item \textbf{Afwezig}: De agent heeft de relevante plaatsen in het project adequaat onderzocht, maar het criterium werd niet aangetroffen.
+    \item \textbf{Onduidelijk}: De bevindingen zijn tegenstrijdig of het bewijs in de code is onvoldoende om een definitieve 'ja/nee' conclusie te trekken.
+\end{itemize}
+
+Naast de status bevat het resulterende JSON-object ook een gedetailleerde argumentatie (met verwijzingen naar specifieke codebestanden of logica) en constructieve feedback.
+
+\subsection{Stap 6: Aggregatie en Afronding}
+
+In de laatste fase loopt het script alle criteria af en registreert eventuele validatie- of runtime-fouten per criterium. Uiteindelijk worden alle individuele evaluaties, eventuele foutmeldingen, en de dossier-intake geaggregeerd in één overkoepelend JSON-rapport.
+
+\vspace{1em}
+
+Dit bestand krijgt uitgebreide metadata (zoals timestamps, gebruikte modellen, time-outlimieten) en wordt opgeslagen voor verdere verwerking of visuele weergave. Ten slotte sluit de flow veilig af door het kill-commando naar E2B te sturen, waardoor de tijdelijke sandbox definitief wordt vernietigd en er geen onnodige cloudbronnen open blijven staan.
+
+\section{Technologische Keuzes}
+
+Bij de ontwikkeling van de proof-of-concept is bewust gekozen voor een reeks moderne frameworks en technologieën die het geautomatiseerd evalueren van broncode op een schaalbare en veilige manier mogelijk maken.
+
+\subsection{Mastra: Typed Agent Framework}
+Voor de orchestratie van de AI-agents is gekozen voor \textbf{Mastra}, een TypeScript-first agent framework. In tegenstelling tot meer generieke alternatieven zoals LangChain of CrewAI, die vaak sterk op Python en abstracte concepten gericht zijn, biedt Mastra een lichtgewicht en sterk getypeerde omgeving. Dit is essentieel voor het bouwen van betrouwbare integraties met gestructureerde output (JSON) en specifieke tools. Mastra stelt ons in staat om de \textit{routing} en executie van \textit{tools} door de verschillende agents expliciet en veilig te beheren binnen een Node.js ecosysteem.
+
+\vspace{1em}
+
+\subsection{E2B Sandbox: Veilige Code-executie}
+Het draaien van ongecontroleerde studentencode houdt inherente veiligheidsrisico's in. Daarom wordt er gebruikgemaakt van de \textbf{E2B Sandbox}. Waar een traditionele aanpak vaak vereist dat er lokaal Docker-containers of virtuele machines moeten worden opgesponnen (wat foutgevoelig is en een trage opstarttijd heeft), is E2B speciaal ontworpen voor AI-code executie. Het biedt onmiddellijk opstartende, volledig afgeschermde cloudomgevingen met configureerbare time-outs. Hierdoor kan de agent veilig bestanden inlezen en processen starten zonder dat de hostmachine of het netwerk gevaar loopt.
+
+\vspace{1em}
+
+\subsection{LLM: Qwen en Reasoning}
+Voor het genereren van de beoordelingen en het analyseren van de code is gekozen voor het \textbf{qwen3-coder:480b-cloud} model (specifiek gefocust op code). Qwen3-coder:480b-cloud onderscheidt zich door zijn sterke \textit{thinking} (reasoning) capaciteiten op het gebied van softwareontwikkeling. In plaats van direct een oppervlakkig antwoord te genereren, dwingt de architectuur van dit LLM een analytisch proces af waarbij eerst de code-logica grondig wordt overwogen alvorens het effectieve JSON-oordeel terug te geven. Doordat qwen3-coder:480b-cloud een cloud model is, zijn er ook geen hoge systeemvereisten.
+
+\vspace{1em}
+
+\section{Voorbeeld van een Evaluatie (Input \& Output)}
+
+Om de abstracte flow concreet te maken, tonen we hieronder een voorbeeld van hoe een criterium-input eruitziet, en hoe de uiteindelijke JSON-output van de AI-agent wordt opgeslagen.
+
+\vspace{1em}
+
+\subsection{Het Criterium (Markdown)}
+De evaluatiecriteria worden opgesteld in natuurlijke taal als markdown-bestanden. Dit maakt het voor docenten eenvoudig om criteria toe te voegen of te wijzigen zonder de code van de evaluator aan te passen. Een volledig voorbeeld van een ontvankelijkheidscriterium voor de frontend is te zien in Codefragment~\ref{lst:criterium-markdown}.
+
+\begin{listing}[htbp]
+\begin{minted}{markdown}
+Ontvankelijkheidscriterium (Front-end): De applicatie wijkt voldoende af van de voorbeeldapplicatie.
+
+Controle-instructies:
+
+- Open het voorbeeldproject in de referentielocatie die in de flow wordt meegegeven.
+- Vergelijk de frontend-structuur, componenten, pagina's en functionaliteit met het voorbeeld.
+- Baseer je beoordeling op concrete code- en bestandsverschillen, niet op veronderstellingen.
+
+Beslisstatus:
+
+- aanwezig: de frontend verschilt duidelijk genoeg van het voorbeeldproject in structuur en functionaliteit.
+- afwezig: de frontend lijkt grotendeels een kopie of is onvoldoende onderscheidend.
+- onduidelijk: het verschil kan niet betrouwbaar worden vastgesteld.
+
+Geef een kort, concreet bewijs met bestandsverwijzingen.
+\end{minted}
+\caption{Voorbeeld van een ontvankelijkheidscriterium in markdown-formaat.}
+\label{lst:criterium-markdown}
+\end{listing}
+
+\subsection{De Resultaten (JSON)}
+De AI-agent voert op basis hiervan zijn verkenning uit in de sandbox en genereert een gestructureerde JSON-respons. Codefragment~\ref{lst:criterium-json} toont de werkelijke output van de agent na evaluatie, inclusief de uitgebreide beoordeling, de onderbouwing (bewijs), feedback voor de student en interne metadata over de gebruikte agent en routering.
+
+\begin{listing}[htbp]
+\begin{minted}{json}
+{
+  "criteria": "Ontvankelijkheidscriterium (Front-end)",
+  "aanwezig": "aanwezig",
+  "bewijs": "Het studentenproject gebruikt een unieke manga-thematisering met specifieke componenten zoals MangaList.jsx, StudioList.jsx en NavBar.jsx die niet voorkomen in het voorbeeldproject. De structuur van de pages directory (/mangas, /studios, /characters) wijkt af van het voorbeeldproject (/places, /transactions). Bovendien gebruikt het studentenproject Bootstrap terwijl het voorbeeld TailwindCSS gebruikt, wat aanzienlijke verschillen oplevert in styling en benadering.",
+  "feedback": "De frontend wijkt voldoende af van het voorbeeldproject door het gebruik van een andere thematiek (manga ipv places/budget), andere componentenstructuur en andere CSS-framework (Bootstrap ipv Tailwind). Dit voldoet aan het ontvankelijkheidscriterium.",
+  "_meta": {
+    "model": "qwen3-coder:480b-cloud",
+    "sandboxId": "imeky4tycewxe2crzz5wk",
+    "project": "fews-project-05",
+    "domain": "frontend",
+    "criteriaFile": "ov-fe-wijkt-voldoende-af-van-voorbeeldapplicatie.md",
+    "referenceProjectPath": "/home/user/__voorbeeldapplicatie",
+    "specialistAgent": "apiAgent",
+    "coordinatorReason": "frontend fallback naar interface/API specialist"
+  }
+}
+\end{minted}
+\caption{Gegenereerde JSON-output van de specialist-agent voor het criteria-markdown bestand.}
+\label{lst:criterium-json}
+\end{listing}
+
+\section{Uitdagingen en Beperkingen}
+
+Hoewel de geautomatiseerde flow uiterst succesvolle resultaten boekt, kwamen er tijdens de ontwikkeling van de proof-of-concept enkele belangrijke uitdagingen en limitaties naar voren.
+
+\subsection{Time-out Limieten van de Sandbox}
+De E2B Sandbox is een zeer efficiënte oplossing, maar introduceert restricties op het vlak van uitvoeringstijd en systeembronnen. Bepaalde studentenprojecten met omvangrijke afhankelijkheden kunnen erg lang duren om initieel op te starten (denk aan een zware \texttt{npm install} of het uitvoeren van complexe database migraties). Dit zorgde in de beginfase soms voor voortijdige time-outs in de E2B omgeving, waardoor het evaluatieproces onverwacht werd afgebroken.
+
+\subsection{Tragere Runs door Reasoning (Thinking)}
+Een andere aanzienlijke uitdaging is de algehele duur van een evaluatieronde. Omdat het gebruikte LLM (qwen3-coder:480b-cloud) gebruikmaakt van een uitgebreid \textit{thinking}- of redeneerproces, ligt de kwaliteit en de betrouwbaarheid van de uiteindelijke beoordeling erg hoog. Echter vergt dit diepgaande redeneerproces (het model "denkt na" in verborgen tokens voordat de uiteindelijke JSON wordt gegenereerd) aanzienlijk veel tijd. In combinatie met de tijd die nodig is voor het iteratief aanroepen van verschillende \textit{tools} in de cloud-sandbox, kan de complete evaluatie van één project gemakkelijk tientallen minuten in beslag nemen.
