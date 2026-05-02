@@ -1,2 +1,9 @@
-Controleer de backend testen heel streng.
-Ga NOOIT af op `package.json`. Vind de map met testen (bijv `/test`, `/tests` of `*.spec.ts/js` bestanden) en open de bestanden! Bevatten ze daadwerkelijk uitgeschreven test-suites met daarin verzoeken/requests (bijv. via Supertest) naar backend REST routes, en met `expect()` assertions? BELANGRIJK: Testen die enkel een "health check" of ping endpoint (zoals `/health` of `/api`) aanspreken mag je NIET meetellen als geldige integratietest, sla deze over. Bevat het project echte integratietesten voor domeinlogica? Zo ja -> true. Indien er enkel lege boilerplate of health checks zijn -> false.
+Controleer de backend op niet-triviale integratietesten.
+
+Zoek actief naar het volgende in de NestJS-codebase:
+
+- Zoek testbestanden (`*.spec.ts`, `*.e2e-spec.ts`) in mappen zoals `/test`, `/tests` of naast bronbestanden en lees hun inhoud — baseer je niet op `package.json`-scripts.
+- Verifieer dat tests echte HTTP-verzoeken sturen naar backend REST-routes (bv. via `supertest`) en concrete `expect()`-assertions bevatten op statuscode en/of responsebody.
+- Tellen niet mee: lege of boilerplate testbestanden, tests die enkel `/health`- of ping-endpoints aanspreken, en unit tests zonder HTTP-verzoeken.
+
+Beoordeel: zijn er werkende integratietesten voor domein-specifieke routes aanwezig?

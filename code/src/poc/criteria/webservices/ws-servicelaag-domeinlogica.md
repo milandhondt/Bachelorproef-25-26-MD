@@ -1,2 +1,9 @@
 Controleer de gelaagde architectuur.
-Wordt alle wezenlijke domein/business logica verwerkt in een afzonderlijke 'service' laag of use-cases map, en wordt de logica niet rechtstreeks in de REST-controllers geschreven? Constateer of controllers leeg/dun zijn.
+
+Zoek actief naar het volgende in de NestJS-codebase:
+
+- Lees meerdere controllerbestanden (`*.controller.ts`) en verifieer dat ze enkel HTTP-afhandeling bevatten: verzoek/antwoord-mapping en delegatie naar de servicelaag.
+- Lees de bijhorende servicebestanden (`*.service.ts`) en verifieer dat alle business logic daar aanwezig is (berekeningen, conditionals, databankinteracties).
+- Een controller die zelf queries uitvoert, businessregels evalueert of meer dan delegatie-aanroepen bevat, telt als overtreding van de laagscheiding.
+
+Beoordeel: wordt alle domein/business logica verwerkt in de servicelaag en zijn controllers aantoonbaar dun?
