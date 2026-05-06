@@ -24,9 +24,8 @@ De voorbeeldprojecten voor Front-End Web Development en Web Services vindt u hie
 
 - Node.js 20+
 - npm 10+
-- Een sandbox provider key:
-  - `E2B_API_KEY`
-- Een Ollama-compatibele model endpoint
+- Een sandbox provider key
+- Een lokaal geïnstalleerde versie van Ollama, te vinden [hier](https://ollama.com/download/windows).
 
 ## 1. Dependencies installeren
 
@@ -41,12 +40,8 @@ npm install
 Maak een bestand `code/.env` met minimaal deze variabelen:
 
 ```env
-# E2B_API_KEY=e2b_...
-
-# Modelconfiguratie (Ollama-compatible)
+E2B_API_KEY=e2b_...
 MODEL=qwen3-coder:480b-cloud
-OLLAMA_V1_BASE_URL=http://localhost:11434/v1
-OLLAMA_API_KEY=ollama
 ```
 
 De E2B_API_KEY is gratis aan te vragen op volgende manier:
@@ -88,12 +83,6 @@ Bij de ontvankelijkheidsflow worden enkel de code-verifieerbare criteria meegeno
 
 - Fout: `No sandbox provider configured`
   - Zet `E2B_API_KEY` in `code/.env`.
-
-- Fout: connectie naar `127.0.0.1:11434` mislukt
-  - Start lokaal Ollama, of zet `OLLAMA_V1_BASE_URL` naar je remote endpoint.
-
-- Fout: unauthorized/auth bij model endpoint
-  - Controleer `OLLAMA_API_KEY`.
 
 - Geen projecten gevonden in wizard
   - Voeg projecten toe onder `src/poc/projecten`.
