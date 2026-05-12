@@ -10,13 +10,13 @@ De geautomatiseerde evaluatie van studentenprojecten binnen de proof-of-concept 
 
 \vspace{1em}
 
-\subsection{Stap 1: Initialisatie en Isolatie (Sandbox Setup)}
+\subsection{Stap 1: Configuratie en Sandbox Setup}
 
-De veiligheid en integriteit van het evaluatieproces vormen een primaire zorg bij het geautomatiseerd uitvoeren en inspecteren van studentencode. Daarom start de flow met het opzetten van een geïsoleerde 'sandbox' omgeving via E2B. Deze sandbox fungeert als een afgeschermde virtuele machine met een vaste time-out limiet.
+Voordat de evaluatie start, wordt het systeem geconfigureerd met de nodige parameters. Via command-line argumenten wordt gespecificeerd voor welk opleidingsonderdeel (Front-End Web Development of Web Services) de evaluatie wordt uitgevoerd. Dit is essentieel omdat de opdrachten en de bijbehorende evaluatiecriteria tussen beide vakken verschillen. Op basis van deze input selecteert het script automatisch de relevante set criteria (markdown-bestanden) en het bijbehorende voorbeeldproject dat als referentiepunt dient.
 
 \vspace{1em}
 
-Zodra de sandbox operationeel is, wordt de broncode van de student ingeladen in de tijdelijke omgeving. Ook wordt tijdens deze stap het voorbeeldproject voor beide OLOD's ingeladen. Dit stelt de latere AI-agents in staat om de implementatie van de student te vergelijken met een beoogd resultaat.
+De veiligheid en integriteit van het evaluatieproces vormen een primaire zorg bij het geautomatiseerd uitvoeren en inspecteren van studentencode. Daarom start de flow met het opzetten van een geïsoleerde 'sandbox' omgeving via E2B. Deze sandbox fungeert als een afgeschermde virtuele machine met een vaste time-out limiet. Zodra de sandbox operationeel is, wordt zowel de broncode van de student als het geselecteerde voorbeeldproject ingeladen. Dit stelt de later aangeroepen AI-agents in staat om de implementatie van de student gericht te vergelijken met het beoogde resultaat van de specifieke opdracht.
 
 \subsection{Stap 2: Verkennende Analyse (Dossier Intake)}
 
