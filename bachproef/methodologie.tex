@@ -12,12 +12,12 @@ In de eerste fase van dit onderzoek werd het probleemdomein verder onderzocht, d
 
 Het doel van deze fase was:
 \begin{itemize}
-    \item verder verdiepen binnen het probleem, de evaluatiecriteria en de methoden die de lectoren van daag de dag hanteren.
+    \item verder verdiepen binnen het probleem, de evaluatiecriteria en de methoden die de lectoren vandaag de dag hanteren.
     \item een gemiddelde tijdsbesteding per project in kaart brengen
     \item ervaringen met inconsistenties binnen beoordelingen te weten komen
 \end{itemize}
 
-Het resultaat van deze fase bestond uit een zeer duidelijke nood aan onderzoek, een concreet inzicht in de richting die het onderzoek uit zou moeten gaan, een overzicht van de verschillende evaluatiecriteria en hoe het evalueren van studentenprojecten in zijn werking zit, en een verzameling van projecten met uiteenlopende beoordelingen, om te kunnen gebruiken als testprojecten voor bij een volgende fase.
+Het resultaat van deze fase bestond uit een zeer duidelijke nood aan onderzoek, een concreet inzicht in de richting die het onderzoek uit zou moeten gaan, een overzicht van de verschillende evaluatiecriteria en hoe het evalueren van studentenprojecten in zijn werking gaat, en een verzameling van projecten met uiteenlopende beoordelingen, om te kunnen gebruiken als testprojecten voor bij een volgende fase.
 
 \section{Fase 2: Literatuurstudie}
 
@@ -26,14 +26,14 @@ De tweede fase bestond uit een systematische literatuurstudie rond:
     \item autograding binnen programmeeronderwijs
     \item het gebruik van Large Language Models (LLM's) voor code-analyse
     \item betrouwbaarheid, hallucinaties en bias in LLM-output
-    \item prompt-engineering en fine-tuning technieken
+    \item prompt-engineering technieken
 \end{itemize}
 
-Uit deze literatuurstudie werden verschillende relevante inzichten rondom het inzetten van LLM's verworven die voor de technische uitwerking enorm van pas zullen komen. Verder werd er als concrete deliverable een longlist opgesteld met poteniële LLM's die geschikt zijn voor code-evaluatie, en gebruikt zullen worden bij de technische uitwerking. Naast geschiktheid werden ook technische beperkingen zoals contextlimieten en tokenrestricties onderzocht.
+Uit deze literatuurstudie werden verschillende relevante inzichten rondom het inzetten van LLM's verworven die voor de technische uitwerking van pas komen. Op basis van de technische vereisten werd gekozen voor de inzet van \textbf{qwen3-coder:480B Cloud}. Dit model werd geselecteerd vanwege zijn sterke redeneercapaciteiten, het feit dat het als cloud-model geen lokale rekenkracht vereist, en de gratis beschikbaarheid voor dit onderzoek.
 
 \section{Fase 3: Ontwerp en opzetten testomgeving en PoC}
 
-In de derde fase werd een reproduceerbare testomgeving ontwikkeld waarin verschillende LLM’s systematisch geëvalueerd konden worden. Dit omvat:
+In de derde fase werd een reproduceerbare testomgeving ontwikkeld waarin het geselecteerde LLM systematisch ingezet kon worden voor de analyse van studentenprojecten. Dit omvat:
 \begin{itemize}
     \item het implementeren van een opsplitsingsmechanisme om rekening te houden met contextlimieten
     \item het ontwikkelen van scripts voor automatische projectanalyse
@@ -43,19 +43,17 @@ In de derde fase werd een reproduceerbare testomgeving ontwikkeld waarin verschi
 
 De PoC werd stapgewijs opgebouwd, uitgebreid en verbeterd, waardoor deze fase een grondig gedocumenteerde en reproduceerbare testomgeving oplevert als deliverable.
 
-\section{Fase 4: Kwantitatieve evaluatie van LLMs}
+\section{Fase 4: Kwantitatieve evaluatie van de PoC}
 
-In deze fase werden geselecteerde LLM’s geëvalueerd op basis van:
+In deze fase werd de werking van de PoC geëvalueerd op basis van:
 
 \begin{itemize}
-    \item correctheid van criteriadetectie
-    \item consistentie met evaluaties van lectoren
-    \item interne consistentie bij herhaalde evaluaties
-    \item performantie (tijd en resourcegebruik)
-    \item potentiële tijdswinst voor lectoren
+    \item correctheid van criteriadetectie door het LLM
+    \item consistentie van de AI-beoordelingen met de evaluaties van lectoren
+    \item de kwaliteit van de gegenereerde feedback
 \end{itemize}
 
-De modellen werden eerst individueel beoordeeld en vervolgens onderling vergeleken.
+De resultaten van de automatische analyse werden getoetst aan de hand van de eerder verzamelde handmatige beoordelingen om de betrouwbaarheid van de tool vast te stellen.
 
 % =================================================================
 
