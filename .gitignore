@@ -279,3 +279,6 @@ vite.config.ts.timestamp-*
 
 # .env files in code map
 code/.env*
+
+# macOS files
+.DS_Store
