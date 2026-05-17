@@ -1,0 +1,108 @@
+%%=============================================================================
+%% Resultaten en Data-analyse
+%%=============================================================================
+\chapter{Resultaten en Data-analyse}%
+\label{ch:evaluatie}
+
+Dit hoofdstuk beantwoordt de centrale onderzoeksvraag door de resultaten van de geautomatiseerde AI-evaluatie systematisch te vergelijken met de handmatige beoordelingen van de lectoren. De proof-of-concept werd uitgevoerd op een selectie van acht studentenprojecten uit het opleidingsonderdeel Front-End Web Development \& Web Services (FEWS). Voor elk project werden zowel de ontvankelijkheidscriteria als de evaluatiecriteria door het AI-systeem beoordeeld. De lectoren beoordeelden dezelfde projecten aan de hand van evaluatiekaarten in Excel. Door beide naast elkaar te leggen, kan de betrouwbaarheid en nauwkeurigheid van de evaluatie worden vastgesteld.
+
+\section{Overzicht van de Dataset}
+\label{sec:dataset}
+
+De analyse omvat acht FEWS-projecten waarvoor volledige AI-resultaten en ingevulde evaluatiekaarten van de lectoren beschikbaar zijn. Per project werden twee afzonderlijke runs uitgevoerd:
+
+\begin{itemize}
+    \item \textbf{Ontvankelijkheidscriteria} (11 criteria): controle of een project aan de minimumvereisten voldoet. Vijf criteria betreffen de frontend, zes de web services.
+    \item \textbf{Evaluatiecriteria} (19 criteria): inhoudelijke beoordeling van de implementatiekwaliteit. Acht criteria evalueren de frontend, elf de backend.
+\end{itemize}
+
+De evaluatiekaarten van de lectoren bevatten drie tabbladen: een ontvankelijkheidstabel met voldaan of niet voldaan en twee scoretabellen (Web Services en Front-end) met een ABCD-schaal en gewogen puntentoekenning. De gedetailleerde resultaten per project zijn opgenomen in het overzicht op p.~\pageref{tab:dataset-overzicht}. Tabel~\ref{tab:dataset-overzicht} vat de omvang van de geanalyseerde dataset samen.
+
+\section{Ontvankelijkheidsvergelijking}
+\label{sec:ontv-vergelijking}
+
+De ontvankelijkheidstest vormt het meest directe vergelijkingspunt: zowel de AI als de lector beantwoorden dezelfde binaire vraag: ``Voldoet het project aan dit criterium of niet?'' De AI-status ``aanwezig'' werd gelijkgesteld aan de lector-status \textit{True}, en ``afwezig'' aan \textit{False}.
+
+\subsection{Globale Nauwkeurigheid}
+
+Over de acht projecten werden 87 ontvankelijkheidscriteria beoordeeld door de AI. Bij 79 hiervan kon een koppeling worden gemaakt met het overeenkomstige lector-oordeel. De resultaten staan samengevat in Tabel~\ref{tab:ontv-globaal}.
+
+\vspace{1em}
+
+Met een nauwkeurigheid van \textbf{91,1\%} komt het AI-oordeel in meer dan negen op de tien gevallen overeen met dat van de menselijke beoordelaar. Dit beantwoordt deelvraag~1 van het oplossingsdomein: het LLM is in staat om vooraf gedefinieerde ontvankelijkheidscriteria met een hoge mate van correctheid te detecteren.
+
+\vspace{1em}
+
+Zie Tabel~\ref{tab:ontv-per-project} voor een gedetailleerde uitsplitsing per project. Vier projecten behalen een perfecte score (100\%), drie scoren 90\%, en één project (fews-project-06) wijkt af met 60\%.
+
+\vspace{1em}
+
+De uitschieter bij fews-project-06 (60\%) verdient nadere verklaring en legt een interessant fenomeen bloot. Bij dit project bestond de inlevering uitsluitend uit een backend (Web Services). Er was dus geen frontend aanwezig in de repository. De AI merkte dit correct op en markeerde de vier frontend-criteria (\textit{extra technologie}, \textit{React-gebruik}, \textit{voldoende complexiteit} en \textit{afwijking van de voorbeeldapplicatie}) terecht als ``afwezig''. Op de evaluatiekaart waren de frontend-ontvankelijkheidscriteria echter toch als voldaan aangevinkt, vermoedelijk als een procedurele handeling (workaround) door de lector omdat de student dit deel niet hoefde in te dienen en anders de evaluatietool mogelijk blokkeert. Dit verklaart de ogenschijnlijk lage nauwkeurigheidsscore van dit project maar bevestigt wel de betrouwbaarheid van de AI als objectieve code-validator.
+
+\vspace{1em}
+
+Bij project 04 is de mismatch te wijten aan het criterium \textit{integratietesten}. De AI rapporteerde dit als aanwezig omdat het één testbestand vond, terwijl de lector dit als niet-voldaan beoordeelde met de opmerking ``maar 1 test''. Dit toont aan dat de AI soms te binair oordeelt waar de lector een kwalitatieve ondergrens hanteert.
+
+\subsection{Analyse per Criterium}
+
+De analyse toont aan dat \textit{objectief verifieerbare} criteria hoger scoren dan \textit{subjectieve} criteria. Web services-criteria die steunen op bestandsanalyse (zoals NestJS-gebruik of de domeinafwijking) behalen een perfecte 100\%. De overige criteria scoren rond de 88\% omdat ze een hogere mate van interpretatie vereisen of gevoelig zijn voor de specifieke implementatiediepte (zoals het aantal testen).
+
+\vspace{1em}
+
+Dit beantwoordt deelvraag 4 van het oplossingsdomein: het LLM scoort sterk op objectief verifieerbare, structurele criteria en iets zwakker op criteria die subjectieve interpretatie vereisen.
+
+\section{Vergelijking Evaluatiecriteria}
+\label{sec:eval-vergelijking}
+
+De evaluatiecriteria zijn complexer om te vergelijken dan de ontvankelijkheidscriteria. De AI kent een drieledig oordeel toe (aanwezig/afwezig/onduidelijk), terwijl de lectoren een ABCD-schaal hanteren.
+
+\subsection{Het Schaalverschil}
+
+De lectoren scoren op de volgende schaal:
+\begin{itemize}
+    \item[\textbf{A}] De standaard is overtroffen (hoger dan het voorbeeldproject).
+    \item[\textbf{B}] De standaard is volledig behaald (gelijk aan het voorbeeldproject).
+    \item[\textbf{C}] De standaard is gedeeltelijk behaald, maar voldoende.
+    \item[\textbf{D}] De standaard is niet behaald (onvoldoende).
+\end{itemize}
+
+\noindent De AI kent géén gradatie toe: het beoordeelt uitsluitend de \textit{aanwezigheid} van een criterium. Een lector-score A, B of C impliceert dat het criterium aanwezig is, terwijl D impliceert een onvoldoende implementatie. De AI-status ``aanwezig'' stemt dus overeen met A/B/C, en ``afwezig'' met D. Zie het overzicht op p.~\pageref{tab:eval-overview} voor de resultaten per project.
+
+\vspace{1em}
+
+Dit fundamentele schaalverschil betekent dat de AI in zijn huidige vorm een \textit{screening-tool} is, geen \textit{scoring-tool}: het kan bepalen \textbf{of} iets er is, maar niet \textbf{hoe goed} het is.
+
+De criteria die de AI als ``afwezig'' beoordeelde, bieden het meeste inzicht in de betrouwbaarheid. De gedetailleerde analyse hiervan is terug te vinden in het overzicht in de inleidende sectie (p.~\pageref{tab:afwezig-analyse}).
+
+Twee terugkerende ``afwezig''-oordelen verdienen speciale aandacht:
+
+\paragraph{Anti-patterns in React Hooks.} Dit criterium werd bij vrijwel alle projecten als ``afwezig'' beoordeeld. Dit is een \textit{semantisch interpretatieverschil}: het criterium zoekt naar de aanwezigheid van anti-patterns. Wanneer de AI rapporteert dat er geen anti-patterns zijn gevonden, is dat inhoudelijk \textit{positief}. Dit illustreert het belang van zorgvuldige criteriumformulering.
+
+\paragraph{Isolatie datalaag.} Bij projecten 02, 03 en 04 oordeelde de AI dat de servicelaag SQL-queries of ORM-code bevatte. Bij inspectie van de lector-evaluatiekaarten blijken deze projecten inderdaad lagere scores (B of C) te hebben ontvangen op databank-gerelateerde criteria. Hier detecteert de AI dus correct tekortkomingen.
+
+\vspace{1em}
+
+Bij fews-project-01 gaven vijf evaluatiecriteria geen uitsluitsel. Dit was het gevolg van restricties in de sandbox-omgeving waardoor bepaalde bestanden niet diepgaand gelezen konden worden. Het systeem kiest er in dergelijke gevallen bewust voor om geen oordeel te vellen wanneer het onvoldoende bewijs kan verzamelen, wat de integriteit van de overige resultaten waarborgt.
+
+\section{Kwalitatieve Analyse van de Feedback}
+\label{sec:kwalitatief}
+
+Naast de kwantitatieve vergelijking is de \textit{kwaliteit} van de gegenereerde feedback relevant voor deelvraag~2.
+
+\subsection{Sterke Punten}
+
+De AI-feedback vertoont drie sterke eigenschappen:
+\begin{enumerate}
+    \item \textbf{Traceerbaarheid}: de AI verwijst consequent naar exacte bestandspaden en lijnnummers, wat het oordeel direct verifieerbaar maakt.
+    \item \textbf{Constructieve suggesties}: de feedback bevat concrete verbetervoorstellen die direct toepasbaar zijn.
+    \item \textbf{Contextbewustzijn}: de AI begrijpt de samenhang tussen frontend en backend door de initiële dossier-intake.
+\end{enumerate}
+
+\subsection{Beperkingen}
+
+\begin{enumerate}
+    \item \textbf{Geen runtime-verificatie}: de AI kan niet controleren of de code daadwerkelijk uitvoerbaar is of bugvrij draait.
+    \item \textbf{Sandbox-restricties}: restricties in de sandbox-omgeving kunnen er soms toe leiden dat de AI geen uitsluitsel kan geven over specifieke criteria.
+\end{enumerate}
+
+

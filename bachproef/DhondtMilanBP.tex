@@ -40,6 +40,9 @@
 }
 
 % Other packages not already included can be imported here
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplotstable}
 
 %%---------- Document metadata -------------------------------------------------
 % TODO: Replace this with your own information
@@ -112,15 +115,158 @@
     \caption[Gantt Diagram]{\label{fig:gantt}Gantt-diagram met de verschillende fasen en milestones van het onderzoek.}
 \end{figure*}
 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            width=0.9\textwidth,
+            height=7cm,
+            ylabel={Nauwkeurigheid (\%)},
+            symbolic x coords={P-01,P-02,P-03,P-04,P-05,P-06,P-07,P-08},
+            xtick=data,
+            xlabel={Project},
+            ymin=0, ymax=110,
+            ytick={0,20,40,60,80,100},
+            bar width=18pt,
+            nodes near coords,
+            nodes near coords align={vertical},
+            every node near coord/.append style={font=\small\bfseries},
+            enlarge x limits=0.12,
+            grid=major,
+            grid style={dashed,gray!30},
+            fill=blue!60,
+            ]
+            \addplot coordinates {
+                (P-01, 100)
+                (P-02, 90)
+                (P-03, 100)
+                (P-04, 90)
+                (P-05, 90)
+                (P-06, 60)
+                (P-07, 100)
+                (P-08, 100)
+            };
+        \end{axis}
+    \end{tikzpicture}
+    \caption[Nauwkeurigheid ontvankelijkheid per project]{Nauwkeurigheid van de AI-ontvankelijkheidsbeoordeling per project.}
+    \label{fig:ontv-per-project}
+\end{figure}
+
 % If you included tables and/or source code listings, uncomment the appropriate
 % lines.
 \listoftables
 
-\listoflistings
+\clearpage
 
-% TODO Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
-% hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
-% https://www.overleaf.com/learn/latex/Glossaries
+\begin{table}[htbp]
+    \centering
+    \caption[Globale ontvankelijkheidsresultaten]{Globale vergelijking AI versus lector op de ontvankelijkheidscriteria.}
+    \label{tab:ontv-globaal}
+    \begin{tabular}{l r}
+        \hline
+        \textbf{Metriek} & \textbf{Waarde} \\
+        \hline
+        Totaal beoordeeld door AI & 87 \\
+        Effectief gekoppeld aan lector & 79 \\
+        Overeenkomsten (match) & 72 \\
+        Afwijkingen (mismatch) & 7 \\
+        \textbf{Nauwkeurigheid} & \textbf{91,1\%} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Overzicht geëvalueerde projecten]{Samenvatting van de geanalyseerde dataset per project en per flow. ``Aanw.'' = aanwezig, ``Afw.'' = afwezig, ``Ond.'' = onduidelijk.}
+    \label{tab:dataset-overzicht}
+    \small
+    \begin{tabular}{l c c c c c c c}
+        \hline
+        \textbf{Project} & \multicolumn{3}{c}{\textbf{Ontvankelijkheid}} & \multicolumn{3}{c}{\textbf{Evaluatiecriteria}} & \textbf{Niet gecl.} \\
+        & Aanw. & Afw. & Ond. & Aanw. & Afw. & Ond. & \\
+        \hline
+        fews-project-01 & 11 & 0 & 0 & 12 & 1 & 5 & 1 \\
+        fews-project-02 & 10 & 1 & 0 & 16 & 3 & 0 & 0 \\
+        fews-project-03 & 11 & 0 & 0 & 17 & 2 & 0 & 0 \\
+        fews-project-04 & 10 & 1 & 0 & 16 & 3 & 0 & 0 \\
+        fews-project-05 & 10 & 1 & 0 & 10 & 3 & 0 & 6 \\
+        fews-project-06 & 6  & 5 & 0 & 11 & 8 & 0 & 0 \\
+        fews-project-07 & 11 & 0 & 0 & 18 & 1 & 0 & 0 \\
+        fews-project-08 & 10 & 0 & 1 & 18 & 1 & 0 & 1 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{table}[htbp]
+    \centering
+    \caption[Ontvankelijkheid per project]{Detail per project: aantal overeenkomsten, afwijkingen en ontbrekende koppelingen.}
+    \label{tab:ontv-per-project}
+    \begin{tabular}{l c c c c}
+        \hline
+        \textbf{Project} & \textbf{Match} & \textbf{Mismatch} & \textbf{Geen data} & \textbf{Nauwk.} \\
+        \hline
+        fews-project-01 & 10 & 0 & 1 & 100\% \\
+        fews-project-02 & 9  & 1 & 1 & 90\% \\
+        fews-project-03 & 10 & 0 & 1 & 100\% \\
+        fews-project-04 & 9  & 1 & 1 & 90\% \\
+        fews-project-05 & 9  & 1 & 1 & 90\% \\
+        fews-project-06 & 6  & 4 & 1 & 60\% \\
+        fews-project-07 & 10 & 0 & 1 & 100\% \\
+        fews-project-08 & 9  & 0 & 1 & 100\% \\
+        \hline
+        \textbf{Totaal} & \textbf{72} & \textbf{7} & \textbf{8} & \textbf{91,1\%} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Evaluatiecriteria overzicht]{Overzicht evaluatiecriteria: AI-oordelen versus lector-scores per project.}
+    \label{tab:eval-overview}
+    \small
+    \begin{tabular}{l c c c c c c}
+        \hline
+        \textbf{Project} & \multicolumn{3}{c}{\textbf{AI-oordeel}} & \multicolumn{2}{c}{\textbf{Lector-criteria met score}} \\
+        & Aanw. & Afw. & Ond. & WS (gescoord) & FE (gescoord) \\
+        \hline
+        fews-project-01 & 12 & 1 & 5 & 32 & 26 \\
+        fews-project-02 & 16 & 3 & 0 & 27 & 24 \\
+        fews-project-03 & 17 & 2 & 0 & 32 & 27 \\
+        fews-project-04 & 16 & 3 & 0 & 31 & 27 \\
+        fews-project-05 & 10 & 3 & 0 & 25 & 26 \\
+        fews-project-06 & 11 & 8 & 0 & 33 & 0 \\
+        fews-project-07 & 18 & 1 & 0 & 32 & 27 \\
+        fews-project-08 & 18 & 1 & 0 & 32 & 26 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Analyse afwezig-oordelen]{Criteria die de AI als ``afwezig'' beoordeelde, met het corresponderende lector-oordeel.}
+    \label{tab:afwezig-analyse}
+    \small
+    \begin{tabular}{l l l l}
+        \hline
+        \textbf{Project} & \textbf{Criterium (AI)} & \textbf{Domein} & \textbf{Lector} \\
+        \hline
+        \multicolumn{4}{l}{\textit{Terugkerend over meerdere projecten}} \\
+        Alle proj. & Anti-patterns React Hooks & FE & Niet apart \\
+        Proj. 02, 03, 04 & Isolatie datalaag (geen SQL in services) & WS & Niet apart \\
+        \hline
+        \multicolumn{4}{l}{\textit{Projectspecifiek}} \\
+        Proj. 02 & Foutafhandeling REST API & WS & C \\
+        Proj. 04 & REST API CRUD-operaties & WS & C \\
+        Proj. 05 & Formulier afhandeling & FE & Niet apart \\
+        Proj. 05 & Client-side authenticatie & FE & Niet apart \\
+        Proj. 06 & Minimale logging en configuratie & WS & C \\
+        Proj. 08 & Anti-patterns React Hooks & FE & Niet apart \\
+        \hline
+    \end{tabular}
+\end{table}
 
 %---------- Kern ---------------------------------------------------------------
 
@@ -137,13 +283,7 @@
 \input{methodologie}
 \input{probleemdomein}
 \input{poc}
-% Voeg hier je eigen hoofdstukken toe die de ``corpus'' van je bachelorproef
-% vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
-% elke fase in je onderzoek in een apart hoofdstuk bespreken.
-
-%\input{...}
-%\input{...}
-%...
+\input{evaluatie}
 
 \input{conclusie}
 
