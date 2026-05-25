@@ -5,32 +5,24 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De opkomst van tools zoals ChatGPT, Gemini en GitHub Copilot, die gebruik maken van Large Language Models (LLM’s) heeft een duidelijke impact op de manier waarop software ontwikkeld wordt. Uit recente onderzoeken blijkt dat studenten en beginnende programmeurs LLM’s steeds vaker gebruiken om code te schrijven, begrijpen en verbeteren, waarbij sommige studies aangeven dat meer dan 70 procent van de studenten in programmeeronderwijs regelmatig AI-gebaseerde code-assistenten inzet \autocite{Lepp2025,Kazemitabaar2023}. Deze tools kunnen niet alleen syntaxfouten detecteren, maar ook de context van implementaties begrijpen en suggesties geven voor verbeteringen, iets wat traditionele autograding tools niet kunnen \autocite{Kasneci2023}.
+De opkomst van tools zoals ChatGPT, Gemini en GitHub Copilot, die gebruikmaken van Large Language Models (LLM’s), heeft een duidelijke impact op de manier waarop software ontwikkeld en onderwezen wordt. Uit recente onderzoeken blijkt dat studenten en beginnende programmeurs LLM’s steeds vaker gebruiken om code te schrijven, te begrijpen en te verbeteren \autocite{Lepp2025,Kazemitabaar2023}. Deze tools kunnen niet alleen syntaxfouten detecteren, maar ook de context van implementaties begrijpen en suggesties geven voor verbeteringen, wat nieuwe mogelijkheden biedt voor het automatiseren en personaliseren van feedback binnen het programmeeronderwijs \autocite{Kasneci2023}.
 
 \vspace{1em}
 
-Dat LLM's ingezet kunnen worden voor code generatie is duidelijk. Echter is het gebruik ervan voor het evalueren van codekwaliteit en het geven van feedback nog onvoldoende onderzocht \autocite{Mendonca2025,Koutcheme2025}. Meer specifiek, is het onduidelijk in welke mate LLM's kunnen bijdragen aan het evalueren van codekwaliteit en het genereren van formatieve feedback op studentenprojecten.
-
-\vspace{1em}
-
-De evaluatie van studentenprojecten binnen de opleidingsonderdelen (OLOD's) Front-End Web Development en Web Services kan een zeer complex en tijdsintensief proces zijn. Niet alleen is er technische kennis vereist, er is ook een nood aan het consistent toepassen van de evaluatiecriteria en daarboven moet er ook genoeg aandacht worden besteed aan het geven van inhoudelijke feedback. Hier zou het zeer interessant zijn om LLM's te gebruiken ter ondersteuning. Deze kunnen bepaalde repetitieve of structurele aspecten van de evaluatie ondersteunen. Echter is hun betrouwbaarheid, consistentie en bruikbaarheid nog onvoldoende onderzocht binnen deze context.
-
-\vspace{1em}
-
-Deze bachelorproef vertrekt vanuit de nood aan een beter inzicht in de mogelijkheden en beperkingen van LLM's, ter ondersteuning bij het evalueren van studentenprojecten binnen de OLOD's Front-End Web Development en Web Services. Dit onderwerp zal systematisch onderzocht worden en bijdragen aan het geven van een realistisch beeld van hoe LLM's al dan niet kunnen worden ingezet bij het evalueren van deze projecten.
+Hoewel de inzet van LLM's voor codegeneratie en ondersteuning van studenten al veelvuldig wordt bestudeerd, is het gebruik ervan voor het systematisch evalueren van codekwaliteit en het leveren van kwalitatieve, formatieve feedback nog onvoldoende onderzocht \autocite{Mendonca2025,Koutcheme2025}. Meer specifiek blijft het een uitdaging om te bepalen in welke mate LLM's bruikbare en betrouwbare oordelen kunnen vellen over complexe code-inzendingen en hoe deze oordelen zich verhouden tot die van menselijke beoordelaars. Deze bachelorproef tracht dit gat te vullen door de inzet van LLM's als ondersteunend evaluatie-instrument diepgaand te analyseren.
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Binnen de opleidingsonderdelen Front-End Web Development en Web Services aan HOGENT worden studentenprojecten geëvalueerd door lectoren op basis van vooraf gedefinieerde criteria, zoals codekwaliteit, structuur, documentatie en foutafhandeling. Deze evaluaties gebeuren momenteel volledig handmatig, wat voor de lectoren een enorm tijdsintensief en repetitief proces is.
+Binnen de opleidingsonderdelen (OLOD's) Front-End Web Development en Web Services aan HOGENT worden studentenprojecten geëvalueerd door lectoren op basis van een uitgebreide set vooraf gedefinieerde criteria, zoals codekwaliteit, structuur, documentatie en foutafhandeling. Deze evaluaties gebeuren momenteel volledig handmatig, wat voor de lectoren een complex, repetitief en enorm tijdsintensief proces is.
 
 \vspace{1em}
 
-Verder gaat er een aanzienlijk deel van de evaluatietijd per project naar het controleren van aanwezige criteria, waardoor er minder tijd is voor inhoudelijke feedback. Daarnaast worden de projecten beoordeeld door meerdere lectoren, waardoor consistente evaluaties moeilijker worden.
+De werklast bij het handmatig beoordelen is hoog doordat er een aanzienlijk deel van de evaluatietijd per project opgaat aan het simpelweg controleren van de aanwezigheid van specifieke criteria in de codebase. Hierdoor blijft er minder tijd over voor het formuleren van diepgaande, inhoudelijke en formatieve feedback voor de student. Daarnaast worden de projecten beoordeeld door meerdere lectoren, wat het risico op inconsistentie en subjectiviteit in de beoordeling vergroot. Hoewel LLM's hier theoretisch ondersteuning kunnen bieden door repetitieve controles te automatiseren, is de betrouwbaarheid, consistentie en bruikbaarheid van dergelijke modellen binnen deze specifieke onderwijscontext nog onduidelijk.
 
 \vspace{1em}
 
-Dit onderzoek richt zich expliciet op de lectoren Front-End Web Development en Web Services aan HOGENT als primaire doelgroep. Deze bachelorproef zal hun concrete inzichten bieden in de bruikbaarheid en beperkingen van LLM-ondersteunde code-evaluatie voor deze specifieke casus.
+Dit onderzoek richt zich dan ook specifiek op de lectoren Front-End Web Development en Web Services aan HOGENT als primaire doelgroep. Deze bachelorproef wil onderzoeken of en hoe een LLM-gebaseerde evaluatieflow kan bijdragen aan het verlagen van de werklast en het verhogen van de consistentie, zonder in te boeten op de kwaliteit van de feedback.
 
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
