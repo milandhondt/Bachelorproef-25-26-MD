@@ -220,17 +220,21 @@ Daarnaast benadrukken \textcite{Koutcheme2025} dat prompt-engineeringstrategieë
 
 Deze bevindingen zijn bijzonder relevant voor dit onderzoek, aangezien zij impliceren dat de betrouwbaarheid van LLM-gebaseerde evaluatie niet enkel afhankelijk is van het gekozen model, maar ook van de configuratie, instructies en eventuele fine-tuning. Hier zal tijdens de technische uitwerking dus zeker genoeg aandacht aan moeten worden besteed.
 
-\subsection{MastraAI}
+\subsection{AI Agent Frameworks}
 
-Naast generieke LLM-modellen bestaan er gespecialiseerde AI-platformen die gericht zijn op code-intelligentie en automatische code-analyse. Dergelijke systemen combineren vaak LLM-technologie met aanvullende analysetools, zoals statische code-analyse of repository-inspectie.
-
-\vspace{1em}
-
-Hoewel academische literatuur over MastraAI specifiek beperkt is, past het concept binnen een bredere evolutie waarbij LLM’s geïntegreerd worden in ontwikkelomgevingen om codekwaliteit te bewaken en codesuggesties te formuleren. Volgens \textcite{Kasneci2023} ligt de meerwaarde van dergelijke toepassingen in het combineren van generatieve capaciteiten met didactische ondersteuning, mits er voldoende menselijk toezicht blijft.
+Naast generieke LLM-modellen bestaan er in toenemende mate gespecialiseerde AI-platformen en framework-ecosystemen (zogenaamde \textit{AI Agent Frameworks}) die gericht zijn op orchestratie, code-intelligentie en automatische taakafhandeling. Dergelijke systemen combineren vaak LLM-technologie met aanvullende analysetools, externe API's en \textit{tool-calling} (bijvoorbeeld statische code-analyse of repository-inspectie). Voorbeelden hiervan zijn generieke open-source frameworks zoals LangChain, CrewAI of AutoGen, en meer gespecialiseerde oplossingen zoals Mastra AI.
 
 \vspace{1em}
 
-De integratie van een platform zoals MastraAI binnen een testomgeving kan toelaten om systematisch te onderzoeken in welke mate gespecialiseerde tools verschillen van generieke LLM’s op vlak van consistentie, accuraatheid en toepasbaarheid binnen projectgebaseerde evaluatie. Verder kan automatisering en het gebruiken van algemene richtlijnen voor meer consistentie zorgen.
+Het grote voordeel van het inzetten van deze AI Agent Frameworks ten opzichte van losse LLM-aanroepen ligt in hun vermogen om de betrouwbaarheid van de output te verhogen en hallucinaties te verminderen \autocite{Osman2024}. Waar een stand-alone LLM afhankelijk is van zijn interne (en mogelijk verouderde of onnauwkeurige) parameters, kunnen AI-agents binnen een framework uitgerust worden met acties. Dit stelt hen in staat om zelf de broncode te runnen, werkelijke foutmeldingen te lezen of bestanden uit te spitten, in plaats van te gokken over de uitkomst. 
+
+\vspace{1em}
+
+Hoewel academische literatuur specifiek over Mastra AI beperkt is, past de opkomst van deze getypeerde en gestructureerde frameworks binnen een bredere evolutie waarbij LLM's ingebed worden in complexe \textit{pipelines} om de codekwaliteit en beoordeling te bewaken. Volgens \textcite{Kasneci2023} ligt de meerwaarde van dergelijke toepassingen in het combineren van generatieve capaciteiten met deterministische acties en didactische ondersteuning, mits er voldoende menselijk toezicht blijft.
+
+\vspace{1em}
+
+De integratie van een platform zoals Mastra AI binnen een testomgeving laat toe om systematisch te onderzoeken in welke mate de orchestratie via agents verschilt van directe LLM-prompts op vlak van consistentie, accuraatheid en toepasbaarheid binnen projectgebaseerde evaluatie. Verder kan de automatisering van de \textit{agentic workflow} zorgen voor een veel gestructureerdere output, wat cruciaal is voor betrouwbare en reproduceerbare resultaten.
 
 \vspace{1em}
 
