@@ -61,7 +61,7 @@ Hierbij dwingt het systeem de agent om de evaluatiestatus te normaliseren naar �
     \item \textbf{Onduidelijk}: De bevindingen zijn tegenstrijdig of het bewijs in de code is onvoldoende om een definitieve 'ja/nee' conclusie te trekken.
 \end{itemize}
 
-Naast de status bevat het resulterende JSON-object ook een gedetailleerde argumentatie (met verwijzingen naar specifieke codebestanden of logica) en constructieve feedback.
+Naast de beslisstatus en een rubric-indicatie (waarbij de agent het project vergelijkt met een referentieproject), bevat het resulterende JSON-object ook een gedetailleerde argumentatie (met verwijzingen naar specifieke codebestanden of logica) en constructieve feedback.
 
 \subsection{Stap 6: Aggregatie en Afronding}
 
@@ -122,28 +122,29 @@ Geef een kort, concreet bewijs met bestandsverwijzingen.
 \end{listing}
 
 \subsection{De Resultaten (JSON)}
-De AI-agent voert op basis hiervan zijn verkenning uit in de sandbox en genereert een gestructureerde JSON-respons. Codefragment~\ref{lst:criterium-json} toont de werkelijke output van de agent na evaluatie, inclusief de uitgebreide beoordeling, de onderbouwing (bewijs), feedback voor de student en interne metadata over de gebruikte agent en routering.
+De AI-agent voert op basis hiervan zijn verkenning uit in de sandbox en genereert een gestructureerde JSON-respons. Codefragment~\ref{lst:criterium-json} toont de werkelijke output van de agent na evaluatie, inclusief de verplichte rubric-indicatie, de uitgebreide beoordeling, de onderbouwing (bewijs), feedback voor de student en interne metadata over de gebruikte agent en routering. Het gehele evaluatierapport bundelt al deze individuele criteria én, in het geval van de ontvankelijkheidsflow, een algemeen ontvankelijkheidsverdikt.
 
 \begin{listing}[htbp]
 \begin{minted}{json}
 {
-  "criteria": "Ontvankelijkheidscriterium (Front-end)",
+  "criteria": "Componentstructuur van de React-frontend",
   "aanwezig": "aanwezig",
-  "bewijs": "Het studentenproject gebruikt een unieke manga-thematisering met specifieke componenten zoals MangaList.jsx, StudioList.jsx en NavBar.jsx die niet voorkomen in het voorbeeldproject. De structuur van de pages directory (/mangas, /studios, /characters) wijkt af van het voorbeeldproject (/places, /transactions). Bovendien gebruikt het studentenproject Bootstrap terwijl het voorbeeld TailwindCSS gebruikt, wat aanzienlijke verschillen oplevert in styling en benadering.",
-  "feedback": "De frontend wijkt voldoende af van het voorbeeldproject door het gebruik van een andere thematiek (manga ipv places/budget), andere componentenstructuur en andere CSS-framework (Bootstrap ipv Tailwind). Dit voldoet aan het ontvankelijkheidscriterium.",
+  "rubricIndicatie": "analoog",
+  "bewijs": "Het project heeft een duidelijke componentstructuur met een components/ map (/home/user/fews-project-01/CollectionTracker/src/components) die meerdere herbruikbare componenten bevat. Er zijn submappen voor specifieke functionaliteiten en een pages/ map voor pagina-niveau componenten zoals Layout.jsx en Homepage.jsx. De structuur volgt een logische scheiding en is vergelijkbaar met de structuur in het referentieproject.",
+  "feedback": "De componentstructuur is goed georganiseerd met een duidelijke scheiding tussen herbruikbare componenten en pagina's. Er zijn meerdere componentbestanden geïdentificeerd die hergebruik bevorderen. Overweeg om eventueel nog meer specifieke submappen aan te maken voor betere organisatie wanneer het project verder groeit.",
   "_meta": {
     "model": "qwen3-coder:480b-cloud",
-    "sandboxId": "imeky4tycewxe2crzz5wk",
-    "project": "fews-project-05",
+    "sandboxId": "i4cjh6ssd4q7hr057r4z1",
+    "project": "fews-project-01",
     "domain": "frontend",
-    "criteriaFile": "ov-fe-wijkt-voldoende-af-van-voorbeeldapplicatie.md",
+    "criteriaFile": "fe-componenten-meerdere.md",
     "referenceProjectPath": "/home/user/__voorbeeldapplicatie",
     "specialistAgent": "apiAgent",
     "coordinatorReason": "frontend fallback naar interface/API specialist"
   }
 }
 \end{minted}
-\caption{Gegenereerde JSON-output van de specialist-agent voor het criteria-markdown bestand.}
+\caption{Gegenereerde JSON-output van de specialist-agent, inclusief rubricIndicatie.}
 \label{lst:criterium-json}
 \end{listing}
 
@@ -154,5 +155,9 @@ Hoewel de geautomatiseerde flow uiterst succesvolle resultaten boekt, kwamen er 
 \subsection{Time-out Limieten van de Sandbox}
 De E2B Sandbox is een zeer efficiënte oplossing, maar introduceert restricties op het vlak van uitvoeringstijd en systeembronnen. Bepaalde studentenprojecten met omvangrijke afhankelijkheden kunnen erg lang duren om initieel op te starten (denk aan een zware \texttt{npm install} of het uitvoeren van complexe database migraties). Dit zorgde in de beginfase soms voor voortijdige time-outs in de E2B omgeving, waardoor het evaluatieproces onverwacht werd afgebroken.
 
-\subsection{Tragere Runs door Reasoning (Thinking)}
-Een andere aanzienlijke uitdaging is de algehele duur van een evaluatieronde. Omdat het gebruikte LLM (qwen3-coder:480b-cloud) gebruikmaakt van een uitgebreid \textit{thinking}- of redeneerproces, ligt de kwaliteit en de betrouwbaarheid van de uiteindelijke beoordeling erg hoog. Echter vergt dit diepgaande redeneerproces (het model "denkt na" in verborgen tokens voordat de uiteindelijke JSON wordt gegenereerd) aanzienlijk veel tijd. In combinatie met de tijd die nodig is voor het iteratief aanroepen van verschillende \textit{tools} in de cloud-sandbox, kan de complete evaluatie van één project gemakkelijk tientallen minuten in beslag nemen.
+\subsection{Uitvoeringstijd en Reasoning (Thinking)}
+Een belangrijke factor om rekening mee te houden is de doorlooptijd van een evaluatieronde. Omdat het gebruikte LLM (qwen3-coder:480b-cloud) gebruikmaakt van een uitgebreid \textit{thinking}- of redeneerproces, ligt de kwaliteit en de betrouwbaarheid van de uiteindelijke beoordeling erg hoog. Dit diepgaande redeneerproces (waarbij het model 'denkt' in verborgen tokens voordat de effectieve JSON gegenereerd wordt) vergt echter initieel extra rekentijd. In de beginfase van het \textit{proof-of-concept}, in combinatie met het iteratief aanroepen van verscheidene tools, leidde dit soms tot bijzonder lange wachttijden. 
+
+\vspace{1em}
+
+Dankzij verdere optimalisaties zijn deze tijden intussen sterk gereduceerd en gestabiliseerd. Tijdens de huidige iteratie van de validatie nam een ontvankelijkheidsrun per project nog ongeveer 8 minuten in beslag, terwijl een uitgebreidere evaluatiecriteria-run rond de 15 minuten duurde.
