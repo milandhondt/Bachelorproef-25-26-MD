@@ -27,7 +27,24 @@
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
 
-\lipsum[1-4]
+Large Language Models (LLM's) worden niet alleen steeds beter in het schrijven van code, maar ook in het nakijken en analyseren ervan. Binnen het programmeeronderwijs, zoals bij de opleidingsonderdelen Front-End Web Development en Web Services aan HOGENT, kruipt er elk jaar enorm veel tijd in het evalueren van studentenprojecten. Lectoren moeten tientallen criteria handmatig aftoetsen per ingediend project. Dat nakijkwerk is niet alleen tijdrovend en repetitief, maar laat soms ook ruimte voor inconsistenties, waardoor er minder tijd overblijft om echt diepgaande en nuttige feedback te schrijven voor de student.
 
-%%---------- Samenvatting -----------------------------------------------------
-% De samenvatting in de hoofdtaal van het document
+\vspace{1em}
+
+Deze bachelorproef onderzoekt de inzet van LLM's als geautomatiseerde 'assistent-evaluatoren'. De centrale vraag is: in welke mate kunnen LLM's betrouwbare, objectieve en bruikbare feedback genereren op de code van studenten, en hoe verhoudt dit oordeel zich tot dat van de menselijke docenten?
+
+\vspace{1em}
+
+Om dit in de praktijk te testen, werd er een \textit{proof-of-concept} (PoC) ontwikkeld. Binnen een veilige, geïsoleerde cloud-omgeving (een E2B sandbox) gaat een AI-pipeline iteratief door de code, documentatie en structuur van ingediende projecten. Hierbij werd gebruikgemaakt van Mastra AI en het krachtige \texttt{qwen3-coder:480b-cloud} model om acht projecten door te lichten op tientallen criteria. De resulterende JSON-rapporten van de AI werden vervolgens zowel kwantitatief als kwalitatief vergeleken met de originele evaluatiekaarten van de lectoren.
+
+\vspace{1em}
+
+De resultaten zijn veelbelovend. Bij de ontvankelijkheidscriteria, zoals het gebruik van een specifiek framework, formuliervalidatie of de aanwezigheid van testen, kwamen de resultaten in maar liefst 91,1\% van de gevallen overeen met het oordeel van de lector. Het LLM bleek ijzersterk in het opleveren van opvallend constructieve feedback, compleet met traceerbare verwijzingen naar specifieke bestandslocaties en lijnen code. Voor de meer complexe, kwalitatieve beoordelingen ('hoe mooi of herbruikbaar is deze feature ingericht?') botste het systeem aanvankelijk op de limieten van een "ja/nee"-schaal. Dit werd gelukkig met succes opgevangen door een rubric-beoordelingsstructuur te verwerken waarbij de AI het project automatisch afweegt tegen de voorbeeldapplicatie. 
+
+\vspace{1em}
+
+Natuurlijk zijn er nog beperkingen. Zo analyseert dit systeem de code vooral statisch en merkt het niet direct dat een app bij het lokaal opstarten meteen crasht (\textit{runtime} fouten). Ook neemt het sterke redeneerproces (\textit{thinking}) van dit specifieke AI-model nog een 8 tot 15 minuten analysetijd per project in beslag.
+
+\vspace{1em}
+
+Kortom, de inzet van LLM-gebaseerde evaluatietools luidt een efficiëntere toekomst in voor het programmeeronderwijs. Hoewel AI de menselijke beoordelaar (nog) niet volledig vervangt, bewijst dit onderzoek wel luid en duidelijk dat het de zware nakijklast drastisch kan verlichten door in te springen als een betrouwbare en objectieve controleur.
