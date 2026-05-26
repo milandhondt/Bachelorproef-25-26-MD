@@ -5,14 +5,43 @@
 \chapter{Conclusie}%
 \label{ch:conclusie}
 
-% TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de
-% onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en
-% hoe biedt dit meerwaarde aan het vakgebied/doelgroep? 
-% Reflecteer kritisch over het resultaat. In Engelse teksten wordt deze sectie
-% ``Discussion'' genoemd. Had je deze uitkomst verwacht? Zijn er zaken die nog
-% niet duidelijk zijn?
-% Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
-%onderzoek?
+Large Language Models (LLM's) worden tegenwoordig voor veel meer gebruikt dan alleen het schrijven van code. Ook voor het analyseren en evalueren van code bieden ze interessante mogelijkheden. Dit onderzoek had als doel om het evaluatieproces voor lectoren in het programmeeronderwijs te automatiseren en te verbeteren, zonder dat dit ten koste gaat van de kwaliteit van de feedback. Daarbij stond de volgende onderzoeksvraag centraal: in welke mate kunnen LLM's betrouwbare en bruikbare feedback genereren op de code van studentenprojecten binnen webontwikkeling, en hoe verhoudt zich dat tot de oordelen van de lectoren zelf?
 
-\lipsum[76-80]
+\section{Beantwoording van de Onderzoeksvragen}
+
+Uit de analyse van de \textit{proof-of-concept} (PoC) op echte HOGENT-studentenprojecten blijkt dat het AI-systeem erg goed presteert bij het detecteren van de ontvankelijkheidscriteria. Hierbij haalde het LLM namelijk een globale nauwkeurigheid van 91,1\% ten opzichte van het menselijke oordeel. 
+
+\vspace{1em}
+
+Het systeem is vooral sterk in het nakijken van objectieve, meetbare criteria, zoals het gebruik van een specifieke technologie of de aanwezigheid van formuliervalidatie. Omdat lectoren hier normaal veel tijd aan kwijt zijn, levert de AI een opvallende tijdswinst op. Bovendien haalt het systeem menselijke foutjes of inconsistenties uit de beoordelingen.
+Wanneer we kijken naar meer kwalitatieve en complexe criteria (bijvoorbeeld 'hoe goed' is de architectuur), botst een simpele ``true/false'' -beoordeling soms op zijn limieten. Dit konden we oplossen door het toevoegen van een rubric-indicatie, waarbij de AI het project vergelijkt met een vooraf gemaakte voorbeeldapplicatie. Tot slot zorgde het ingebouwde redeneerproces (\textit{thinking}) van het gebruikte LLM voor erg gerichte en uiterst contextbewuste feedback, compleet met bestandsverwijzingen.
+
+\section{Praktische Bruikbaarheid}
+
+Uit de gesprekken en feedback van lectoren bleek de JSON-output van onschatbare waarde. Wel kwamen er enkele belangrijke randvoorwaarden naar voren voordat zo'n systeem in de praktijk geïmplementeerd kan worden:
+\begin{itemize}
+    \item \textbf{Verklaring van technische fouten}: Soms geeft de AI aan dat de beoordeling 'onduidelijk' is, op basis van een \textit{failure}. Dit wijst vrijwel altijd op technische problemen in de cloud-sandbox, zoals \textit{time-outs} bij te grote projecten, en betekent dus niet per se dat de studenten slechte code hebben geschreven.
+    \item \textbf{Beperkte runtime-controle}: De app richt zich voornamelijk op de statische broncode. Als een applicatie door een bug bijvoorbeeld niet meer lokaal opstart, merkt de PoC dit niet direct op in het formele testrapport, tenzij de e2e-testen falen.
+    \item \textbf{Inputvereisten voor studenten}: Om de automatische beoordeling vlot te laten verlopen, moeten studenten zich aan afspraken houden. Een duidelijke mapstructuur, een correct ingevuld mutatiedossier en up-to-date \texttt{package.json} bestanden zijn nodig voor de eerste stap, de 'dossier-intake'. 
+\end{itemize}
+
+\section{Toekomstig Werk}
+
+Deze \textit{proof-of-concept} vormt een goede en werkende basis, maar er is uiteraard ruimte voor verdere uitbreiding. De volgende suggesties van lectoren vielen buiten de afgebakende scope van dit onderzoek, maar zijn ideale suggesties voor toekomstig werk. 
+
+\vspace{1em}
+
+Ten eerste kan de resulterende JSON-data direct ingeladen worden in een script dat automatisch de Excel-evaluatiekaarten invult met alle velden ('voldaan', 'feedback', 'rubric' en 'bewijs'). Technische fouten van de evaluatie tool zouden dan meteen geselecteerd  worden onderaan dat specifieke excel document.
+
+\vspace{1em}
+
+Daarnaast is het voor docenten cruciaal om bij teams (duo's) efficiënt de individuele inbreng te controleren. Door een koppeling met de API van GitHub in te bouwen toe, zou de tool in de toekomst kunnen verifiëren hoeveel \textit{commits} en \textit{pull requests} elke student exact doorvoerde.
+
+\vspace{1em}
+
+Tot slot gaven lectoren aan het extra leuk en tijdsbesparend te vinden mocht het AI niet enkel oordelen, maar ook specifieke, kwetsbare of interessante stukjes code van de student verzamelen om hieruit gepersonaliseerde examenvragen te genereren voor de mondelinge verdediging.
+
+\vspace{1em}
+
+Kortom, de inzet van LLM's voor codereviews en het uitdelen van formatieve feedback bespaart heel wat tijd. Al zal het voorlopig het uiteindelijke menselijke eindoordeel nog niet volledig kunnen noch mogen vervangen, toont dit onderzoek wel klaar en duidelijk aan dat LLM's objectieve en zeer competente 'assistent-evaluatoren' zijn voor software-vakken in het hoger onderwijs.
 
