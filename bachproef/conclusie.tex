@@ -18,7 +18,7 @@ Wanneer we kijken naar meer kwalitatieve en complexe criteria (bijvoorbeeld 'hoe
 
 \section{Praktische Bruikbaarheid}
 
-Uit de gesprekken en feedback van lectoren bleek de JSON-output van onschatbare waarde. Wel kwamen er enkele belangrijke randvoorwaarden naar voren voordat zo'n systeem in de praktijk geïmplementeerd kan worden:
+Uit de gesprekken en feedback van lectoren bleek de gestructureerde JSON-output van onschatbare waarde. Een bijkomende opluchting was dat de verwachte theorethische risico's op hallucinaties in praktijk stevig werden ingeperkt door het gestructureerde \textit{thinking}-concept van het Qwen3-Coder model. Wel kwamen er enkele belangrijke randvoorwaarden naar voren voordat zo'n systeem in de dagelijkse onderwijspraktijk geïmplementeerd kan worden:
 \begin{itemize}
     \item \textbf{Verklaring van technische fouten}: Soms geeft de AI aan dat de beoordeling 'onduidelijk' is, op basis van een \textit{failure}. Dit wijst vrijwel altijd op technische problemen in de cloud-sandbox, zoals \textit{time-outs} bij te grote projecten, en betekent dus niet per se dat de studenten slechte code hebben geschreven.
     \item \textbf{Beperkte runtime-controle}: De app richt zich voornamelijk op de statische broncode. Als een applicatie door een bug bijvoorbeeld niet meer lokaal opstart, merkt de PoC dit niet direct op in het formele testrapport, tenzij de e2e-testen falen.

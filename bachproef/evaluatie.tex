@@ -98,11 +98,13 @@ De AI-feedback vertoont drie sterke eigenschappen:
     \item \textbf{Contextbewustzijn}: de AI begrijpt de samenhang tussen frontend en backend door de initiële dossier-intake.
 \end{enumerate}
 
-\subsection{Beperkingen}
+\subsection{Beperkingen \& Hallucinaties}
+
+Hoewel in de literatuurstudie (Hoofdstuk \ref{ch:stand-van-zaken}) het risico op \textit{hallucinaties} en foutieve feedback uitgebreid aan bod kwam, bleek dit in de praktijk verrassend goed mee te vallen. De strakke structurering van de prompts via de agent-frameworks en de verplichte opmaak via JSON en rubrics, beperkten de speelruimte voor het LLM aanzienlijk. Verzonnen codefragmenten of feitelijk incorrecte verbetervoorstellen werden in de geteste steekproef niet waargenomen. Er diende wel rekening te worden gehouden met volgende algemene technische beperkingen:
 
 \begin{enumerate}
-    \item \textbf{Geen runtime-verificatie}: de AI kan niet controleren of de code daadwerkelijk uitvoerbaar is of bugvrij draait.
-    \item \textbf{Sandbox-restricties}: restricties in de sandbox-omgeving kunnen er soms toe leiden dat de AI geen uitsluitsel kan geven over specifieke criteria.
+    \item \textbf{Geen runtime-verificatie}: de AI kan (nog) niet controleren of de code daadwerkelijk succesvol uitvoerbaar is of op runtime fouten botst waardoor de beoordeling grotendeels statisch is.
+    \item \textbf{Sandbox-restricties}: restricties in de E2B sandbox (of time-outs wegens de 'thinking' limiet) leiden er soms toe dat de AI geen uitsluitsel geeft en de status als 'onduidelijk' typeert.
 \end{enumerate}
 
 
