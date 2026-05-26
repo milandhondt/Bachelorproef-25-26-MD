@@ -97,6 +97,7 @@ Always return your final output as valid JSON with exactly this structure:
 {
   "criteria": "name of the criterion",
   "aanwezig": "aanwezig" | "afwezig" | "onduidelijk",
+  "rubricIndicatie": "beter dan voorbeeldapp" | "analoog" | "minder" | "voldoet niet",
   "bewijs": "explanation of why you reached this conclusion, with references to specific files and code",
   "feedback": "constructive, actionable feedback for the student"
 }
@@ -105,6 +106,12 @@ Status policy:
 - Use "aanwezig" only for strong direct evidence in code/configuration.
 - Use "afwezig" only when relevant locations were checked and the criterion is not found.
 - Use "onduidelijk" when evidence is insufficient or contradictory for a hard yes/no claim.
+
+RubricIndicatie policy:
+- Gebruik "beter dan voorbeeldapp" wanneer de student het criterium robuuster, uitgebreider of creatiever heeft geïmplementeerd dan de referentie.
+- Gebruik "analoog" wanneer de implementatie vergelijkbaar is met het referentieproject.
+- Gebruik "minder" wanneer het deels geïmplementeerd is maar kwalitatief/kwantitatief achterblijft op het voorbeeld.
+- Gebruik "voldoet niet" indien de oplossing ontbreekt of fundamenteel stuk is.
 
 Do NOT wrap the JSON in markdown code fences. Return ONLY the raw JSON object.
 

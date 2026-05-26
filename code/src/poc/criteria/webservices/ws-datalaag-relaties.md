@@ -7,4 +7,8 @@ Zoek actief naar het volgende in de NestJS-codebase:
 - Controleer specifiek op relatie-declaraties: `@OneToMany`, `@ManyToOne`, `@ManyToMany` + `@JoinTable` (TypeORM), of `@relation`-velden in Prisma-modellen.
 - Entiteiten zonder enige relatie tellen niet mee als bewijs voor een relationeel schema.
 
+Extra controles:
+
+- Vermeld in het bewijs expliciet per entiteit of het om een tussentabel (junction/koppeltabel voor veel-op-veel relaties) gaat of om een zelfstandige hoofdentiteit.
+
 Beoordeel: zijn er minstens 3 verbonden entiteiten met aantoonbare relaties aanwezig?

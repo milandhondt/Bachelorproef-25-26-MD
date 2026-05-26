@@ -8,3 +8,8 @@ Zoek actief naar het volgende in de React-codebase:
 - Controleer of niet overmatig gebruikt wordt gemaakt van memoization (`useMemo`, `useCallback`) zonder duidelijke performance-voordelen, wat kan leiden tot onnodige complexiteit.
 
 Beoordeel: zijn er geen duidelijke anti-patterns in het gebruik van React Hooks die leiden tot bugs of instabiliteit?
+
+Belangrijke extra vereisten:
+
+- Vermeld in het bewijs expliciet óf `useState`, `useCallback` en `useMemo` worden gebruikt in het project.
+- Geef per hook (useState, useCallback, useMemo) aan in welke specifieke bestanden deze worden gebruikt.

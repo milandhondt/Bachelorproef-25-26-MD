@@ -168,6 +168,9 @@ export async function runEvaluationPipeline(opts = {}) {
         const output = {
           criteria: String(parsed.criteria ?? ""),
           aanwezig: normalizeAanwezigStatus(parsed.aanwezig ?? parsed.status),
+          rubricIndicatie: parsed.rubricIndicatie
+            ? String(parsed.rubricIndicatie)
+            : undefined,
           bewijs: String(parsed.bewijs ?? ""),
           feedback: String(parsed.feedback ?? ""),
           _meta: {
@@ -198,6 +201,12 @@ export async function runEvaluationPipeline(opts = {}) {
       }
     }
 
+    const isOntvankelijkheid = flowLabel.toLowerCase().includes("ontvankelijk");
+    const ontvankelijkVerdikt = isOntvankelijkheid
+      ? results.every((result) => result.output.aanwezig === "aanwezig") &&
+        failures.length === 0
+      : undefined;
+
     const bundleOutput = {
       _meta: {
         type: "evaluation-run",
@@ -212,6 +221,7 @@ export async function runEvaluationPipeline(opts = {}) {
         criteriaFailed: failures.length,
       },
       dossierIntake,
+      ontvankelijk: ontvankelijkVerdikt,
       referenceProject: hasReferenceProject
         ? {
             localPath: referenceProjectDir,

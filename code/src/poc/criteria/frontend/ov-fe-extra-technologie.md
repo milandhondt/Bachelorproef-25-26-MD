@@ -7,6 +7,10 @@ Controle-instructies:
 - Verifieer dat de extra dependency daadwerkelijk gebruikt wordt: zoek naar imports in bronbestanden en controleer of de functionaliteit geïntegreerd is in componenten of logica (niet enkel geïnstalleerd).
 - Voorbeelden van geldige extra technologieën: `@tanstack/react-query`, `zustand`, `jotai`, `redux`, `framer-motion`, `react-hook-form`, `zod`, `socket.io-client`, `i18next`, `chart.js`, `leaflet`.
 
+Belangrijke extra vereisten:
+
+- Indien aanwezig, vermeld in het bewijs expliciet de naam van de extra technologie EN het specifieke bestand of de bestanden waar deze in de code wordt toegepast.
+
 Beslisstatus:
 
 - aanwezig: minstens 1 extra technologie is geïnstalleerd én aantoonbaar gebruikt in broncode.

@@ -7,4 +7,9 @@ Zoek actief naar het volgende in de NestJS-codebase:
 - Swagger-decorators alleen (`@ApiProperty`) zonder validatielogica tellen niet.
 - Verifieer dat ongeldige invoer daadwerkelijk een `400 Bad Request` oplevert.
 
+Extra controles:
+
+- Controleer of DTO-klassen zijn gedefinieerd en vermeld hun bestandspaden in het bewijs.
+- Controleer of de `exceptionFactory` is ingesteld in de `ValidationPipe` configuratie (in `main.ts` of soortgelijk) om foutmeldingen (validation errors) naar behoren te formatteren.
+
 Beoordeel: wordt invoervalidatie op meerdere routes expliciet toegepast en afgedwongen?

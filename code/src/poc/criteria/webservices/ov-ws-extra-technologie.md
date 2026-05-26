@@ -6,6 +6,10 @@ Zoek actief naar het volgende in de NestJS-codebase:
 - Indien geen bruikbare info in `dossier.md`, vergelijk `package.json` van het studentenproject met dat van de voorbeeldapplicatie. Noteer packages die in het studentenproject staan maar niet in de voorbeeldapplicatie. Negeer type-definities (`@types/*`), linters en buildtools — die tellen niet als extra technologie.
 - Verifieer dat de technologie effectief gebruikt wordt: zoek naar imports, module-registratie of configuratie-aanroepen in de broncode. Een package die enkel in `package.json` vermeld staat maar nergens in de code gebruikt wordt, telt niet.
 
+Belangrijke extra vereisten:
+
+- Indien aanwezig, vermeld in het bewijs expliciet de naam van de extra technologie EN het specifieke bestand of de bestanden waar deze in de code wordt toegepast.
+
 Beslisstatus:
 
 - aanwezig: minstens 1 extra technologie aantoonbaar toegevoegd én effectief gebruikt in code of configuratie, die niet aanwezig is in de voorbeeldapplicatie.
