@@ -9,78 +9,95 @@
 % Info over de opleiding
 \course{Bachelorproef}
 \studyprogramme{toegepaste informatica}
-\academicyear{2022-2023}
+\academicyear{2025-2026}
 \institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
 
 % Info over de bachelorproef
-\title{Titel van uw bachelorproef}
-\subtitle{Ondertitel (eventueel)}
-\author{Voornaam Naam}
-\email{voornaam.familienaam@student.hogent.be}
-\supervisor{Voornaam Naam}
-\cosupervisor{Voornaam Naam (Bedrijf)}
+\title{LLM's als Assistent-Evaluatoren: 91,1\% Nauwkeurigheid bij Studentenprojecten}
+\subtitle{De bruikbaarheid en betrouwbaarheid van LLM-gegenereerde feedback binnen webontwikkeling}
+\author{Milan Dhondt}
+\email{milan.dhondt@student.hogent.be}
+\supervisor{Mevr. V. Depestele}
+\cosupervisor{Dhr. T. Aelbrecht}
 
-% Indien ingevuld, wordt deze informatie toegevoegd aan het einde van de
-% abstract. Zet in commentaar als je dit niet wilt.
-\specialisation{Systeem- en Netwerkbeheer}
-\keywords{Lambda-calculus, Scheme}
-\projectrepo{https://github.com/user/repo}
-
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
 \begin{document}
 
 \maketitle
 
-\begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
-\end{abstract}
-
-\begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
+\begin{multicols}{2}
 
 \section{Introductie}
 
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+Binnen het programmeeronderwijs aan HOGENT (\textit{Front-End Web Development} en \textit{Web Services}) leggen lectoren een enorm repetitief en tijdrovend traject af om studentenprojecten te evalueren. Ze toetsen handmatig tientallen afzonderlijke criteria af per project. Daardoor blijft er structureel minder tijd over om diepgaande kwalitatieve feedback te schrijven, iets wat een student nochtans vaak nodig heeft. Verder zijn repetitieve evaluaties vaak ook oorzaak van inconsistenties.
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say `Ni' again to you, if you do not appease us.
+In deze bachelorproef wordt onderzocht hoe, en in welke mate, Large Language Models (LLM's) ondersteunend kunnen worden ingezet bij deze evaluaties. We richten ons concreet op de bruikbaarheid en betrouwbaarheid van LLM-gegenereerde feedback.
 
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
+\section{Materialen en Methode}
 
-You can't expect to wield supreme power just `cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+Dit onderzoek steunde op vijf fases:
+\begin{enumerate}
+    \item \textbf{Probleemdomeinanalyse}: Interviews met de lectoren om de knelpunten en ervaringen in kaart te brengen.
+    \item \textbf{Literatuurstudie}: Onderzoek naar autograding, context limitaties van LLM's, en agentische frameworks.
+    \item \textbf{Ontwikkeling PoC}: Via \textbf{Mastra AI} en een E2B cloud-gehoste sandbox werd een veilige pipeline ontwikkeld, aangestuurd door \texttt{qwen3-coder:480b-cloud}.
+    \item \textbf{Experiment (Validatie)}: Evaluatie van 8 reeds gequoteerde studentenprojecten.
+    \item \textbf{Synthese}: Kwalitatieve en kwantitatieve analyse.
+\end{enumerate}
 
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
+\section{Resultaten}
 
-\section{Experimenten}
+Uit de analyse van de acht vergeleken projecten kwamen duidelijke patronen naar voor:
 
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
+\begin{itemize}
+    \item \textbf{Hoge accuraatheid ontvankelijkheidscriteria:} Voor ontvankelijkheidscriteria kwam het AI-oordeel in \textbf{91,1\%} van de gevallen geheel overeen met dat van de lectoren.
+    \item \textbf{De evaluatiecriteria:} Voor de evaluatiecriteria werkten we met een vergelijkende rubric, gebaseerd op het voorbeeldproject. Hierbij kon een studentenproject op de evaluatiecriteria beter, slechter of gelijkaardig aan het voorbeeldproject scoren.
+    \item \textbf{Nauwkeurige referentiëring:} De feedback van het LLM was constructief en kon consistent verwijzen naar specifieke bestanden en lijnen in de base van het studentenproject.
+\end{itemize}
 
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
+\section{Aanwezigheid in Ontvankelijkheid}
 
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
-
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
-\section{Sectie met figuur}
-
-De {\LaTeX} figure-omgeving bepaalt zelf waar een afbeelding komt en dat is meestal niet op de plek in de tekst waar de figure-omgeving gedefinieerd wordt. Als je wilt forceren dat afbeeldingen toch in de flow van de tekst blijven, dan kan je dat zoals hieronder:
+De kwantitatieve analyse bevestigde dat de AI voornamelijk op de ontvankelijkheidscriteria een hele hoge graad van consistentie bereikt. In 91 procent van de gevallen kwam het oordeel van het LLM overeen met dat van de lectoren.
 
 \begin{center}
-  \captionsetup{type=figure}
-  \includegraphics[width=1.0\linewidth]{grail}
-  \captionof{figure}{He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say `Ni' again to you, if you do not appease us}
+    \captionsetup{type=figure}
+    \begin{tikzpicture}
+        \begin{axis}[
+            ybar,
+            width=0.9\linewidth,
+            height=7.5cm,
+            ylabel={Nauwkeurigheid (\%)},
+            symbolic x coords={P-01,P-02,P-03,P-04,P-05,P-06,P-07,P-08},
+            xtick=data,
+            xlabel={Studentenproject},
+            ymin=0, ymax=120,
+            ytick={0,20,40,60,80,100},
+            bar width=14pt,
+            nodes near coords,
+            nodes near coords align={vertical},
+            every node near coord/.append style={font=\small\bfseries},
+            enlarge x limits=0.15,
+            grid=major,
+            grid style={dashed,gray!30},
+            fill=cyan,
+            ]
+            \addplot coordinates {
+                (P-01, 100) (P-02, 90) (P-03, 100) (P-04, 90)
+                (P-05, 90) (P-06, 60) (P-07, 100) (P-08, 100)
+            };
+        \end{axis}
+    \end{tikzpicture}
+  \captionof{figure}{Vergeleken nauwkeurigheid van de AI-ontvankelijkheidsbeoordeling t.o.v. docenten per project.}
 \end{center}
 
-Let er wel op dat dit tot problemen met bladschikking kan leiden.
-
-\section{Conclusies}
-
-Don't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
+\section{Discussie \& Besluit}
+De inzet van LLM-gebaseerde evaluatietools binnen het programmeeronderwijs is zinvol en tijdbesparend. De \textbf{meerwaarde} van dit onderzoek ligt in het aantonen dat een LLM niet enkel code kan schrijven, maar ook autonoom en betrouwbaar (\textit{91,1\% accuraatheid}) ontvankelijkheidscriteria kan detecteren. Hoewel menselijke controle vereist blijft, kan deze AI-oplossing het evaluatieproces aanzienlijk verlichten. Bovendien levert de uiterst gedetailleerde feedback een sterke didactische meerwaarde voor de student.
 
 \section{Toekomstig onderzoek}
+In toekomstig onderzoek kan de flow nog uitgebreid worden om de lectoren te ondersteunen bij het voorbereiden van de mondelinge evaluaties. Dit zou gedaan kunnen worden door vreemde implementaties of andere bijzonderheden in het project te laten highlighten, en hier eventueel al vragen over te genereren, zodat de lectoren hierop kunnen in gaan tijdens de mondelinge evaluatie. Verder zou de consistentie van de PoC verder verhoogd kunnen worden door de projectstructuur over alle projecten gelijk te proberen trekken, of om de studenten hun projectstructuur zeer duidelijk te laten documenteren.
 
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
+\section{Referenties}
+De bachelorproef en Poc zijn te vinden op\newline \texttt{https://github.com/milandhondt/Bachelorproef-25-26-MD}.
 
 \end{multicols}
 \end{document}
